@@ -1,0 +1,10 @@
+.idea/
+.vagrant/
+node_modules/
+bower_components/
+build/
+tmp/
+coverage/
+uploads/
+Vagrantfile
+*.log.*
