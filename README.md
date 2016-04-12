@@ -75,26 +75,6 @@ This creates a menu option under Tools called `Start MongoDB`
 - Set the working directory to your project such as `/Users/johnpapa/_git/ng-demos/cc-bmean/server`
 - Set the JavaScript file to start as the server `server.js`
 
-## Module Structure
-Example structure may look like this:
-
-```
-app --> [
-          app.featureA
-          app.featureB
-          app.featureC
-          app.layout
-          app.widgets
-        ]  --> app.core --> [
-                                common,
-                                blocks.logger,
-                                blocks.exception,
-                                ui-bootstrap,
-                                ngRoute,
-                                ngAnimate
-                            ]
-```
-
 ### app
 The `app` module is the root of the entire application. This would be named more appropriately to reflect the application. Little or no functionality is here other than aggregating all of the app features which are in other module dependencies.
 
