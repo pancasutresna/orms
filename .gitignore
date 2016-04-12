@@ -6,5 +6,6 @@ build/
 tmp/
 coverage/
 uploads/
+server/data/
 Vagrantfile
 *.log.*

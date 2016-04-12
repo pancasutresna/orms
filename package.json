@@ -5,6 +5,8 @@
   "description": "Directory Website",
   "main": "server.js",
   "scripts": {
+    "init": "npm install",
+    "install": "bower install",
     "start": "node ./bin/www",
     "test": "karma start --browsers Chrome"
   },
