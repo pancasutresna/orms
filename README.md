@@ -95,3 +95,5 @@ The `common` module contains code that may be useful to many applications. Gener
 
 ### blocks.*
 The `blocks.*` modules contains reusable blocks such as logging and exception handling that can be used by any app.
+
+~~~~~~~~~~~~~~~~~~~~~~
