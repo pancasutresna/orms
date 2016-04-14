@@ -27,7 +27,9 @@
     "breezejs": "^1.5.3",
     "angular.breeze.storagewip": "~1.0.3",
     "extras.angular.plus": "^0.9.0",
-    "angular-ui-bootstrap-bower": "~0.11.0"
+    "angular-ui-bootstrap-bower": "~0.11.0",
+    "angular-google-maps": "^2.3.2",
+    "angular-simple-logger": "^0.1.7"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.9",
@@ -46,7 +48,7 @@
         "labs/breeze.directives.js",
         "labs/breeze.metadata-helper.js",
         "labs/breeze.saveErrorExtensions.js"
-        ]
+      ]
     },
     "bootstrap": {
       "main": [
