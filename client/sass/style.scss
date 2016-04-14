@@ -1,5 +1,10 @@
 body{
-    padding-top: 75px;
+    padding-top: 50px;
+
+    .jumbotron {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
 
     .navbar-form{
         .form-group{
@@ -25,5 +30,9 @@ body{
     .toast-success{
         background-color: #13987e;
     }
+
+
+
+    .angular-google-map-container { height: 500px; }
 
 }
