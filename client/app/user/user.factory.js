@@ -93,6 +93,7 @@
                 IdentityFactory.currentUser = undefined;
                 dfd.resolve();
             });
+
             return dfd.promise;
         }
 

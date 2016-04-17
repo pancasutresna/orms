@@ -4,10 +4,10 @@
     angular.module('app.admin.user')
     .controller('AdminUserController', AdminUserController);
 
-    AdminUserController.$inject = ['UserResource'];
-    function AdminUserController(UserResource) {
+    AdminUserController.$inject = ['datacontext'];
+    function AdminUserController(datacontext) {
         var vm = this;
-        vm.users = UserResource.query();
+        vm.users = datacontext.user.query();
     }
 
 })();
