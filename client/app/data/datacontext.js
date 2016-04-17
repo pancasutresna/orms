@@ -8,10 +8,8 @@
     datacontext.$inject = ['$injector', '$resource'];
     function datacontext($injector, $resource) {
 
-        var resourceNames = ['user'];
-
-        var service = {
-        };
+        var resourceNames = ['user', 'place'];
+        var service = {};
 
         init();
 

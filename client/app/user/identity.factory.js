@@ -5,15 +5,15 @@
     .module('app.user')
     .factory('IdentityFactory', IdentityFactory);
 
-    IdentityFactory.$inject = ['$window', '$cookieStore', 'UserResource'];
-    function IdentityFactory($window, $cookieStore, UserResource) {
+    IdentityFactory.$inject = ['$window', '$cookieStore', 'datacontext'];
+    function IdentityFactory($window, $cookieStore, datacontext) {
 
         var currentUser;
         /**
          * get currentUser object from $cookieStore
          */
         if (!!$cookieStore.get('bootstrappedUser')) {
-            currentUser = new UserResource();
+            currentUser = new datacontext.user();
             angular.extend(currentUser, $cookieStore.get('bootstrappedUser'));
         }
 

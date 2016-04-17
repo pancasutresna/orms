@@ -5,10 +5,10 @@
     .module('app.main')
     .controller('MainController', MainController);
 
-    MainController.$inject = ['PlaceResourceCache'];
-    function MainController(PlaceResourceCache) {
+    MainController.$inject = ['ResourcePlaceCache'];
+    function MainController(ResourcePlaceCache) {
         var vm = this;
-        vm.places = PlaceResourceCache.query();
+        vm.places = ResourcePlaceCache.query();
     }
 
 })();

@@ -5,10 +5,10 @@
     .module('app.place')
     .controller('PlaceDetailController', PlaceDetailController);
 
-    PlaceDetailController.$inject = ['PlaceResourceCache', '$routeParams'];
-    function PlaceDetailController(PlaceResourceCache, $routeParams) {
+    PlaceDetailController.$inject = ['ResourcePlaceCache', '$routeParams'];
+    function PlaceDetailController(ResourcePlaceCache, $routeParams) {
         var vm = this;
-        PlaceResourceCache.query().$promise.then(function(collection) {
+        ResourcePlaceCache.query().$promise.then(function(collection) {
             collection.forEach(function(place) {
                 if (place._id === $routeParams.id) {
                     vm.place = place;

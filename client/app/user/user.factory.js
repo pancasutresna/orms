@@ -5,8 +5,8 @@
     .module('app.user')
     .factory('UserFactory', UserFactory);
 
-    UserFactory.$inject = ['$http', '$q', '$cookieStore', '$rootScope', 'IdentityFactory', 'UserResource'];
-    function UserFactory($http, $q, $cookieStore, $rootScope, IdentityFactory, UserResource) {
+    UserFactory.$inject = ['$http', '$q', '$cookieStore', '$rootScope', 'IdentityFactory', 'datacontext'];
+    function UserFactory($http, $q, $cookieStore, $rootScope, IdentityFactory, datacontext) {
 
         var authorize = {
             admin: {
@@ -34,7 +34,7 @@
         ///////////////////////////////////////////////////////////
 
         function createUser(newUserData) {
-            var newUser = new UserResource(newUserData);
+            var newUser = new datacontext.user(newUserData);
             var dfd = $q.defer();
 
             newUser.$save().then(function() {
@@ -69,7 +69,7 @@
             $http.post('/login', {username:username, password: password})
             .then(function(response) {
                 if (response.data.success) {
-                    var user = new UserResource();
+                    var user = new datacontext.user();
                     angular.extend(user, response.data.user);
                     IdentityFactory.currentUser = user;
 

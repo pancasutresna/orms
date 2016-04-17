@@ -5,10 +5,10 @@
     .module('app.place')
     .controller('PlaceListController', PlaceListController);
 
-    PlaceListController.$inject =  ['PlaceResourceCache'];
-    function PlaceListController(PlaceResourceCache) {
+    PlaceListController.$inject =  ['ResourcePlaceCache'];
+    function PlaceListController(ResourcePlaceCache) {
         var vm = this;
-        vm.places = PlaceResourceCache.query();
+        vm.places = ResourcePlaceCache.query();
 
         vm.sortOptions = [
             {value: 'title', text: 'Sort by Title'},
