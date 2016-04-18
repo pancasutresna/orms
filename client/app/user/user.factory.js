@@ -64,9 +64,9 @@
             return dfd.promise;
         }
 
-        function authenticateUser(username, password) {
+        function authenticateUser(email, password) {
             var dfd = $q.defer();
-            $http.post('/login', {username:username, password: password})
+            $http.post('/login', {email:email, password: password})
             .then(function(response) {
                 if (response.data.success) {
                     var user = new datacontext.user();
