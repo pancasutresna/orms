@@ -2,12 +2,12 @@
 <div ng-controller="LoginController as vm" class="navbar-right">
   <form ng-hide="vm.identity.isAuthenticated()" class="navbar-form">
     <div class="form-group">
-      <input placeholder="Email" ng-model="username" class="form-control"/>
+      <input placeholder="Email" ng-model="email" class="form-control"/>
     </div>
     <div class="form-group">
       <input type="password" placeholder="Password" ng-model="password" class="form-control"/>
     </div>
-    <button ng-click="vm.signin(username, password)" class="btn btn-primary">Signin</button>&nbsp;<a href="/signup" class="btn btn-default">Sign up</a>
+    <button ng-click="vm.signin(email, password)" class="btn btn-primary">Signin</button>&nbsp;<a href="/signup" class="btn btn-default">Sign up</a>
   </form>
   <ul ng-show="vm.identity.isAuthenticated()" class="nav navbar-nav navbar-right">
     <li class="dropdown"> <a href="" data-toggle="dropdown" class="dropdown-toggle">{{ vm.identity.currentUser.firstName + " " + vm.identity.currentUser.lastName }}<b class="caret"></b></a>

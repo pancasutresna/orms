@@ -1,12 +1,14 @@
 var mongoose = require('mongoose');
 var encrypt = require('../util/encryption');
 
+require('mongoose-type-email');
+
 // Schema for basic user
 var userSchema = mongoose.Schema({
     firstName: {type: String, required: '{PATH} is required!'},
     lastName: {type: String, required: '{PATH} is required!'},
-    username: {
-        type: String,
+    email: {
+        type: mongoose.SchemaTypes.Email,
         required: '{PATH} is required!',
         unique: true
     },
@@ -36,7 +38,7 @@ function createDefaultUsers() {
                 {
                     firstName: 'Panca',
                     lastName: 'Sutresna',
-                    username: 'panca',
+                    email: 'panca',
                     salt: salt,
                     hashedPwd: hash,
                     roles: ['admin']
@@ -49,7 +51,7 @@ function createDefaultUsers() {
                 {
                     firstName: 'John',
                     lastName: 'Doe',
-                    username: 'john',
+                    email: 'john',
                     salt: salt,
                     hashedPwd: hash, roles: []
                 }
@@ -61,7 +63,7 @@ function createDefaultUsers() {
                 {
                     firstName: 'Jane',
                     lastName: 'Doe',
-                    username: 'jane',
+                    email: 'jane',
                     salt: salt,
                     hashedPwd: hash
                 }

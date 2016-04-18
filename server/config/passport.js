@@ -6,10 +6,13 @@ var User = mongoose.model('User');
 module.exports = function() {
 
     // Passport definition
-    passport.use(new LocalStrategy(
-        function(username, password, done) {
-            console.log('username is :' + username);
-            User.findOne({username: username}).exec(function(err, user) {
+    passport.use(new LocalStrategy({
+            usernameField: 'email'
+        },
+
+        function(email, password, done) {
+            console.log('email is :' + email);
+            User.findOne({email: email}).exec(function(err, user) {
                 if (user && user.authenticate(password)) {
                     console.log('find a user');
                     return done(null, user);
