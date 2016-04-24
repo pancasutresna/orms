@@ -5,8 +5,13 @@
         .module('app.place')
         .controller('PlaceAddController', PlaceAddController);
 
-    PlaceAddController.$inject = ['$scope', 'PlaceFactory', 'ResourcePlaceCache', 'logger', '$location'];
-    function PlaceAddController($scope, PlaceFactory, ResourcePlaceCache, logger, $location) {
+    PlaceAddController.$inject = ['$scope', 'PlaceFactory', 'logger', '$location', 'IdentityFactory'];
+    function PlaceAddController($scope, PlaceFactory, logger, $location, IdentityFactory) {
+
+        // if (!IdentityFactory.isAuthenticated()) {
+        //     $location.path('/places');
+        //     return;
+        // }
 
         $scope.addNew = function() {
             var newPlaceData = {
@@ -15,7 +20,6 @@
             };
 
             PlaceFactory.addNewPlace(newPlaceData).then(function(place) {
-                ResourcePlaceCache.extendPlaces(place);
                 $location.path('/places/' + place._id);
             }, function(reason) {
                 logger.error(reason);

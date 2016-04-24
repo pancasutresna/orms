@@ -15,6 +15,12 @@ exports.getPlaceById = function(req, res) {
 exports.addNewPlace = function(req, res, next) {
     var placeData = req.body;
 
+    if (req.user === undefined) {
+        res.status(403);
+        return res.send({reason: '403 Forbidden'});
+    }
+
+    // TODO: Add owner
     placeData.featured = false;
     placeData.published = new Date('1/1/2016'); //TODO: Change this later
     placeData.tags = ['tag1'];
@@ -25,8 +31,6 @@ exports.addNewPlace = function(req, res, next) {
             return res.send({reason:err.toString()});
         }
 
-        console.log('place: ' + place);
         res.send(place);
     });
-}
-
+};
