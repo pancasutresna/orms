@@ -53,7 +53,8 @@ function createDefaultUsers() {
                     lastName: 'Doe',
                     email: 'john@example.com',
                     salt: salt,
-                    hashedPwd: hash, roles: []
+                    hashedPwd: hash, 
+                    roles: []
                 }
             );
 

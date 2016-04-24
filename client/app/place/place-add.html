@@ -1,0 +1,24 @@
+
+<div class="container">
+  <div class="well">
+    <form name="addPlaceForm" class="form-horizontal">
+      <fieldset>
+        <legend>Add New Place
+          <div class="form-group">
+            <label for="title" class="col-md-2 control-label">Title</label>
+            <div class="col-md-10">
+              <input name="title" type="title" placeholder="Title" ng-model="title" required="required" class="form-control"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+              <div class="pull-right">
+                <button ng-click="addNew()" ng-disable="addPlaceForm.invalid" class="btn btn-primary">Submit</button><a href="/" class="btn btn-default">Cancel</a>
+              </div>
+            </div>
+          </div>
+        </legend>
+      </fieldset>
+    </form>
+  </div>
+</div>

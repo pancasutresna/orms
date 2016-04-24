@@ -11,3 +11,22 @@ exports.getPlaceById = function(req, res) {
         res.send(place);
     });
 };
+
+exports.addNewPlace = function(req, res, next) {
+    var placeData = req.body;
+
+    placeData.featured = false;
+    placeData.published = new Date('1/1/2016'); //TODO: Change this later
+    placeData.tags = ['tag1'];
+
+    Place.create(placeData, function(err, place) {
+        if (err) {
+            res.status(400);
+            return res.send({reason:err.toString()});
+        }
+
+        console.log('place: ' + place);
+        res.send(place);
+    });
+}
+

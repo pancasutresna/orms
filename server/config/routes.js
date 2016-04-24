@@ -13,6 +13,8 @@ module.exports = function(app, config) {
 
     app.get('/api/places', placeCtrl.getPlaces);
     app.get('/api/places/:id', placeCtrl.getPlaceById);
+    app.post('/api/places', placeCtrl.addNewPlace);
+    // app.put('/api/places', placeCtrl.updatePlace);
 
     app.post('/login', auth.authenticate);
     app.post('/logout', function(req, res) {

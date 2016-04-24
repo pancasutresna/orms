@@ -16,6 +16,9 @@
                 }
 
                 return placeList;
+            },
+            extendPlaces: function(place){
+                placeList.push(place);
             }
         };
     }
