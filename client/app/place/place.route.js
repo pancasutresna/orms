@@ -5,8 +5,8 @@
     .module('app.place')
     .run(routeConfig);
 
-    routeConfig.$inject = ['$location', 'routehelper', 'IdentityFactory'];
-    function routeConfig($location, routehelper, IdentityFactory) {
+    routeConfig.$inject = ['routehelper', 'UserFactory'];
+    function routeConfig(routehelper, UserFactory) {
 
         var routes = [
             {
@@ -31,15 +31,7 @@
                     templateUrl: '/app/place/place-add.html',
                     controller: 'PlaceAddController',
                     controllerAs: 'vm',
-                    resolve: {
-                        auth: function() {
-                            if (!IdentityFactory.isAuthenticated()) {
-                                //TODO: Change this url to login page url
-                                $location.path('/places');
-                                return;
-                            }
-                        }
-                    }
+                    resolve: UserFactory.authorize.user
                 }
             }
         ];

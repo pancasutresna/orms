@@ -5,8 +5,8 @@
     .module('app.user')
     .factory('UserFactory', UserFactory);
 
-    UserFactory.$inject = ['$http', '$q', '$cookieStore', '$rootScope', '$location', 'IdentityFactory', 'datacontext'];
-    function UserFactory($http, $q, $cookieStore, $rootScope, $location, IdentityFactory, datacontext) {
+    UserFactory.$inject = ['$http', '$q', '$cookieStore', '$rootScope', 'IdentityFactory', 'datacontext'];
+    function UserFactory($http, $q, $cookieStore, $rootScope, IdentityFactory, datacontext) {
 
         var authorize = {
             admin: {
@@ -109,7 +109,6 @@
             if (IdentityFactory.isAuthenticated()) {
                 return true;
             } else {
-                // $location.path(pageUrl);
                 return $q.reject('Not authorized');
             }
         }
