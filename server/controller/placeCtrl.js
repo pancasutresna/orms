@@ -20,7 +20,7 @@ exports.addNewPlace = function(req, res, next) {
         return res.send({reason: '403 Forbidden'});
     }
 
-    // TODO: Add owner
+    placeData.ownerId = req.user._id; // get ownerId from session
     placeData.featured = false;
     placeData.published = new Date('1/1/2016'); //TODO: Change this later
     placeData.tags = ['tag1'];

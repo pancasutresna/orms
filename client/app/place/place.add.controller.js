@@ -8,11 +8,6 @@
     PlaceAddController.$inject = ['$scope', 'PlaceFactory', 'logger', '$location', 'IdentityFactory'];
     function PlaceAddController($scope, PlaceFactory, logger, $location, IdentityFactory) {
 
-        // if (!IdentityFactory.isAuthenticated()) {
-        //     $location.path('/places');
-        //     return;
-        // }
-
         $scope.addNew = function() {
             var newPlaceData = {
                 title: $scope.title,
@@ -25,5 +20,10 @@
                 logger.error(reason);
             });
         };
+
+        // if (!IdentityFactory.isAuthenticated()) {
+        //     $location.path('/places');
+        //     return;
+        // }
     }
 })();

@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 
 var placeSchema = mongoose.Schema({
+    ownerId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: '{PATH} unknown owner'
+    },
     title: {
         type: String,
         required: '{PATH} is required!'
