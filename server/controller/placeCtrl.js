@@ -11,3 +11,26 @@ exports.getPlaceById = function(req, res) {
         res.send(place);
     });
 };
+
+exports.addNewPlace = function(req, res, next) {
+    var placeData = req.body;
+
+    if (req.user === undefined) {
+        res.status(403);
+        return res.send({reason: '403 Forbidden'});
+    }
+
+    placeData.ownerId = req.user._id; // get ownerId from session
+    placeData.featured = false;
+    placeData.published = new Date('1/1/2016'); //TODO: Change this later
+    placeData.tags = ['tag1'];
+
+    Place.create(placeData, function(err, place) {
+        if (err) {
+            res.status(400);
+            return res.send({reason:err.toString()});
+        }
+
+        res.send(place);
+    });
+};

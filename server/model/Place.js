@@ -1,9 +1,22 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 var placeSchema = mongoose.Schema({
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'owner'
+    },
     title: {
         type: String,
         required: '{PATH} is required!'
+    },
+    latitude: {
+        type: String,
+        required: '{PATH} is required'
+    },
+    longitude: {
+        type: String,
+        required: '{PATH} is required'
     },
     featured: {
         type: Boolean,
@@ -17,13 +30,16 @@ var placeSchema = mongoose.Schema({
 });
 
 var Place = mongoose.model('Place', placeSchema);
-
 function createDefaultPlaces() {
+    console.log('CREATING DEFAULT PLACES-------------------------');
     Place.find({}).exec(function(err, collection) {
         if (collection.length === 0) {
+            console.log('COLLECTION -------------------------');
             Place.create(
                 {
                     title: 'Place 1',
+                    latitude: '37.579412513438385',
+                    longitude: '-102.919921875',
                     featured: true,
                     published: new Date('1/1/2014'),
                     tags: ['tag1']
@@ -32,6 +48,8 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 2',
+                    latitude: '37.579412513438385',
+                    longitude: '-102.919921875',
                     featured: false,
                     published: new Date('1/1/2014'),
                     tags: ['tag2']
@@ -40,6 +58,8 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 3',
+                    latitude: '37.579412513438385',
+                    longitude: '-102.919921875',
                     featured: true,
                     published: new Date('1/1/2014'),
                     tags: ['tag1']
@@ -48,6 +68,8 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 4',
+                    latitude: '37.579412513438385',
+                    longitude: '-102.919921875',
                     featured: true,
                     published: new Date('1/1/2014'),
                     tags: ['tag1', 'tag2', 'tag3']
@@ -56,6 +78,8 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 5',
+                    latitude: '37.579412513438385',
+                    longitude: '-102.919921875',
                     featured: true,
                     published: new Date('1/1/2014'),
                     tags: ['tag1']
@@ -64,6 +88,8 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 6',
+                    latitude: '37.579412513438385',
+                    longitude: '-102.919921875',
                     featured: true,
                     published: new Date('1/1/2014'),
                     tags: ['tag3']
@@ -72,6 +98,8 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 7',
+                    latitude: '37.579412513438385',
+                    longitude: '-102.919921875',
                     featured: false,
                     published: new Date('1/1/2014'),
                     tags: ['tag3']
@@ -80,6 +108,8 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 8',
+                    latitude: '37.579412513438385',
+                    longitude: '-102.919921875',
                     featured: true,
                     published: new Date('1/1/2014'),
                     tags: ['tag3']
@@ -88,6 +118,8 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 9',
+                    latitude: '37.579412513438385',
+                    longitude: '-102.919921875',
                     featured: false,
                     published: new Date('1/1/2014'),
                     tags: ['tag1']
@@ -96,6 +128,8 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 10',
+                    latitude: '37.579412513438385',
+                    longitude: '-102.919921875',
                     featured: true,
                     published: new Date('1/1/2014'),
                     tags: ['tag1']
@@ -104,6 +138,8 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 11',
+                    latitude: '37.579412513438385',
+                    longitude: '-102.919921875',
                     featured: true,
                     published: new Date('1/1/2014'),
                     tags: ['tag1']
@@ -112,6 +148,8 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 12',
+                    latitude: '37.579412513438385',
+                    longitude: '-102.919921875',
                     featured: true,
                     published: new Date('1/1/2014'),
                     tags: ['tag1']
@@ -120,6 +158,8 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 13',
+                    latitude: '37.579412513438385',
+                    longitude: '-102.919921875',
                     featured: true,
                     published: new Date('1/1/2014'),
                     tags: ['tag1']

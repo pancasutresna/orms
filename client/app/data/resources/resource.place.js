@@ -13,8 +13,13 @@
         };
 
         function createResource($resource) {
-            var resource = $resource('/api/places/:_id', {_id: '@id'}, {
-                update: {method: 'PUT', isArray: false}
+            var resource = $resource('/api/places/:_id', {
+                _id: '@id'
+            }, {
+                update: {
+                    method: 'PUT', 
+                    isArray: false
+                }
             });
 
             return resource;

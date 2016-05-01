@@ -39,7 +39,7 @@ exports.updateUser = function(req, res) {
 
     if (req.user._id !== updatedUser._id && !req.user.hasRole('admin')) {
         res.status(403);
-        return res.end();
+        return res.send();
     }
 
     req.user.firstName = updatedUser.firstName;
