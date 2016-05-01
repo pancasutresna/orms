@@ -5,11 +5,13 @@
         .module('app.map')
         .controller('MapMarker', MapMarker);
 
-    MapMarker.$inject = ['$scope', 'logger', '$timeout'];
-    function MapMarker($scope, logger, $timeout) {
+    MapMarker.$inject = ['$scope', '$timeout', 'logger'];
+    function MapMarker($scope, $timeout, logger) {
         var theLatitude = 40.1451;
         var theLongitude = -99.6680;
 
+        $scope.latitude = '';
+        $scope.longitude = '';
         $scope.map = {
             center: {
                 latitude: 40.1451,
@@ -21,7 +23,6 @@
             markers: [],
             events: {
                 click: function(map, eventName, args) {
-
                     var e = args[0];
                     var lat = e.latLng.lat();
                     var lon = e.latLng.lng();
@@ -44,10 +45,13 @@
                     };
 
                     $scope.map.markers[0] = marker;
+                    $scope.latitude = lat;
+                    $scope.longitude = lon;
                     $scope.$apply();
                 }
             }
         };
+
 
         // $scope.marker = {
         //     id: 0,

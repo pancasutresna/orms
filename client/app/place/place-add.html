@@ -4,18 +4,19 @@
     <form name="addPlaceForm" class="form-horizontal">
             <fieldset>
             <legend>Add New Place
-                <div id="map_canvas" class="form-group" data-ng-controller="MapMarker as vm">
+                <div id="map_canvas" class="form-group">
                     <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" events="map.events">
                         <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" options="m.options" events="m.events" idkey="m.id">
                         </ui-gmap-marker>
                     </ui-gmap-google-map>
-                    <br />
+                </div>
+                <div class="form-group">
                     <label for="coordinate" class="col-md-2 control-label">Coordinate</label>
                     <div class="col-md-3">
-                        <input name="latitude" type="text" placeholder="Latitude" ng-model="map.markers[0].coords.latitude" required="required" class="form-control"/>
+                        <input name="latitude" type="text" placeholder="Latitude" ng-model="latitude" required="required" class="form-control"/>
                     </div>
                     <div class="col-md-3">
-                        <input name="longitude" type="text" placeholder="Longitude" ng-model="map.markers[0].coords.longitude" required="required" class="form-control"/>
+                        <input name="longitude" type="text" placeholder="Longitude" ng-model="longitude" required="required" class="form-control"/>
                     </div>
                 </div>
                 <div class="form-group">
