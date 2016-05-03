@@ -9,6 +9,7 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="/bower_components/toastr/toastr.css" />
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/bower_components/angular-ivh-treeview/dist/ivh-treeview.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -65,6 +66,7 @@
     <script src="/bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
     <script src="/bower_components/lodash/lodash.js"></script>
     <script src="/bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+    <script src="/bower_components/angular-ivh-treeview/dist/ivh-treeview.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -77,10 +79,10 @@
     <script src="/client/app/map/map.module.js"></script>
     <script src="/client/app/place/place.module.js"></script>
     <script src="/client/app/user/user.module.js"></script>
-    <script src="/client/app/admin/user/admin.user.module.js"></script>
     <script src="/client/app/blocks/exception/exception.module.js"></script>
-    <script src="/client/app/blocks/router/router.module.js"></script>
+    <script src="/client/app/admin/user/admin.user.module.js"></script>
     <script src="/client/app/blocks/logger/logger.module.js"></script>
+    <script src="/client/app/blocks/router/router.module.js"></script>
     <script src="/client/app/core/bootstrap.dialog.js"></script>
     <script src="/client/app/core/common.js"></script>
     <script src="/client/app/core/config.breeze.js"></script>
@@ -91,6 +93,7 @@
     <script src="/client/app/main/main.route.js"></script>
     <script src="/client/app/map/map-marker.controller.js"></script>
     <script src="/client/app/map/map.js"></script>
+    <script src="/client/app/place/category.filter.js"></script>
     <script src="/client/app/place/place.add.controller.js"></script>
     <script src="/client/app/place/place.detail.controller.js"></script>
     <script src="/client/app/place/place.factory.js"></script>
@@ -102,12 +105,14 @@
     <script src="/client/app/user/signup.controller.js"></script>
     <script src="/client/app/user/user.factory.js"></script>
     <script src="/client/app/user/user.route.js"></script>
-    <script src="/client/app/admin/user/admin.user.controller.js"></script>
-    <script src="/client/app/admin/user/admin.user.route.js"></script>
     <script src="/client/app/blocks/exception/exception.factory.js"></script>
     <script src="/client/app/blocks/exception/exception.handler.provider.js"></script>
-    <script src="/client/app/blocks/router/router.factory.js"></script>
+    <script src="/client/app/admin/user/admin.user.controller.js"></script>
+    <script src="/client/app/admin/user/admin.user.route.js"></script>
     <script src="/client/app/blocks/logger/logger.factory.js"></script>
+    <script src="/client/app/blocks/router/router.factory.js"></script>
+    <script src="/client/app/data/resources/resource.category.cache.js"></script>
+    <script src="/client/app/data/resources/resource.category.js"></script>
     <script src="/client/app/data/resources/resource.place.cache.js"></script>
     <script src="/client/app/data/resources/resource.place.js"></script>
     <script src="/client/app/data/resources/resource.user.js"></script>

@@ -15,6 +15,9 @@
                     placeList = datacontext.place.query();
                 }
 
+                // TODO: Remove this
+                console.log('place list: ' + placeList);
+
                 return placeList;
             }
         };

@@ -1,42 +1,109 @@
-
 <div class="container">
-  <div class="well">
-    <form name="addPlaceForm" class="form-horizontal">
+    <div class="well">
+        <form name="addPlaceForm" class="form-horizontal">
             <fieldset>
-            <legend>Add New Place
-                <div id="map_canvas" class="form-group">
-                    <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" events="map.events">
-                        <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" options="m.options" events="m.events" idkey="m.id">
-                        </ui-gmap-marker>
-                    </ui-gmap-google-map>
-                </div>
-                <div class="form-group">
-                    <label for="coordinate" class="col-md-2 control-label">Coordinate</label>
-                    <div class="col-md-3">
-                        <input name="latitude" type="text" placeholder="Latitude" ng-model="latitude" required="required" class="form-control"/>
+                <legend>Add New Place
+                    <div id="map_canvas" class="form-group">
+                        <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" events="map.events">
+                            <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" options="m.options" events="m.events" idkey="m.id">
+                            </ui-gmap-marker>
+                        </ui-gmap-google-map>
                     </div>
-                    <div class="col-md-3">
-                        <input name="longitude" type="text" placeholder="Longitude" ng-model="longitude" required="required" class="form-control"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="title" class="col-md-2 control-label">Title</label>
-                    <div class="col-md-10">
-                        <input name="title" type="text" placeholder="Title" ng-model="title" required="required" class="form-control"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-10 col-md-offset-2">
-                        <div class="pull-right">
-                            <button ng-click="addNew()" ng-disable="addPlaceForm.invalid" class="btn btn-primary">
-                            Submit
-                            </button>
-                            <a href="/" class="btn btn-default">Cancel</a>
+                    <div class="form-group">
+                        <label for="coordinate" class="col-md-2 control-label">Coordinate</label>
+                        <div class="col-md-3">
+                            <input name="latitude" type="text" placeholder="Latitude" ng-model="latitude" required="required" class="form-control" />
+                        </div>
+                        <div class="col-md-3">
+                            <input name="longitude" type="text" placeholder="Longitude" ng-model="longitude" required="required" class="form-control" />
                         </div>
                     </div>
-                </div>
-            </legend>
-        </fieldset>
-    </form>
-  </div>
+                    <div class="form-group">
+                        <label for="title" class="col-md-2 control-label">Categories</label>
+                        <div class="col-md-10" 
+                            ivh-treeview="categories" 
+                            ivh-treeview-default-selected-state="false"
+                            ivh-treeview-expand-to-depth="1"
+                            ivh-treeview-twistie-expanded-tpl="'v'"
+                            ivh-treeview-twistie-collapsed-tpl="'>'"
+                            ivh-treeview-twistie-leaf-tpl="'-'">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-md-2 control-label">Title</label>
+                        <div class="col-md-10">
+                            <input name="title" type="text" placeholder="Title" ng-model="title" required="required" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="category" class="col-md-2 control-label">Category</label>
+                        <div class="col-md-10">
+
+<!--                             <select ng-model="selectedRequest.first"
+                                    ng-options="category.name for category in (categories | regex:'path':'^,category_1,$' ) track by category._id">
+                            </select>                             -->
+                            <!-- <select ng-model="selected[0]"
+                                    ng-options="category.name for category in (categories | regex:'path': '^,root,$') track by category._id">
+                            </select>
+
+                             <select ng-repeat="item in categoryPath"
+                                     ng-model="selected[$index+1]" 
+                                     ng-options="category.name for category in (categories | regex:'path': '^,' + (selected[$index].path === ',root,'? '' : selected[$index].path) + selected[$index].normedName+',$')"
+                                     ng-change="selectCategory(selected[$index], selected[$index+1], $index)">
+                            </select> -->
+                             <!-- <select ng-model="selected[2]" 
+                                     ng-options="category.name for category in (categories | regex:'path': '^' + (selected[1].path === ',root,'? '' : selected[1].path) + selected[1].normedName +',$') track by category._id ">
+                            </select> -->
+
+<!--                             <select name="" id="" ng-model="parent">
+                                <option ng-repeat="category in categories | regex:'path':'^,category_1,$'" value="{{ category.path }}" >
+                                    {{ category.name }}
+                                </option>
+                            </select> -->
+<!--                             <select name="" id="" ng-model="parent">
+                                <option ng-repeat="category in categories" value="{{ category.path }}">
+                                    {{ category.name }}
+                                </option>
+                            </select> -->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="telephone" class="col-md-2 control-label">Telephone</label>
+                        <div class="col-md-10">
+                            <input name="telephone" type="text" placeholder="Telephone" ng-model="telephone" required="required" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="col-md-2 control-label">E-mail</label>
+                        <div class="col-md-10">
+                            <input name="email" type="text" placeholder="E-mail" ng-model="email" required="required" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="website" class="col-md-2 control-label">Website</label>
+                        <div class="col-md-10">
+                            <input name="website" type="text" placeholder="Website" ng-model="website" required="required" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-md-2 control-label">Description</label>
+                        <div class="col-md-10">
+                            <textarea name="description" placeholder="Description" ng-model="description" required="required" class="form-control">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10 col-md-offset-2">
+                            <div class="pull-right">
+                                <button ng-click="addNew()" ng-disable="addPlaceForm.invalid" class="btn btn-primary">
+                                    Submit
+                                </button>
+                                <a href="/" class="btn btn-default">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </legend>
+            </fieldset>
+        </form>
+    </div>
 </div>

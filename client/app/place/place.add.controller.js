@@ -3,10 +3,28 @@
 
     angular
         .module('app.place')
-        .controller('PlaceAddController', PlaceAddController);
+        .controller('PlaceAddController', PlaceAddController)
+        .config(['ivhTreeviewOptionsProvider', function(ivhTreeviewOptionsProvider) {
+            ivhTreeviewOptionsProvider.set({
+                defaultSelectedState: false,
+                validate: true,
+                expandToDepth: -1
+            });
+        }]);
 
-    PlaceAddController.$inject = ['$scope', 'PlaceFactory', 'logger', '$location', 'IdentityFactory'];
-    function PlaceAddController($scope, PlaceFactory, logger, $location, IdentityFactory) {
+    PlaceAddController.$inject = ['$scope', '$filter', 'PlaceFactory', 'logger', '$location',
+        'IdentityFactory', 'ResourceCategoryCache', 'datacontext'];
+    function PlaceAddController($scope, $filter, PlaceFactory, logger, $location,
+        IdentityFactory, ResourceCategoryCache, datacontext) {
+
+        var categories = ResourceCategoryCache.query();
+        $scope.categories = categories;
+        // var categories = datacontext.category.query(function(results) {
+        //     results.forEach(function(result) {
+        //         console.log(result.name);
+        //         console.log(result.children);
+        //     });
+        // });
 
         $scope.map = {
             center: {
@@ -53,9 +71,14 @@
         $scope.addNew = function() {
             var newPlaceData = {
                 title: $scope.title,
+                description: $scope.description,
+                telephone: $scope.telephone,
+                email: $scope.email,
+                website: $scope.website,
                 latitude: $scope.latitude,
                 longitude: $scope.longitude,
                 tags: $scope.tags //TODO: Insert into database
+                // category: $scope.category
             };
 
             PlaceFactory.addNewPlace(newPlaceData).then(function(place) {
