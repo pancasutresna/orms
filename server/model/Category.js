@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var tree = require('mongoose-path-tree');
+var tree = require('mongoose-materialized-path');
 
 var categorySchema = mongoose.Schema({
     label: {

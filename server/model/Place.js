@@ -40,7 +40,8 @@ var placeSchema = mongoose.Schema({
         type: Date,
         required: '{PATH} is required!'
     },
-    tags: [String]
+    tags: [String],
+    categories: [mongoose.Schema.Types.ObjectId]
 });
 
 var Place = mongoose.model('Place', placeSchema);
