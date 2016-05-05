@@ -3,10 +3,24 @@
 
     angular
         .module('app.place')
-        .controller('PlaceAddController', PlaceAddController);
+        .controller('PlaceAddController', PlaceAddController)
+        .config(['ivhTreeviewOptionsProvider', function(ivhTreeviewOptionsProvider) {
+            ivhTreeviewOptionsProvider.set({
+                defaultSelectedState: false,
+                validate: true,
+                expandToDepth: -1
+            });
+        }]);
 
-    PlaceAddController.$inject = ['$scope', 'PlaceFactory', 'logger', '$location', 'IdentityFactory'];
-    function PlaceAddController($scope, PlaceFactory, logger, $location, IdentityFactory) {
+    PlaceAddController.$inject = ['$scope', '$filter', 'PlaceFactory', 'logger', '$location',
+        'IdentityFactory', 'ResourceCategoryCache', 'ivhTreeviewBfs'];
+    function PlaceAddController($scope, $filter, PlaceFactory, logger, $location,
+        IdentityFactory, ResourceCategoryCache, ivhTreeviewBfs) {
+
+        const MAX_CATEGORY_ALLOWED = 5;
+        var categories = ResourceCategoryCache.query();
+        $scope.categories = categories;
+        $scope.categoryCounter = 0;
 
         $scope.map = {
             center: {
@@ -50,19 +64,60 @@
             }
         };
 
-        $scope.addNew = function() {
-            var newPlaceData = {
-                title: $scope.title,
-                latitude: $scope.latitude,
-                longitude: $scope.longitude,
-                tags: $scope.tags //TODO: Insert into database
-            };
-
-            PlaceFactory.addNewPlace(newPlaceData).then(function(place) {
-                $location.path('/places/' + place._id);
-            }, function(reason) {
-                logger.error(reason);
+        $scope.changeCallback = function(node, isSelected, tree) {
+            $scope.categoryCounter = 0;
+            ivhTreeviewBfs($scope.categories, function(node) {
+                if (node.selected) {
+                    if (node.children.length <= 0) {
+                        $scope.categoryCounter++;
+                    }
+                }
             });
+
+            // TODO: Change max category counter as constant
+            if (isSelected && $scope.categoryCounter > MAX_CATEGORY_ALLOWED) {
+                logger.warning('Number of allowed categories exceeded');
+            }
+        };
+
+        $scope.addNew = function() {
+            var selectedCategories = [];
+
+            ivhTreeviewBfs($scope.categories, function(node) {
+                if (node.selected) {
+                    if (node.children.length <= 0) {
+                        selectedCategories.push(node.label);
+                    }
+                }
+            });
+
+            console.log('selected categories: ');
+            selectedCategories.forEach(function(category) {
+                console.log(category);
+            });
+
+            // TODO: Change max category counter as constant
+            if ($scope.categoryCounter <= MAX_CATEGORY_ALLOWED) {
+                var newPlaceData = {
+                    title: $scope.title,
+                    description: $scope.description,
+                    telephone: $scope.telephone,
+                    email: $scope.email,
+                    website: $scope.website,
+                    latitude: $scope.latitude,
+                    longitude: $scope.longitude,
+                    tags: $scope.tags, //TODO: Insert into database
+                    categories: selectedCategories
+                };
+
+                PlaceFactory.addNewPlace(newPlaceData).then(function(place) {
+                    $location.path('/places/' + place._id);
+                }, function(reason) {
+                    logger.error(reason);
+                });
+            } else {
+                logger.warning('Exceed maximum category!');
+            }
         };
 
         // if (!IdentityFactory.isAuthenticated()) {

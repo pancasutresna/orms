@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+require('mongoose-type-email');
 
 var placeSchema = mongoose.Schema({
     owner: {
@@ -9,6 +9,20 @@ var placeSchema = mongoose.Schema({
     title: {
         type: String,
         required: '{PATH} is required!'
+    },
+    description: {
+        type: String
+    },
+    telephone: {
+        type: String
+    },
+    email: {
+        type: mongoose.SchemaTypes.Email,
+        required: '{PATH} is required!',
+        unique: true
+    },
+    website:{
+        type: String
     },
     latitude: {
         type: String,
@@ -26,15 +40,15 @@ var placeSchema = mongoose.Schema({
         type: Date,
         required: '{PATH} is required!'
     },
-    tags: [String]
+    tags: [String],
+    categories: [mongoose.Schema.Types.ObjectId]
 });
 
 var Place = mongoose.model('Place', placeSchema);
 function createDefaultPlaces() {
-    console.log('CREATING DEFAULT PLACES-------------------------');
     Place.find({}).exec(function(err, collection) {
         if (collection.length === 0) {
-            console.log('COLLECTION -------------------------');
+            console.log('CREATING DEFAULT PLACES ##################');
             Place.create(
                 {
                     title: 'Place 1',

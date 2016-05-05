@@ -42,7 +42,8 @@
         imageSettings: imageSettings,
         keyCodes: keyCodes,
         appTitle: 'black squid',
-        version: '1.0.0'
+        version: '1.0.0',
+        maxAllowedCategory: 5
     };
 
     /////////////////////////////////////////////////////////

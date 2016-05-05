@@ -3,17 +3,17 @@
 
     angular
         .module('app.data')
-        .factory('resource.place', ResourcePlace);
+        .factory('resource.category', ResourceCategory);
 
-    ResourcePlace.$inject = [];
-    function ResourcePlace() {
+    ResourceCategory.$inject = [];
+    function ResourceCategory() {
 
         return {
             create: createResource
         };
 
         function createResource($resource) {
-            var resource = $resource('/api/places/:_id', {
+            var resource = $resource('/api/categories/:_id', {
                 _id: '@id'
             }, {
                 update: {
