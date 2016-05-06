@@ -2,7 +2,6 @@
     <form name="addPlaceForm" class="form-horizontal">
         <legend>
             <h2>Add New Place</h2>
-            
             <div class="row">
                 <div id="map_canvas" class="form-group">
                     <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" events="map.events">
@@ -55,15 +54,21 @@
                         <div ng-if="categoryCounter <= 5" class="alert alert-success">
                             <strong>Category counter {{categoryCounter}}.</strong>
                         </div>
-                        <div ivh-treeview="categories" 
-                            ivh-treeview-default-selected-state="false" 
-                            ivh-treeview-expand-to-depth="1" 
-                            ivh-treeview-twistie-expanded-tpl="'v'" 
-                            ivh-treeview-twistie-collapsed-tpl="'>'" 
-                            ivh-treeview-twistie-leaf-tpl="'-'"
-                            ivh-treeview-on-cb-change="changeCallback(ivhNode, ivhIsSelected, ivhTree)"
-                            >
+                        <div ivh-treeview="categories" ivh-treeview-default-selected-state="false" ivh-treeview-expand-to-depth="1" ivh-treeview-twistie-expanded-tpl="'v'" ivh-treeview-twistie-collapsed-tpl="'>'" ivh-treeview-twistie-leaf-tpl="'-'" ivh-treeview-on-cb-change="changeCallback(ivhNode, ivhIsSelected, ivhTree)">
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="upload">Drop files</label>
+                        <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'">Drop pdfs or images here or click to upload</div>
+                        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+                        Files:
+                        <ul>
+                            <li ng-repeat="f in files" style="font:smaller">
+                                {{f.name}} {{f.$error}} {{f.$errorParam}}
+                            </li>
+                        </ul>
+                        Upload Log:
+                        <pre>{{log}}</pre>
                     </div>
                 </div>
             </div>
