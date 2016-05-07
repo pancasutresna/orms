@@ -18,7 +18,9 @@
         IdentityFactory, ResourceCategoryCache, ivhTreeviewBfs, FileUploader, $timeout) {
         // File uploader configurations
         var uploader = $scope.uploader = new FileUploader({
-            url: '/api/place/uploads'
+            url: '/api/place/uploads',
+            autoUpload: true,
+            queueLimit: 5
         });
 
         uploader.filters.push({
