@@ -46,12 +46,13 @@ exports.addNewPlace = function(req, res, next) {
 
 exports.uploadFile = function(req, res, next) {
     var uploadedFile = req.files[0];
-    // bucket.upload(uploadedFile.path, function(err, file) {
-    //     if (!err) {
-    //         console.log(uploadedFile.originalname + ' is uploaded');
-    //     }
-    // });
+    bucket.upload(uploadedFile.path, function(err, file) {
+        if (!err) {
+            console.log(uploadedFile.originalname + ' is uploaded');
+        }
+    });
 
     console.log('file path : ' + uploadedFile.path);
     console.log('file type : ' + uploadedFile.mimetype);
+    res.send(uploadedFile);
 };

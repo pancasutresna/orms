@@ -47,9 +47,8 @@ module.exports = function(app, config) {
     app.post('/api/categories', categoryCtrl.addNewCategory);
 
     // app.post('/api/place/uploads', multipartyMiddleware, placeCtrl.uploadFile);
+    // TODO: Change to not only for place module
     app.post('/api/place/uploads', upload.any(), placeCtrl.uploadFile);
-
-    //TODO: Get cascaded category path here
 
     app.post('/login', auth.authenticate);
     app.post('/logout', function(req, res) {
