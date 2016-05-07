@@ -41,7 +41,8 @@ var placeSchema = mongoose.Schema({
         required: '{PATH} is required!'
     },
     tags: [String],
-    categories: [mongoose.Schema.Types.ObjectId]
+    categories: [mongoose.Schema.Types.ObjectId],
+    images: [String]
 });
 
 var Place = mongoose.model('Place', placeSchema);

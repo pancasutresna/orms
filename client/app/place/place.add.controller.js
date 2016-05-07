@@ -16,6 +16,7 @@
         'IdentityFactory', 'ResourceCategoryCache', 'ivhTreeviewBfs', 'FileUploader', '$timeout'];
     function PlaceAddController($scope, $filter, PlaceFactory, logger, $location,
         IdentityFactory, ResourceCategoryCache, ivhTreeviewBfs, FileUploader, $timeout) {
+        var images = [];
         // File uploader configurations
         var uploader = $scope.uploader = new FileUploader({
             url: '/api/place/uploads',
@@ -60,46 +61,14 @@
         };
         uploader.onCompleteItem = function(fileItem, response, status, headers) {
             console.info('onCompleteItem', fileItem, response, status, headers);
+            if (status === 200) {
+                images.push(response.filename);
+            }
+            console.info('uploaded file name: ', response.filename);
         };
         uploader.onCompleteAll = function() {
             console.info('onCompleteAll');
         };
-
-        console.info('uploader', uploader);
-
-        // $scope.$watch('files', function() {
-        //     $scope.upload($scope.files);
-        // });
-
-        // $scope.log = '';
-
-        // $scope.upload = function(files) {
-        //     if (files && files.length) {
-        //         for (var i = 0; i < files.length; i++) {
-        //             var file = files[i];
-        //             if (!file.$error) {
-        //                 Upload.upload({
-        //                     url: '/api/place/uploads',
-        //                     method: 'POST',
-        //                     data: {
-        //                         file: file
-        //                     }
-        //                 }).then(function(resp) {
-        //                     $timeout(function() {
-        //                         $scope.log = 'file ' + resp.config.data.file.name +
-        //                         ', Response: ' + JSON.stringify(resp.data) +
-        //                         '\n' + $scope.log;
-        //                     });
-        //                 }, null, function(evt) {
-        //                     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-        //                     $scope.log = 'progress: ' + progressPercentage +
-        //                     '% ' + evt.config.data.file.name + '\n' +
-        //                     $scope.log;
-        //                 });
-        //             }
-        //         }
-        //     }
-        // };
 
         const MAX_CATEGORY_ALLOWED = 5;
         var categories = ResourceCategoryCache.query();
@@ -169,7 +138,7 @@
             ivhTreeviewBfs($scope.categories, function(node) {
                 if (node.selected) {
                     if (node.children.length <= 0) {
-                        selectedCategories.push(node.label);
+                        selectedCategories.push(node._id);
                     }
                 }
             });
@@ -189,7 +158,8 @@
                     latitude: $scope.latitude,
                     longitude: $scope.longitude,
                     tags: $scope.tags, //TODO: Insert into database
-                    categories: selectedCategories
+                    categories: selectedCategories,
+                    images: images
                 };
 
                 PlaceFactory.addNewPlace(newPlaceData).then(function(place) {
