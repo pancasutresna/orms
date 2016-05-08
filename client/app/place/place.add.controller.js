@@ -70,7 +70,7 @@
             console.info('onCompleteAll');
         };
 
-        const MAX_CATEGORY_ALLOWED = 5;
+        var MAX_CATEGORY_ALLOWED = 5;
         var categories = ResourceCategoryCache.query();
         $scope.categories = categories;
         $scope.categoryCounter = 0;
