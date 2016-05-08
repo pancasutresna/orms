@@ -1,12 +1,14 @@
 var mongoose = require('mongoose');
 var encrypt = require('../util/encryption');
 
+require('mongoose-type-email');
+
 // Schema for basic user
 var userSchema = mongoose.Schema({
     firstName: {type: String, required: '{PATH} is required!'},
     lastName: {type: String, required: '{PATH} is required!'},
-    username: {
-        type: String,
+    email: {
+        type: mongoose.SchemaTypes.Email,
         required: '{PATH} is required!',
         unique: true
     },
@@ -31,12 +33,12 @@ function createDefaultUsers() {
             var salt, hash;
 
             salt = encrypt.createSalt();
-            hash = encrypt.hashPwd(salt, 'panca');
+            hash = encrypt.hashPwd(salt, 'admin');
             User.create(
                 {
-                    firstName: 'Panca',
-                    lastName: 'Sutresna',
-                    username: 'panca',
+                    firstName: 'Blacksquid',
+                    lastName: 'Adminstrator',
+                    email: 'admin@example.com',
                     salt: salt,
                     hashedPwd: hash,
                     roles: ['admin']
@@ -44,24 +46,25 @@ function createDefaultUsers() {
             );
 
             salt = encrypt.createSalt();
-            hash = encrypt.hashPwd(salt, 'panca');
+            hash = encrypt.hashPwd(salt, 'john');
             User.create(
                 {
                     firstName: 'John',
                     lastName: 'Doe',
-                    username: 'john',
+                    email: 'john@example.com',
                     salt: salt,
-                    hashedPwd: hash, roles: []
+                    hashedPwd: hash, 
+                    roles: []
                 }
             );
 
             salt = encrypt.createSalt();
-            hash = encrypt.hashPwd(salt, 'panca');
+            hash = encrypt.hashPwd(salt, 'jane');
             User.create(
                 {
                     firstName: 'Jane',
                     lastName: 'Doe',
-                    username: 'jane',
+                    email: 'jane@example.com',
                     salt: salt,
                     hashedPwd: hash
                 }

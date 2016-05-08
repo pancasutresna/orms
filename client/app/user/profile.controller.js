@@ -8,13 +8,13 @@
     ProfileController.$inject = ['$scope', 'UserFactory', 'IdentityFactory', 'logger'];
     function ProfileController($scope, UserFactory, IdentityFactory, logger) {
 
-        $scope.email = IdentityFactory.currentUser.username;
+        $scope.email = IdentityFactory.currentUser.email;
         $scope.firstName = IdentityFactory.currentUser.firstName;
         $scope.lastName = IdentityFactory.currentUser.lastName;
 
         $scope.update = function() {
             var newUserData = {
-                username: $scope.email,
+                email: $scope.email,
                 firstName: $scope.firstName,
                 lastName: $scope.lastName
             };

@@ -5,8 +5,8 @@
     .module('app.place')
     .run(routeConfig);
 
-    routeConfig.$inject = ['routehelper'];
-    function routeConfig(routehelper) {
+    routeConfig.$inject = ['routehelper', 'UserFactory'];
+    function routeConfig(routehelper, UserFactory) {
 
         var routes = [
             {
@@ -23,6 +23,15 @@
                     templateUrl: '/app/place/place-detail.html',
                     controller: 'PlaceDetailController',
                     controllerAs: 'vm'
+                }
+            },
+            {
+                url: '/places_add',
+                config: {
+                    templateUrl: '/app/place/place-add.html',
+                    controller: 'PlaceAddController',
+                    controllerAs: 'vm',
+                    resolve: UserFactory.authorize.user
                 }
             }
         ];

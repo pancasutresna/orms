@@ -1,8 +1,8 @@
 var passport = require('passport');
 
 exports.authenticate = function(req, res, next) {
-    // lower case username before logged in to match signup process
-    req.body.username = req.body.username.toLowerCase();
+    // lower case email before logged in to match signup process
+    req.body.email = req.body.email.toLowerCase();
     var auth = passport.authenticate('local', function(err, user) {
         if (err) {
             return next(err);

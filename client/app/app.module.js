@@ -3,11 +3,12 @@
 
     angular.module('app', [
         'app.core',
+        'app.data',
         'app.admin.user',
         'app.main',
         'app.user',
-        'app.place'
-
+        'app.place',
+        'app.map'
     ]);
 
     /**

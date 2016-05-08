@@ -19,6 +19,9 @@
         'breeze.angular',   // tells breeze to use $q instead of Q.js
         'breeze.directives',// breeze validation directive (zValidate)
         'ngplus',           // ngplus utilities
-        'ngzWip'            // zStorage and zStorageWip
+        'ngzWip',            // zStorage and zStorageWip
+        'ivh.treeview',
+        'angularFileUpload'
+        // 'ngFileUpload' //TODO: remove this
     ]);
 })();
