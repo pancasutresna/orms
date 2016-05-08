@@ -1,7 +1,6 @@
 .idea/
 .vagrant/
 node_modules/
-build/
 tmp/
 coverage/
 uploads/
