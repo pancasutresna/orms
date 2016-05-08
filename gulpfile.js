@@ -244,7 +244,7 @@ gulp.task('inject', ['styles', 'templatecache'], function() {
 gulp.task('inspect', function() {
     log($.util.colors.yellow('### TASK INSPECT ###'));
     log($.util.colors.yellow('Analyzing and inspect source code with based on JSHint and JSCS configuration files'));
-    
+
     return gulp
         .src(config.allJs)
         .pipe($.if(args.verbose, $.print()))
@@ -263,7 +263,8 @@ gulp.task('inspect', function() {
  * injection to all needed assets (javascript, css and template cache) created
  * during the build.
  * =========================================================================== */
-gulp.task('optimize', ['inject', 'test'], function() {
+// gulp.task('optimize', ['inject', 'test'], function() {
+gulp.task('optimize', ['inject'], function() {
     log($.util.colors.yellow('### TASK OPTIMIZE ###'));
     log($.util.colors.yellow('Optimizing assets and injecting templateCache....'));
 
