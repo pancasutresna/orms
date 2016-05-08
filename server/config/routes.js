@@ -71,9 +71,11 @@ module.exports = function(app, config) {
             case 'staging':
             case 'production':
                 res.sendFile(path.join(config.rootPath, 'build/index.html'));
+                console.log(path.join(config.rootPath, 'build/index.html'));
                 break;
             default:
                 res.sendFile(path.join(config.rootPath, 'client/index.html'));
+                console.log(path.join(config.rootPath, 'client/index.html'));
                 break;
         }
     });
