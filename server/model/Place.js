@@ -41,7 +41,8 @@ var placeSchema = mongoose.Schema({
         required: '{PATH} is required!'
     },
     tags: [String],
-    categories: [mongoose.Schema.Types.ObjectId]
+    categories: [mongoose.Schema.Types.ObjectId],
+    images: [String]
 });
 
 var Place = mongoose.model('Place', placeSchema);
@@ -52,6 +53,7 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 1',
+                    email: 'place1@example.com',
                     latitude: '37.579412513438385',
                     longitude: '-102.919921875',
                     featured: true,
@@ -62,6 +64,7 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 2',
+                    email: 'place2@example.com',
                     latitude: '37.579412513438385',
                     longitude: '-102.919921875',
                     featured: false,
@@ -72,6 +75,7 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 3',
+                    email: 'place3@example.com',
                     latitude: '37.579412513438385',
                     longitude: '-102.919921875',
                     featured: true,
@@ -82,6 +86,7 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 4',
+                    email: 'place4@example.com',
                     latitude: '37.579412513438385',
                     longitude: '-102.919921875',
                     featured: true,
@@ -92,6 +97,7 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 5',
+                    email: 'place5@example.com',
                     latitude: '37.579412513438385',
                     longitude: '-102.919921875',
                     featured: true,
@@ -102,6 +108,7 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 6',
+                    email: 'place6@example.com',
                     latitude: '37.579412513438385',
                     longitude: '-102.919921875',
                     featured: true,
@@ -112,6 +119,7 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 7',
+                    email: 'place7@example.com',
                     latitude: '37.579412513438385',
                     longitude: '-102.919921875',
                     featured: false,
@@ -122,6 +130,7 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 8',
+                    email: 'place8@example.com',
                     latitude: '37.579412513438385',
                     longitude: '-102.919921875',
                     featured: true,
@@ -132,6 +141,7 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 9',
+                    email: 'place9@example.com',
                     latitude: '37.579412513438385',
                     longitude: '-102.919921875',
                     featured: false,
@@ -142,6 +152,7 @@ function createDefaultPlaces() {
             Place.create(
                 {
                     title: 'Place 10',
+                    email: 'place10@example.com',
                     latitude: '37.579412513438385',
                     longitude: '-102.919921875',
                     featured: true,

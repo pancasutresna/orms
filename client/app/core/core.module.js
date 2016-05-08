@@ -20,6 +20,8 @@
         'breeze.directives',// breeze validation directive (zValidate)
         'ngplus',           // ngplus utilities
         'ngzWip',            // zStorage and zStorageWip
-        'ivh.treeview'
+        'ivh.treeview',
+        'angularFileUpload'
+        // 'ngFileUpload' //TODO: remove this
     ]);
 })();
