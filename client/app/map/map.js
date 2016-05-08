@@ -19,7 +19,10 @@
                     latitude: 45,
                     longitude: -73
                 },
-                zoom: 8
+                zoom: 8,
+                options: {
+                    scrollwheel: false
+                }
             };
 
             // uiGmapGoogleMapApi is a promise.

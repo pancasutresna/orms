@@ -21,6 +21,7 @@
             /* TODO: Need to check if it's the best solution to solve this problem
                Will come back later */
             markers: [],
+            scrollwheel:  false,
             events: {
                 click: function(map, eventName, args) {
                     var e = args[0];

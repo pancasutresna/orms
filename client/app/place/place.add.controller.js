@@ -114,6 +114,9 @@
                     $scope.longitude = lon;
                     $scope.$apply();
                 }
+            },
+            options: {
+                // scrollwheel: false
             }
         };
 
