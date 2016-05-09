@@ -48,19 +48,20 @@
                 <div class="col-md-5 col-md-offset-1">
                     <div class="form-group">
                         Country:
-                        <select id="country" ng-model="states" ng-options="country for (country, states) in countries" ng-change="getSelectedCountry()">
+                        <select id="country" ng-model="country" ng-options="item.country for item in countries" ng-change="getSelectedCountry(country)">
                             <option value=''>Select</option>
                         </select>
-                        States:
-                        <select id="state" ng-disabled="!states" ng-model="cities" ng-options="state for (state,cities) in states" ng-change="getSelectedState()">
+                         <select id="state" ng-disabled="!country" ng-model="states" ng-options="item.state for item in country.states" ng-change="getSelectedState(states)">
                             <option value=''>Select</option>
                         </select>
+
                         City:
-                        <select id="city" ng-disabled="!cities || !states" ng-model="city">
+                        <select id="city" ng-disabled="!states || !country" ng-model="city">
                             <option value=''>
                                 Select</option>
-                            <option ng-repeat="city in cities" value='{{city}}'>{{city}}</option>
-                        </select>
+                            <option ng-repeat="city in states.city" value='{{city}}'>{{city}}</option>
+                        </select> 
+                        <!--
                         <div style='height: 15px;'>
                             &nbsp;</div>
                         <div>
@@ -77,6 +78,7 @@
                         </div>
                         <div style='height: 15px;'>
                             &nbsp;</div>
+                             -->
                         <div>
                             <span>Selected City: </span>
                             <label>

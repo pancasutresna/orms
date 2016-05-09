@@ -136,34 +136,63 @@
         };
 
         // Alamat lengkap
-        $scope.countries = {
-            'India': {
-                'Maharashtra': ['Pune', 'Mumbai', 'Nagpur', 'Akola'],
-                'Madhya Pradesh': ['Indore', 'Bhopal', 'Jabalpur'],
-                'Rajasthan': ['Jaipur', 'Ajmer', 'Jodhpur']
-            },
-            'USA': {
-                'Alabama': ['Montgomery', 'Birmingham'],
-                'California': ['Sacramento', 'Fremont'],
-                'Illinois': ['Springfield', 'Chicago']
-            },
-            'Australia': {
-                'New South Wales': ['Sydney'],
-                'Victoria': ['Melbourne']
-            }
-        };
+        $scope.countries = [
+                        {
+                            country: 'India',
+                            states: [
+                                {state: 'Maharashtra',
+                                                                    city: ['Pune', 'Mumbai', 'Nagpur', 'Akola']
+                                                                },
+                                                                {
+                                                                    state:  'Madhya Pradesh',
+                                                                    city: ['Indore', 'Bhopal', 'Jabalpur']
+                                                                },
+                                                                {
+                                                                    state: 'Rajasthan',
+                                                                    city: ['Jaipur', 'Ajmer', 'Jodhpur']
+                                                                }]
+                        },
+                        {
+                            country: 'USA',
+                            states: [{
+                                        state: 'Alabama',
+                                        city: ['Montgomery', 'Birmingham']
+                                    },
+                                    {
+                                        state: 'California',
+                                        city: ['Sacramento', 'Fremont']
+                                    },
+                                    {
+                                        state: 'Illinois',
+                                        city: ['Springfield', 'Chicago']
+                                    }]
+                        },
+                        {
+                            country: 'Australia',
+                            states: [{
+                                        state: 'New South Wales',
+                                        city: ['Sydney']
+                                    },
+                                    {
+                                        state: 'Victoria',
+                                        city: ['Melbourne']
+                                    }]
+                        }
+                    ];
 
         $scope.strCountry = '';
         $scope.strState = '';
 
-        $scope.getSelectedCountry = function () {
-            $scope.strCountry = document.getElementById("country").value;
-        }
-
-        $scope.getSelectedState = function () {
-            $scope.strState = document.getElementById("state").value;
+        $scope.getSelectedCountry = function (item) {
+            // $scope.strCountry = document.getElementById("country").innerHTML;
+            // $scope.strCountry = selectedIndex.innerHTML;
+            logger.info(item.country);
         };
 
+        $scope.getSelectedState = function (item) {
+            // $scope.strState = document.getElementById("state").text;
+            logger.info(item.state);
+        };
 
         $scope.addNew = function() {
             var selectedCategories = [];
