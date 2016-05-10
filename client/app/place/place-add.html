@@ -48,10 +48,22 @@
                 <div class="col-md-5 col-md-offset-1">
                     <div class="form-group">
                         Country:
-                        <select id="country" ng-model="country" ng-options="item.country for item in countries" ng-change="getSelectedCountry(country)">
+                        <select id="country" ng-model="country" ng-options="item.name for item in countries" ng-change="getStates(country)">
                             <option value=''>Select</option>
                         </select>
-                         <select id="state" ng-disabled="!country" ng-model="states" ng-options="item.state for item in country.states" ng-change="getSelectedState(states)">
+
+                        <select id="state" ng-disabled="!country" ng-model="state" ng-options="item.name for item in states" ng-change="getCities(state)">
+                            <option value=''>Select</option>
+                        </select>
+
+                        <select id="city" ng-disabled="!state" ng-model="city" ng-options="item.name for item in cities">
+                            <option value=''>Select</option>
+                        </select>
+
+                        <!-- <select id="country" ng-model="country" ng-options="item.country for item in countries" ng-change="getSelectedCountry(country)">
+                            <option value=''>Select</option>
+                        </select> -->
+                         <!-- <select id="state" ng-disabled="!country" ng-model="states" ng-options="item.state for item in country.states" ng-change="getSelectedState(states)">
                             <option value=''>Select</option>
                         </select>
 
@@ -60,9 +72,9 @@
                             <option value=''>
                                 Select</option>
                             <option ng-repeat="city in states.city" value='{{city}}'>{{city}}</option>
-                        </select> 
-                        <!--
-                        <div style='height: 15px;'>
+                        </select>  -->
+                        
+                        <!-- <div style='height: 15px;'>
                             &nbsp;</div>
                         <div>
                             <span>Selected Country: </span>
@@ -78,12 +90,12 @@
                         </div>
                         <div style='height: 15px;'>
                             &nbsp;</div>
-                             -->
+                             
                         <div>
                             <span>Selected City: </span>
                             <label>
                                 {{city}}</label>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="form-group">
                         <div ng-if="categoryCounter > 5" class="alert alert-danger">
