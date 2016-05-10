@@ -13,8 +13,8 @@
         };
 
         function createResource($resource) {
-            var resource = $resource('/api/locations/:_id', {
-                _id: '@id'
+            var resource = $resource('/api/locations/:parentId', {
+                parentId: '@parentId'
             }, {
                 update: {
                     method: 'PUT',

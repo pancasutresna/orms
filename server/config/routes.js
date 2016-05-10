@@ -22,6 +22,7 @@ var upload = multer({storage: storage});
 var userCtrl = require('../controller/userCtrl');
 var categoryCtrl = require('../controller/categoryCtrl');
 var placeCtrl = require('../controller/placeCtrl');
+var locationCtrl = require('../controller/locationCtrl');
 
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
@@ -49,6 +50,8 @@ module.exports = function(app, config) {
     // app.post('/api/place/uploads', multipartyMiddleware, placeCtrl.uploadFile);
     // TODO: Change to not only for place module
     app.post('/api/place/uploads', upload.any(), placeCtrl.uploadFile);
+
+    app.get('/api/locations/:parentId', locationCtrl.getLocationsByParentId);
 
     app.post('/login', auth.authenticate);
     app.post('/logout', function(req, res) {
