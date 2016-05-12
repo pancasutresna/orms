@@ -138,39 +138,19 @@
             }
         };
 
-        var countries = ResourceLocationCache.query('100000000000000000000000');
-        $scope.countries = countries;
+        $scope.countries = ResourceLocationCache.query('100000000000000000000000');
 
-        $scope.states = [];
         $scope.getStates = function (country) {
             if (country !== null) {
-                var states = ResourceLocationCache.query(country._id);
-                $scope.states = states;
+                $scope.states = ResourceLocationCache.query(country._id);
             }
         };
 
-        $scope.cities = [];
         $scope.getCities = function (state) {
             if (state !== null) {
-                var cities = ResourceLocationCache.query(state._id);
-                $scope.cities = cities;
+                $scope.cities = ResourceLocationCache.query(state._id);
             }
         };
-
-        $scope.strCountry = '';
-        $scope.strState = '';
-
-        // $scope.getSelectedCountry = function (item) {
-        //     if (item !== null) {
-        //         $scope.strCountry = item.country;
-        //     }
-        // };
-
-        // $scope.getSelectedState = function (item) {
-        //     if (item !== null) {
-        //         $scope.strState = item.state;
-        //     }
-        // };
 
         $scope.addNew = function() {
             var selectedCategories = [];
@@ -181,11 +161,6 @@
                         selectedCategories.push(node._id);
                     }
                 }
-            });
-
-            console.log('selected categories: ');
-            selectedCategories.forEach(function(category) {
-                console.log(category);
             });
 
             if ($scope.categoryCounter <= MAX_CATEGORY_ALLOWED) {
@@ -200,6 +175,11 @@
                     tags: $scope.tags, //TODO: Insert into database
                     categories: selectedCategories,
                     images: images,
+                    address: {
+                        country: $scope.country,
+                        state: $scope.state,
+                        city: $scope.city
+                    }
                 };
 
                 PlaceFactory.addNewPlace(newPlaceData).then(function(place) {
