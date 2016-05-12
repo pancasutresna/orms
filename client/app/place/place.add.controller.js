@@ -13,9 +13,11 @@
         }]);
 
     PlaceAddController.$inject = ['$scope', '$filter', 'PlaceFactory', 'logger', '$location',
-        'IdentityFactory', 'ResourceCategoryCache', 'ivhTreeviewBfs', 'FileUploader', '$timeout'];
+        'IdentityFactory', 'ResourceCategoryCache', 'ivhTreeviewBfs', 'FileUploader', '$timeout',
+        'ResourceLocationCache'];
     function PlaceAddController($scope, $filter, PlaceFactory, logger, $location,
-        IdentityFactory, ResourceCategoryCache, ivhTreeviewBfs, FileUploader, $timeout) {
+        IdentityFactory, ResourceCategoryCache, ivhTreeviewBfs, FileUploader, $timeout,
+        ResourceLocationCache) {
         var images = [];
         // File uploader configurations
         var uploader = $scope.uploader = new FileUploader({
@@ -73,6 +75,7 @@
         var MAX_CATEGORY_ALLOWED = 5;
         var categories = ResourceCategoryCache.query();
         $scope.categories = categories;
+        console.log('categories: ' + $scope.categories);
         $scope.categoryCounter = 0;
 
         $scope.map = {
@@ -135,6 +138,20 @@
             }
         };
 
+        $scope.countries = ResourceLocationCache.query('100000000000000000000000');
+
+        $scope.getStates = function (country) {
+            if (country !== null) {
+                $scope.states = ResourceLocationCache.query(country._id);
+            }
+        };
+
+        $scope.getCities = function (state) {
+            if (state !== null) {
+                $scope.cities = ResourceLocationCache.query(state._id);
+            }
+        };
+
         $scope.addNew = function() {
             var selectedCategories = [];
 
@@ -144,11 +161,6 @@
                         selectedCategories.push(node._id);
                     }
                 }
-            });
-
-            console.log('selected categories: ');
-            selectedCategories.forEach(function(category) {
-                console.log(category);
             });
 
             if ($scope.categoryCounter <= MAX_CATEGORY_ALLOWED) {
@@ -162,7 +174,12 @@
                     longitude: $scope.longitude,
                     tags: $scope.tags, //TODO: Insert into database
                     categories: selectedCategories,
-                    images: images
+                    images: images,
+                    address: {
+                        country: $scope.country,
+                        state: $scope.state,
+                        city: $scope.city
+                    }
                 };
 
                 PlaceFactory.addNewPlace(newPlaceData).then(function(place) {

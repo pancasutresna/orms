@@ -47,6 +47,32 @@
                 </div>
                 <div class="col-md-5 col-md-offset-1">
                     <div class="form-group">
+                        Country:
+                        <select id="country" ng-model="country" ng-options="item.name for item in countries" ng-change="getStates(country)" ng-focus="countries">
+                            <option value=''>Select</option>
+                        </select>
+
+                        <select id="state" ng-disabled="!country" ng-model="state" ng-options="item.name for item in states" ng-change="getCities(state)" ng-focus="!country">
+                            <option value=''>Select</option>
+                        </select>
+
+                        <select id="city" ng-disabled="!state" ng-model="city" ng-options="item.name for item in cities" ng-focus="!state">
+                            <option value=''>Select</option>
+                        </select>
+                        <div>
+                            <span>Selected Country: </span>
+                            <label>{{country}}</label>
+                        </div>
+                        <div>
+                            <span>Selected State: </span>
+                            <label>{{state}}</label>
+                        </div>
+                        <div>
+                            <span>Selected City: </span>
+                            <label>{{city}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div ng-if="categoryCounter > 5" class="alert alert-danger">
                             <strong>Number of category allowed: {{categoryCounter}} / 5.</strong>
                         </div>
