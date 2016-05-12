@@ -16,6 +16,11 @@
             var resource = $resource('/api/locations/:parentId', {
                 parentId: '@parentId'
             }, {
+                query: {
+                    method: 'GET',
+                    cache : true,
+                    isArray: true
+                },
                 update: {
                     method: 'PUT',
                     isArray: false

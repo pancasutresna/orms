@@ -145,7 +145,6 @@
         $scope.getStates = function (country) {
             if (country !== null) {
                 var states = ResourceLocationCache.query(country._id);
-                // $scope.states = ($filter('filter')(locationList, {parent: country.id}, true));
                 $scope.states = states;
             }
         };
@@ -154,7 +153,6 @@
         $scope.getCities = function (state) {
             if (state !== null) {
                 var cities = ResourceLocationCache.query(state._id);
-                // $scope.cities = ($filter('filter')(locationList, {parent: state.id}, true));
                 $scope.cities = cities;
             }
         };
