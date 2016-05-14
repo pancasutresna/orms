@@ -14,7 +14,10 @@ module.exports = function() {
 
     var config  = {
         root: root,
-        css: client + 'css/style.css',
+        css: [
+            client + 'css/style.css',
+            client + 'css/animate.css'
+            ],
         /*
          * File paths
          */

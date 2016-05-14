@@ -21,7 +21,9 @@
         'ngplus',           // ngplus utilities
         'ngzWip',            // zStorage and zStorageWip
         'ivh.treeview',
-        'angularFileUpload'
+        'angularFileUpload',
+        'ui.router',
+        'oc.lazyLoad'
         // 'ngFileUpload' //TODO: remove this
     ]);
 })();
