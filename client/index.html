@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="/bower_components/metisMenu/dist/metisMenu.css" />
     <link rel="stylesheet" href="/bower_components/components-font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="/bower_components/animatewithsass/animate.css" />
+    <link rel="stylesheet" href="/bower_components/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" href="/bower_components/slick-carousel/slick/slick-theme.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -78,9 +80,11 @@
     <script src="/bower_components/PACE/pace.js"></script>
     <script src="/bower_components/oclazyload/dist/ocLazyLoad.js"></script>
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/bower_components/slick-carousel/slick/slick.min.js"></script>
+    <script src="/bower_components/angular-slick/dist/slick.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQTpXj82d8UpCi97wzo_nKXL7nYrd4G70"></script>
     <!-- build:js /js/app.js -->
     <!-- inject:js -->
     <script src="/client/app/app.module.js"></script>
@@ -88,8 +92,8 @@
     <script src="/client/app/data/data.module.js"></script>
     <script src="/client/app/main/main.module.js"></script>
     <script src="/client/app/map/map.module.js"></script>
-    <script src="/client/app/user/user.module.js"></script>
     <script src="/client/app/place/place.module.js"></script>
+    <script src="/client/app/user/user.module.js"></script>
     <script src="/client/app/admin/user/admin.user.module.js"></script>
     <script src="/client/app/blocks/exception/exception.module.js"></script>
     <script src="/client/app/blocks/logger/logger.module.js"></script>
@@ -105,12 +109,6 @@
     <script src="/client/app/main/main.route.js"></script>
     <script src="/client/app/map/map-marker.controller.js"></script>
     <script src="/client/app/map/map.js"></script>
-    <script src="/client/app/user/identity.factory.js"></script>
-    <script src="/client/app/user/login.controller.js"></script>
-    <script src="/client/app/user/profile.controller.js"></script>
-    <script src="/client/app/user/signup.controller.js"></script>
-    <script src="/client/app/user/user.factory.js"></script>
-    <script src="/client/app/user/user.route.js"></script>
     <script src="/client/app/place/category.filter.js"></script>
     <script src="/client/app/place/place.add.controller.js"></script>
     <script src="/client/app/place/place.detail.controller.js"></script>
@@ -118,6 +116,12 @@
     <script src="/client/app/place/place.list.controller.js"></script>
     <script src="/client/app/place/place.route.js"></script>
     <script src="/client/app/place/thumb.directive.js"></script>
+    <script src="/client/app/user/identity.factory.js"></script>
+    <script src="/client/app/user/login.controller.js"></script>
+    <script src="/client/app/user/profile.controller.js"></script>
+    <script src="/client/app/user/signup.controller.js"></script>
+    <script src="/client/app/user/user.factory.js"></script>
+    <script src="/client/app/user/user.route.js"></script>
     <script src="/client/app/admin/user/admin.user.controller.js"></script>
     <script src="/client/app/admin/user/admin.user.route.js"></script>
     <script src="/client/app/blocks/exception/exception.factory.js"></script>

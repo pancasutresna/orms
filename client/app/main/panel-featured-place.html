@@ -1,9 +1,24 @@
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <h4 class="text-center m">
+                FEATURED LISTINGS
+            </h4>
 
-<div class="panel panel-primary">
-  <div class="panel-heading text-center">Featured places</div>
-  <div class="panel-body"> 
-    <div ng-repeat="place in vm.places | filter:{featured:true}" class="row">
-      <div class="col-md-12"><a href="/places/{{ place._id }}">{{ place.title }}</a></div>
+            <slick class="slick_demo_2" infinite="true" slides-to-show="3" slides-to-scroll="1" center-mode="false" autoplay="true" autoplaySpeed="5000" speed="5000" dots="true"
+                   responsive="[{ breakpoint: 1024, settings: { slidesToShow: 3, slidesToScroll: 3, infinite: true, dots: true } }, { breakpoint: 600, settings: { slidesToShow: 2, slidesToScroll: 2 } }, { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1 } } ]" >
+                <div ng-repeat="place in vm.places | filter:{featured:true}" >
+                    <div class="ibox-content">
+                        <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                            Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                            unknown printer took a galley of type and scrambled it to make a type specimen
+                            book. It has survived not only five centuries, but also the leap.
+                        </p>
+                        <h3><a href="/places/{{ place._id }}">{{ place.title }}</a></h3>
+                    </div>
+                </div>
+            </slick>
+        </div>
     </div>
-  </div>
 </div>

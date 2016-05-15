@@ -40,7 +40,8 @@
     "oclazyload": "^1.0.9",
     "angular-ui-router": "^0.2.18",
     "components-font-awesome": "^4.6.1",
-    "animatewithsass": "^3.2.2"
+    "animatewithsass": "^3.2.2",
+    "angular-slick": "^0.2.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.9",
@@ -72,7 +73,7 @@
       "main": [
         "jquery.slimscroll.js"
       ]
-    }, 
+    },
     "animatewithsass": {
       "main": [
         "animate.css"
