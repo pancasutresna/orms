@@ -23,7 +23,8 @@
         'ivh.treeview',
         'angularFileUpload',
         'ui.router',
-        'oc.lazyLoad'
+        'oc.lazyLoad',
+        'slick'
         // 'ngFileUpload' //TODO: remove this
     ]);
 })();
