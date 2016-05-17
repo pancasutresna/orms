@@ -5,8 +5,8 @@
     .module('app.main')
     .controller('MainController', MainController);
 
-    MainController.$inject = ['ResourcePlaceCache', 'ResourceCategoryCache'];
-    function MainController(ResourcePlaceCache, ResourceCategoryCache) {
+    MainController.$inject = ['ResourcePlaceCache', 'ResourceCategoryCache', 'datacontext'];
+    function MainController(ResourcePlaceCache, ResourceCategoryCache, datacontext) {
         // MainController.$inject = ['$scope', '$location', 'ResourcePlaceCache'];
         // function MainController($scope, $location, ResourcePlaceCache) {
         // $scope.$on('$routeChangeError', function(evt,current,previous,rejection) {
@@ -18,6 +18,7 @@
         var vm = this;
         vm.places = ResourcePlaceCache.query();
         vm.categories = ResourceCategoryCache.query();
+        // vm.locations = datacontext.location.query({parentId: parentId});
 
         console.log('categories : ' + vm.categories);
     }

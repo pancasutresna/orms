@@ -1,12 +1,10 @@
 <div class="container-fluid map">
-    <div class="row col md-12">
-        <div data-ng-include="'/app/map/map.html'"></div>
-    </div>
+    <div data-ng-include="'/app/map/map.html'"></div>
 </div>
 <div class="jumbotron gray-bg search">
     <div class="container">
         <form role="form-inline">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <div class="input-group">
                     <input type="text" class="form-control input-lg" placeholder="Search text....">
                     <div class="input-group-btn">
@@ -30,12 +28,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <button type="button" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search </button>
             </div>
-<!--             <div class="col-md-2">
+            <div class="col-md-2">
                 <button type="button" class="btn btn-lg btn-block btn-danger"><i class="fa fa-plus-circle"></i> Add Listing </button>
-            </div> -->
+            </div>
         </form>
     </div>
 </div>
@@ -48,7 +46,7 @@
 <div class="container">
     <div data-ng-include="'/app/main/panel-categories.html'"></div>
     <div data-ng-include="'/app/main/panel-locations.html'"></div>
-    <div data-ng-include="'/app/main/panel-add-listing.html'"></div>
+    <!-- <div data-ng-include="'/app/main/panel-add-listing.html'"></div> -->
     <div data-ng-include="'/app/main/panel-featured-place.html'"></div>
     <div data-ng-include="'/app/main/panel-new-place.html'"></div>
 </div>
