@@ -1,19 +1,54 @@
 <div class="container-fluid map">
-    <div data-ng-include="'/app/map/map.html'"></div>
+    <div class="row col md-12">
+        <div data-ng-include="'/app/map/map.html'"></div>
+    </div>
 </div>
-
+<div class="jumbotron gray-bg search">
+    <div class="container">
+        <form role="form-inline">
+            <div class="col-md-9">
+                <div class="input-group">
+                    <input type="text" class="form-control input-lg" placeholder="Search text....">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category <span class="caret"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                        <button type="button" class="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Location <span class="caret"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                        <button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search </button>
+            </div>
+<!--             <div class="col-md-2">
+                <button type="button" class="btn btn-lg btn-block btn-danger"><i class="fa fa-plus-circle"></i> Add Listing </button>
+            </div> -->
+        </form>
+    </div>
+</div>
 <!-- Additional style only for demo purpose -->
 <style>
-    .slick_demo_2 .ibox-content {
-        margin: 0 10px;
-    }
+.slick_demo_2 .ibox-content {
+    margin: 0 10px;
+}
 </style>
-
 <div class="container">
+    <div data-ng-include="'/app/main/panel-categories.html'"></div>
+    <div data-ng-include="'/app/main/panel-locations.html'"></div>
+    <div data-ng-include="'/app/main/panel-add-listing.html'"></div>
     <div data-ng-include="'/app/main/panel-featured-place.html'"></div>
-    <div class="row">
-        <div class="col-md-12">
-            <div data-ng-include="'/app/main/panel-new-place.html'"></div>
-        </div>
-    </div>
+    <div data-ng-include="'/app/main/panel-new-place.html'"></div>
 </div>
