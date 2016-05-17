@@ -5,8 +5,8 @@
     .module('app.main')
     .controller('MainController', MainController);
 
-    MainController.$inject = ['ResourcePlaceCache'];
-    function MainController(ResourcePlaceCache) {
+    MainController.$inject = ['ResourcePlaceCache', 'ResourceCategoryCache'];
+    function MainController(ResourcePlaceCache, ResourceCategoryCache) {
         // MainController.$inject = ['$scope', '$location', 'ResourcePlaceCache'];
         // function MainController($scope, $location, ResourcePlaceCache) {
         // $scope.$on('$routeChangeError', function(evt,current,previous,rejection) {
@@ -17,6 +17,9 @@
         // });
         var vm = this;
         vm.places = ResourcePlaceCache.query();
+        vm.categories = ResourceCategoryCache.query();
+
+        console.log('categories : ' + vm.categories);
     }
 
 })();

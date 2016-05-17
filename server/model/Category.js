@@ -30,7 +30,7 @@ function createDefaultCategories() {
 
             var categoryAutomotive = new Category({
                     label: 'Automotive',
-                    icon: '',
+                    icon: 'fa-car',
                     description: 'Description for category 1'
                 });
 
@@ -54,7 +54,7 @@ function createDefaultCategories() {
 
             var categoryFinancialService = new Category({
                 label: 'Financial Service',
-                icon: '',
+                icon: 'fa-money',
                 description: 'Description for category 2'
             });
 
@@ -78,7 +78,7 @@ function createDefaultCategories() {
 
             var categoryHealthMedicine = new Category({
                 label: 'Health & Medicine',
-                icon: '',
+                icon: 'fa-medkit',
                 description: 'Description for category 5'
             });
 
@@ -108,7 +108,7 @@ function createDefaultCategories() {
 
             var categoryITService = new Category({
                 label: 'IT Service',
-                icon: '',
+                icon: 'fa-laptop',
                 description: 'Description for category 5'
             });
 
@@ -144,7 +144,7 @@ function createDefaultCategories() {
 
             var categoryTravelTransport = new Category({
                 label: 'Travel & Transport',
-                icon: '',
+                icon: 'fa-car',
                 description: 'Description for category 5'
             });
 
@@ -156,37 +156,37 @@ function createDefaultCategories() {
 
             var categoryCarRental = new Category({
                 label: 'Car Rental',
-                icon: '',
+                icon: 'fa-car',
                 description: 'Description for category 5'
             });
 
             var categoryMotorcycleRental = new Category({
                 label: 'Motorcycle Rental',
-                icon: '',
+                icon: 'fa-motorcycle',
                 description: 'Description for category 5'
             });
 
             var categoryBicycleRental = new Category({
                 label: 'Bicycle Rental',
-                icon: '',
+                icon: 'fa-bicycle',
                 description: 'Description for category 5'
             });
 
             var categoryAirport = new Category({
                 label: 'Airport',
-                icon: '',
+                icon: 'fa-plane',
                 description: 'Description for category 5'
             });
 
             var categoryBusStation = new Category({
                 label: 'Bus Station',
-                icon: '',
+                icon: 'fa-bus',
                 description: 'Description for category 5'
             });
 
             var categoryTrainStation = new Category({
                 label: 'Train Station',
-                icon: '',
+                icon: 'fa-train',
                 description: 'Description for category 5'
             });
 
@@ -198,7 +198,7 @@ function createDefaultCategories() {
 
             var categoryShopping = new Category({
                 label: 'Shopping',
-                icon: '',
+                icon: 'fa-shopping-bag',
                 description: 'Description for category 5'
             });
 
@@ -228,7 +228,7 @@ function createDefaultCategories() {
 
             var categoryTourism = new Category({
                 label: 'Tourism',
-                icon: '',
+                icon: 'fa-map',
                 description: 'Description for category 5'
             });
 
@@ -276,7 +276,7 @@ function createDefaultCategories() {
 
             var categoryEntertainment = new Category({
                 label: 'Entertainment',
-                icon: '',
+                icon: 'fa-gamepad',
                 description: 'Description for category 5'
             });
 
@@ -312,7 +312,7 @@ function createDefaultCategories() {
 
             var categorySports = new Category({
                 label: 'Sports',
-                icon: '',
+                icon: 'fa-futbol-o',
                 description: 'Sight seeing'
             });
 
@@ -341,8 +341,8 @@ function createDefaultCategories() {
             });
 
             var categoryFood = new Category({
-                label: 'Food',
-                icon: '',
+                label: 'Food & Drinks',
+                icon: 'fa-glass',
                 description: 'Description for category 3'
             });
 
@@ -372,7 +372,7 @@ function createDefaultCategories() {
 
             var categoryLodging = new Category({
                 label: 'Lodging',
-                icon: '',
+                icon: 'fa-bed',
                 description: 'Description for category 4'
             });
 
@@ -433,6 +433,7 @@ function createDefaultCategories() {
             categoryAirport.parent = categoryTravelTransport;
             categoryBusStation.parent = categoryTravelTransport;
             categoryTravel.parent = categoryTravelTransport;
+            categoryTrainStation.parent = categoryTravelTransport;
 
             categoryApparel.parent = categoryShopping;
             categoryFootwear.parent = categoryShopping;
