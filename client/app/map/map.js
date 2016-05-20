@@ -10,7 +10,7 @@
                 libraries: 'weather,geometry,visualization'
             });
         }])
-        .controller('Map', ['$scope', '$geolocation', 'uiGmapGoogleMapApi', function($scope, $geolocation, uiGmapGoogleMapApi) {
+        .controller('Map', ['$scope', '$geolocation', 'uiGmapGoogleMapApi', function($rootScope, $scope, $geolocation, uiGmapGoogleMapApi) {
             // Do stuff with your $scope.
             // Note: Some of the directives require at least something to be defined originally!
             // e.g. $scope.markers = []

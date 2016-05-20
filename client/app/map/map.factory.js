@@ -5,5 +5,8 @@
         .module('app.map')
         .factory('MapFactory', MapFactory);
 
-    MapFactory.$inject =  ['$scope', ];
+    MapFactory.$inject =  ['$scope', '$geolocation', 'uiGmapGoogleMapApi'];
+    function MapFactory($scope, $geolocation, uiGmapGoogleMapApi) {
+
+    }
 })();

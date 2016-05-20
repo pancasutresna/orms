@@ -13,8 +13,8 @@
         };
 
         function createResource($resource) {
-            var resource = $resource('/api/locations/:parentId', {
-                parentId: '@parentId'
+            var resource = $resource('/api/locations/:name', {
+                name: '@name'
             }, {
                 query: {
                     method: 'GET',

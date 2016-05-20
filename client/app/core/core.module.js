@@ -24,7 +24,8 @@
         'angularFileUpload',
         'ui.router',
         'oc.lazyLoad',
-        'slick'
+        'slick',
+        'ngGeolocation'
         // 'ngFileUpload' //TODO: remove this
     ]);
 })();

@@ -51,7 +51,8 @@ module.exports = function(app, config) {
     // TODO: Change to not only for place module
     app.post('/api/place/uploads', upload.any(), placeCtrl.uploadFile);
 
-    app.get('/api/locations/:parentId', locationCtrl.getLocationsByParentId);
+    app.get('/api/locations', locationCtrl.getLocationsByParentId);
+    app.get('/api/locations/:name', locationCtrl.getLocationsByParentName);
 
     app.post('/login', auth.authenticate);
     app.post('/logout', function(req, res) {
