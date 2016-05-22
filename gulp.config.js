@@ -14,7 +14,10 @@ module.exports = function() {
 
     var config  = {
         root: root,
-        css: client + 'css/style.css',
+        css: [
+            client + 'css/style.css',
+            client + 'css/animate.css'
+            ],
         /*
          * File paths
          */
@@ -38,7 +41,8 @@ module.exports = function() {
         server: server,
         temp: temp,
         index: client + 'index.html',
-        fonts: './bower_components/font-awesome/fonts/**/*.*',
+        fonts: ['./bower_components/font-awesome/fonts/**/*.*', 
+                './bower_components/bootstrap/fonts/**/*.*'],
         html: clientApp + '**/*.html',
         htmltemplates: clientApp + '**/*.html',
         images: client + 'images/**/*.*',

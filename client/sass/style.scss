@@ -1,63 +1,72 @@
-body{
-    padding-top: 50px;
+/*
+ *
+ *   INSPINIA - Responsive Admin Theme
+ *   version 2.4
+ *
+*/
+// Google Fonts
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
 
-    .jumbotron {
-        padding-top: 0px;
-        padding-bottom: 0px;
-    }
+// Variables, Mixins
+@import "variables";
+@import "mixins";
 
-    .navbar-form{
-        .form-group{
-            margin-left: 10px;
-        }
-        button{
-            margin-left: 5px;
-        }
-    }
+// INSPINIA Theme Elements
+@import "typography";
+@import "navigation";
+@import "top_navigation";
+@import "buttons";
+@import "badgets_labels";
+@import "elements";
+@import "sidebar";
+@import "base";
+@import "pages";
+@import "chat";
+@import "metismenu";
+@import "spinners";
 
-    footer{
-        padding-left: 15px;
-        padding-right: 10px;
-        p {
-            border-top: 1px solid #d7e0e2;
-        }
-    }
+// Landing page styles
+@import "landing";
 
-    .toast-top-right{
-        top: 70px;
-    }
+// RTL Support
+@import "rtl";
 
-    .toast-success{
-        background-color: #13987e;
-    }
+// For demo only - config box style
+@import "theme-config";
 
-    .angular-google-map-container { height: 500px; }
+// INSPINIA Skins
+@import "skins";
+@import "md-skin";
 
-    .drop-box {
-        background: #F8F8F8;
-        border: 5px dashed #DDD;
-        width: 100%;
-        height: 100px;
-        text-align: center;
-        padding-top: 25px;
-        margin: 10px;
-    }
-    .dragover {
-        border: 5px dashed blue;
-    }
+// Media query style
+@import "media";
 
-    .my-drop-zone {
-        border: dotted 3px lightgray;
-        height: 100px;
-    }
+// Custom style
+// Your custom style to override base style
+@import "custom";
 
-    canvas {
-        background-color: #f3f3f3;
-        -webkit-box-shadow: 3px 3px 3px 0 #e3e3e3;
-        -moz-box-shadow: 3px 3px 3px 0 #e3e3e3;
-        box-shadow: 3px 3px 3px 0 #e3e3e3;
-        border: 1px solid #c3c3c3;
-        height: 100px;
-        margin: 6px 0 0 6px;
-    }
+// Map
+@import "map";
+
+// Clear layout on print mode
+@media print {
+  nav.navbar-static-side {
+    display: none;
+  }
+
+  #page-wrapper {
+    margin: 0;
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+

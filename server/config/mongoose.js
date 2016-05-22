@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 var userModel = require('../model/User');
 var placeModel = require('../model/Place');
 var categoryModel = require('../model/Category');
+var locationModel = require('../model/Location');
+var cityModel = require('../model/City');
 
 module.exports = function(config) {
     mongoose.connect(config.db);

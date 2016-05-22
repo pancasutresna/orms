@@ -21,7 +21,12 @@
         'ngplus',           // ngplus utilities
         'ngzWip',            // zStorage and zStorageWip
         'ivh.treeview',
-        'angularFileUpload'
+        'angularFileUpload',
+        'ui.router',
+        'oc.lazyLoad',
+        'slick',
+        'uiGmapgoogle-maps',
+        'ngGeolocation'
         // 'ngFileUpload' //TODO: remove this
     ]);
 })();

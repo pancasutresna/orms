@@ -42,7 +42,12 @@ var placeSchema = mongoose.Schema({
     },
     tags: [String],
     categories: [mongoose.Schema.Types.ObjectId],
-    images: [String]
+    images: [String],
+    address: {
+        country: {type: mongoose.Schema.Types.ObjectId},
+        state: {type: mongoose.Schema.Types.ObjectId},
+        city: {type: mongoose.Schema.Types.ObjectId}
+    }
 });
 
 var Place = mongoose.model('Place', placeSchema);

@@ -10,9 +10,13 @@
     <link rel="stylesheet" href="/bower_components/toastr/toastr.css" />
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="/bower_components/angular-ivh-treeview/dist/ivh-treeview.css" />
+    <link rel="stylesheet" href="/bower_components/metisMenu/dist/metisMenu.css" />
+    <link rel="stylesheet" href="/bower_components/components-font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/bower_components/animatewithsass/animate.css" />
+    <link rel="stylesheet" href="/bower_components/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" href="/bower_components/slick-carousel/slick/slick-theme.css" />
     <!-- endbower -->
     <!-- endbuild -->
-
     <!-- build:css /styles/app.css -->
     <!-- inject:css -->
     <link rel="stylesheet" href="/client/css/style.css">
@@ -20,7 +24,7 @@
     <!-- endbuild -->
 </head>
 
-<body ng-app="app"  ng-strict-di>
+<body ng-app="app" ng-strict-di>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header"><a href="/" class="navbar-brand">Blacksquid</a></div>
@@ -33,13 +37,51 @@
             </div>
         </div>
     </div>
-    <section class="content">
-        <div ng-view></div>
+    <section class="content white-bg">
+        <div ng-view>
     </section>
-    <footer class="container text-center">
-        <p>&copy; 2016 Blacksquid</p>
+    <footer class="gray-section contact gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1>disini.id</h1>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                    </p>
+                    <a href="mailto:test@email.com" class="btn btn-primary">Send us mail</a>
+                    <p class="m-t-sm">
+                        Or follow us on social platform
+                    </p>
+                    <ul class="list-inline social-icon">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 text-right">
+                    <h2>Address</h2>
+                    <address>
+                        <strong><span class="navy">Company name, Inc.</span></strong>
+                        <br/> 795 Folsom Ave, Suite 600
+                        <br/> San Francisco, CA 94107
+                        <br/>
+                        <abbr title="Phone">P:</abbr> (123) 456-7890
+                    </address>
+                </div>
+            </div>
+        </div>
     </footer>
-
+        <div class="container-fluid">
+            <div class="row navy-bg">
+                <div class="col-lg-12 text-center">
+                    <p><strong>&copy; 2015 Company Name</strong> consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis.</p>
+                </div>
+            </div>
+        </div>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQTpXj82d8UpCi97wzo_nKXL7nYrd4G70&libraries=weather,geometry,visualization,places"></script>
     <!-- build:js /js/lib.js -->
     <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
@@ -69,31 +111,42 @@
     <script src="/bower_components/angular-ivh-treeview/dist/ivh-treeview.js"></script>
     <script src="/bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="/bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+    <script src="/bower_components/metisMenu/dist/metisMenu.js"></script>
+    <script src="/bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="/bower_components/slimscroll/jquery.slimscroll.js"></script>
+    <script src="/bower_components/PACE/pace.js"></script>
+    <script src="/bower_components/oclazyload/dist/ocLazyLoad.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/bower_components/slick-carousel/slick/slick.min.js"></script>
+    <script src="/bower_components/angular-slick/dist/slick.js"></script>
+    <script src="/bower_components/ngGeolocation/ngGeolocation.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-
+    
     <!-- build:js /js/app.js -->
     <!-- inject:js -->
     <script src="/client/app/app.module.js"></script>
-    <script src="/client/app/data/data.module.js"></script>
     <script src="/client/app/core/core.module.js"></script>
+    <script src="/client/app/data/data.module.js"></script>
     <script src="/client/app/main/main.module.js"></script>
     <script src="/client/app/map/map.module.js"></script>
     <script src="/client/app/place/place.module.js"></script>
     <script src="/client/app/user/user.module.js"></script>
-    <script src="/client/app/admin/user/admin.user.module.js"></script>
     <script src="/client/app/blocks/exception/exception.module.js"></script>
+    <script src="/client/app/admin/user/admin.user.module.js"></script>
     <script src="/client/app/blocks/logger/logger.module.js"></script>
     <script src="/client/app/blocks/router/router.module.js"></script>
-    <script src="/client/app/data/datacontext.js"></script>
     <script src="/client/app/core/bootstrap.dialog.js"></script>
     <script src="/client/app/core/common.js"></script>
     <script src="/client/app/core/config.breeze.js"></script>
     <script src="/client/app/core/core.config.js"></script>
     <script src="/client/app/core/core.constants.js"></script>
+    <script src="/client/app/core/inspinia.js"></script>
+    <script src="/client/app/data/datacontext.js"></script>
     <script src="/client/app/main/main.controller.js"></script>
     <script src="/client/app/main/main.route.js"></script>
     <script src="/client/app/map/map-marker.controller.js"></script>
+    <script src="/client/app/map/map.factory.js"></script>
     <script src="/client/app/map/map.js"></script>
     <script src="/client/app/place/category.filter.js"></script>
     <script src="/client/app/place/place.add.controller.js"></script>
@@ -108,22 +161,23 @@
     <script src="/client/app/user/signup.controller.js"></script>
     <script src="/client/app/user/user.factory.js"></script>
     <script src="/client/app/user/user.route.js"></script>
-    <script src="/client/app/admin/user/admin.user.controller.js"></script>
-    <script src="/client/app/admin/user/admin.user.route.js"></script>
     <script src="/client/app/blocks/exception/exception.factory.js"></script>
     <script src="/client/app/blocks/exception/exception.handler.provider.js"></script>
+    <script src="/client/app/admin/user/admin.user.controller.js"></script>
+    <script src="/client/app/admin/user/admin.user.route.js"></script>
     <script src="/client/app/blocks/logger/logger.factory.js"></script>
     <script src="/client/app/blocks/router/router.factory.js"></script>
     <script src="/client/app/data/resources/resource.category.cache.js"></script>
     <script src="/client/app/data/resources/resource.category.js"></script>
+    <script src="/client/app/data/resources/resource.city.js"></script>
+    <script src="/client/app/data/resources/resource.location.cache.js"></script>
+    <script src="/client/app/data/resources/resource.location.js"></script>
     <script src="/client/app/data/resources/resource.place.cache.js"></script>
     <script src="/client/app/data/resources/resource.place.js"></script>
     <script src="/client/app/data/resources/resource.user.js"></script>
     <!-- endinject -->
-
     <!-- inject:templates:js -->
     <!-- endinject -->
-    
     <!-- endbuild -->
 </body>
 
