@@ -12,9 +12,9 @@
         }])
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$scope', '$window', '$geolocation', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'ResourcePlaceCache', 'ResourceCategoryCache', 'datacontext'];
+    MainController.$inject = ['$scope', '$timeout', '$window', '$geolocation', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'ResourcePlaceCache', 'ResourceCategoryCache', 'datacontext'];
 
-    function MainController($scope, $window, $geolocation, uiGmapGoogleMapApi, uiGmapIsReady, ResourcePlaceCache, ResourceCategoryCache, datacontext) {
+    function MainController($scope, $timeout, $window, $geolocation, uiGmapGoogleMapApi, uiGmapIsReady, ResourcePlaceCache, ResourceCategoryCache, datacontext) {
         // MainController.$inject = ['$scope', '$location', 'ResourcePlaceCache'];
         // function MainController($scope, $location, ResourcePlaceCache) {
         // $scope.$on('$routeChangeError', function(evt,current,previous,rejection) {
@@ -25,6 +25,7 @@
         // });  
         var vm = this;
         vm.locations;
+        vm.ready = false;
         $scope.mapControl = {};
 
         $geolocation.getCurrentPosition({
@@ -63,5 +64,8 @@
 
         vm.places = ResourcePlaceCache.query();
         vm.categories = ResourceCategoryCache.query();
+        $timeout(function() {
+            vm.ready = true;
+        }, 1000);
     }
 })();
