@@ -5,13 +5,14 @@ var locationSchema = mongoose.Schema({
         type: String,
         required: '{PATH} is required'
     },
-    parent: {
-        type: mongoose.Schema.Types.ObjectId
+    location: {
+        type: {type: String},
+        coordinates: [Number]
     }
 });
 
 var Location = mongoose.model('Location', locationSchema);
-function createDefaultLocations() {
+/*function createDefaultLocations() {
     Location.find({}).exec(function(err, collection) {
         if (collection.length === 0) {
             console.log('CREATING DEFAULT LOCATIONS ##################');
@@ -94,4 +95,4 @@ function createDefaultLocations() {
     });
 }
 
-exports.createDefaultLocations = createDefaultLocations;
+exports.createDefaultLocations = createDefaultLocations;*/

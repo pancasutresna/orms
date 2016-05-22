@@ -23,6 +23,7 @@ var userCtrl = require('../controller/userCtrl');
 var categoryCtrl = require('../controller/categoryCtrl');
 var placeCtrl = require('../controller/placeCtrl');
 var locationCtrl = require('../controller/locationCtrl');
+var cityCtrl = require('../controller/cityCtrl');
 
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
@@ -53,6 +54,9 @@ module.exports = function(app, config) {
 
     app.get('/api/locations', locationCtrl.getLocationsByParentId);
     app.get('/api/locations/:name', locationCtrl.getLocationsByParentName);
+    app.get('/api/locations/nearby/:lat/:lng/:rad', locationCtrl.getNearbyLocations);
+
+    app.get('/api/cities/nearby/:lat/:lng/:rad', cityCtrl.getNearbyLocations);
 
     app.post('/login', auth.authenticate);
     app.post('/logout', function(req, res) {

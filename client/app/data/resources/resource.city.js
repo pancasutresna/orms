@@ -3,35 +3,24 @@
 
     angular
         .module('app.data')
-        .factory('resource.location', ResourceLocation);
+        .factory('resource.city', ResourceCity);
 
-    ResourceLocation.$inject = [];
-    function ResourceLocation() {
+    ResourceCity.$inject = [];
 
+    function ResourceCity() {
         return {
             create: createResource
         };
 
         function createResource($resource) {
-            var resource = $resource('/api/locations/:name:docCtrl/:lat/:lng/:rad', {
-                name: '@name',
+            var resource = $resource('/api/cities/:docCtrl/:lat/:lng/:rad', {
                 lat: '@lat',
                 lng: '@lng',
                 rad: '@rad',
                 docCtrl: '@docCtrl'
             }, {
-                query: {
-                    method: 'GET',
-                    cache : true,
-                    isArray: true
-                },
-                update: {
-                    method: 'PUT',
-                    isArray: false
-                },
                 nearby: {
                     method: 'GET',
-                    cache : true,
                     params: {docCtrl: 'nearby'},
                     isArray: true
                 }

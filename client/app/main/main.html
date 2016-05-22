@@ -1,5 +1,13 @@
 <div class="container-fluid map">
-    <div data-ng-include="'/app/map/map.html'"></div>
+    <!-- <div data-ng-include="'/app/map/map.html'"></div> -->
+    <div class="carousel-inner" role="listbox">
+        <div class="map">
+            <ui-gmap-google-map center='map.center' zoom='map.zoom' options="map.options" events="map.events" control="mapControl">
+                <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" idkey="m.id" options="m.options">
+                </ui-gmap-marker>
+            </ui-gmap-google-map>
+        </div>
+    </div>
 </div>
 <div class="jumbotron gray-bg search">
     <div class="container">
@@ -45,8 +53,8 @@
 </style>
 <div class="container">
     <div data-ng-include="'/app/main/panel-categories.html'"></div>
-  <div data-ng-include="'/app/main/panel-locations.html'"></div>
-  <!-- <div data-ng-include="'/app/main/panel-add-listing.html'"></div> -->
-  <div data-ng-include="'/app/main/panel-featured-place.html'"></div>
-  <div data-ng-include="'/app/main/panel-new-place.html'"></div>
+    <div data-ng-include="'/app/main/panel-locations.html'"></div>
+    <!-- <div data-ng-include="'/app/main/panel-add-listing.html'"></div> -->
+    <div data-ng-include="'/app/main/panel-featured-place.html'"></div>
+    <div data-ng-include="'/app/main/panel-new-place.html'"></div>
 </div>

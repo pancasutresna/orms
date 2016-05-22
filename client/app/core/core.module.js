@@ -25,6 +25,7 @@
         'ui.router',
         'oc.lazyLoad',
         'slick',
+        'uiGmapgoogle-maps',
         'ngGeolocation'
         // 'ngFileUpload' //TODO: remove this
     ]);
