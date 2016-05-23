@@ -14,10 +14,10 @@
 
     PlaceAddController.$inject = ['$scope', '$filter', 'PlaceFactory', 'logger', '$location',
         'IdentityFactory', 'ResourceCategoryCache', 'ivhTreeviewBfs', 'FileUploader', '$timeout',
-        'ResourceLocationCache'];
+        'datacontext'];
     function PlaceAddController($scope, $filter, PlaceFactory, logger, $location,
         IdentityFactory, ResourceCategoryCache, ivhTreeviewBfs, FileUploader, $timeout,
-        ResourceLocationCache) {
+        datacontext) {
         var images = [];
         // File uploader configurations
         var uploader = $scope.uploader = new FileUploader({
@@ -138,17 +138,11 @@
             }
         };
 
-        $scope.countries = ResourceLocationCache.query('100000000000000000000000');
-
-        $scope.getStates = function (country) {
-            if (country !== null) {
-                $scope.states = ResourceLocationCache.query(country._id);
-            }
-        };
+        $scope.states = datacontext.location.query({parent_id: '0'});
 
         $scope.getCities = function (state) {
             if (state !== null) {
-                $scope.cities = ResourceLocationCache.query(state._id);
+                $scope.cities = datacontext.location.query({parent_id: state._id});
             }
         };
 
@@ -176,7 +170,6 @@
                     categories: selectedCategories,
                     images: images,
                     address: {
-                        country: $scope.country,
                         state: $scope.state,
                         city: $scope.city
                     }

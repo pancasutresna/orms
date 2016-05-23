@@ -45,12 +45,8 @@
                 </div>
                 <div class="col-md-5 col-md-offset-1">
                     <div class="form-group">
-                        Country:
-                        <select id="country" ng-model="country" ng-options="item.name for item in countries" ng-change="getStates(country)" ng-focus="countries">
-                            <option value=''>Select</option>
-                        </select>
-
-                        <select id="state" ng-disabled="!country" ng-model="state" ng-options="item.name for item in states" ng-change="getCities(state)" ng-focus="!country">
+                        Propinsi:
+                        <select id="state" ng-model="state" ng-options="item.name for item in states" ng-change="getCities(state)" ng-focus="states">
                             <option value=''>Select</option>
                         </select>
 

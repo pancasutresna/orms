@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 
 var locationSchema = mongoose.Schema({
+    _id: {
+        type: String
+    },
     name: {
         type: String,
         required: '{PATH} is required'

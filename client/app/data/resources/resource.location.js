@@ -13,8 +13,8 @@
         };
 
         function createResource($resource) {
-            var resource = $resource('/api/locations/:name:docCtrl/:lat/:lng/:rad', {
-                name: '@name',
+            var resource = $resource('/api/locations/:parent_id:docCtrl/:lat/:lng/:rad', {
+                parent_id: '@parent_id',
                 lat: '@lat',
                 lng: '@lng',
                 rad: '@rad',

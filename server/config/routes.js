@@ -52,8 +52,8 @@ module.exports = function(app, config) {
     // TODO: Change to not only for place module
     app.post('/api/place/uploads', upload.any(), placeCtrl.uploadFile);
 
-    app.get('/api/locations', locationCtrl.getLocationsByParentId);
-    app.get('/api/locations/:name', locationCtrl.getLocationsByParentName);
+    // app.get('/api/locations', locationCtrl.getLocationsByParentId);
+    app.get('/api/locations/:parent_id', locationCtrl.getLocationsByParentId);
     app.get('/api/locations/nearby/:lat/:lng/:rad', locationCtrl.getNearbyLocations);
 
     app.get('/api/cities/nearby/:lat/:lng/:rad', cityCtrl.getNearbyLocations);

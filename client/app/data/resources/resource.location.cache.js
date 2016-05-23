@@ -12,7 +12,7 @@
         return {
             query: function(parentId) {
                 var locationsList = [];
-                //locationList = datacontext.location.query({parentId: parentId});
+                locationList = datacontext.location.query({parentId: parentId});
 
                 return locationList;
             }

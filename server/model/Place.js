@@ -44,7 +44,6 @@ var placeSchema = mongoose.Schema({
     categories: [mongoose.Schema.Types.ObjectId],
     images: [String],
     address: {
-        country: {type: mongoose.Schema.Types.ObjectId},
         state: {type: mongoose.Schema.Types.ObjectId},
         city: {type: mongoose.Schema.Types.ObjectId}
     }
