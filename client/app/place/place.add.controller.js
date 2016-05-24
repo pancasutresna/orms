@@ -13,10 +13,12 @@
         }]);
 
     PlaceAddController.$inject = ['$scope', '$filter', 'PlaceFactory', 'logger', '$location',
-        'IdentityFactory', 'ResourceCategoryCache', 'ivhTreeviewBfs', 'FileUploader', '$timeout',
-        'datacontext'];
+        'IdentityFactory', 'ResourceCategoryCache', 'ivhTreeviewBfs', 'FileUploader', '$timeout', '$q',
+        'datacontext'
+    ];
+
     function PlaceAddController($scope, $filter, PlaceFactory, logger, $location,
-        IdentityFactory, ResourceCategoryCache, ivhTreeviewBfs, FileUploader, $timeout,
+        IdentityFactory, ResourceCategoryCache, ivhTreeviewBfs, FileUploader, $timeout, $q,
         datacontext) {
         var images = [];
         // File uploader configurations
@@ -28,13 +30,13 @@
 
         uploader.filters.push({
             name: 'imageFilter',
-            fn: function(item /*{File|FileLikeObject}*/, options) {
+            fn: function(item /*{File|FileLikeObject}*/ , options) {
                 var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
                 return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
             }
         });
 
-        uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
+        uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/ , filter, options) {
             console.info('onWhenAddingFileFailed', item, filter, options);
         };
         uploader.onAfterAddingFile = function(fileItem) {
@@ -78,6 +80,21 @@
         console.log('categories: ' + $scope.categories);
         $scope.categoryCounter = 0;
 
+        $scope.canExit = true;
+        $scope.stepActive = false;
+
+        $scope.exitWithAPromise = function() {
+            var d = $q.defer();
+            $timeout(function() {
+                d.resolve(true);
+            }, 1000);
+            return d.promise;
+        };
+
+        $scope.exitValidation = function() {
+            return $scope.canExit;
+        };
+
         $scope.map = {
             center: {
                 latitude: -6.209778538009775,
@@ -103,7 +120,7 @@
                             draggable: true
                         },
                         events: {
-                            dragend: function (marker, eventName, args) {
+                            dragend: function(marker, eventName, args) {
                                 lat = marker.getPosition().lat();
                                 lon = marker.getPosition().lng();
                                 $scope.latitude = lat;
@@ -138,11 +155,11 @@
             }
         };
 
-        $scope.states = datacontext.location.query({parent_id: '0'});
+        $scope.states = datacontext.location.query({ parent_id: '0' });
 
-        $scope.getCities = function (state) {
+        $scope.getCities = function(state) {
             if (state !== null) {
-                $scope.cities = datacontext.location.query({parent_id: state._id});
+                $scope.cities = datacontext.location.query({ parent_id: state._id });
             }
         };
 

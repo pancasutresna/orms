@@ -2,9 +2,9 @@
     'use strict';
 
     angular
-    .module('blocks.router')
-    .provider('routehelperConfig', routehelperConfig)
-    .factory('routehelper', routehelper);
+        .module('blocks.router')
+        .provider('routehelperConfig', routehelperConfig)
+        .factory('routehelper', routehelper);
 
     function routehelperConfig() {
         /* jshint validthis:true */
@@ -12,7 +12,7 @@
             // These are the properties we need to set
             $routeProvider: undefined,
             docTitle: '',
-            resolveAlways: {ready: function() {}}
+            resolveAlways: { ready: function() {} }
         };
 
         this.$get = function() {
@@ -26,6 +26,7 @@
         '$location', '$rootScope', '$route',
         'logger', 'routehelperConfig'
     ];
+
     function routehelper($location, $rootScope, $route,
         logger, routehelperConfig) {
         var handlingRouteChangeError = false;
@@ -56,12 +57,11 @@
 
         function configureRoutes(routes) {
             routes.forEach(function(route) {
-                route.config.resolve =
-                    angular.extend(route.config.resolve || {},
-                        routehelperConfig.config.resolveAlways);
+                route.config.resolve = angular.extend(route.config.resolve || {},
+                    routehelperConfig.config.resolveAlways);
                 $routeProvider.when(route.url, route.config);
             });
-            $routeProvider.otherwise({redirectTo: '/'});
+            $routeProvider.otherwise({ redirectTo: '/' });
         }
 
         function handleRoutingErrors() {

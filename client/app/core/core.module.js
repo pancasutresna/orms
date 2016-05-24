@@ -26,7 +26,8 @@
         'oc.lazyLoad',
         'slick',
         'uiGmapgoogle-maps',
-        'ngGeolocation'
+        'ngGeolocation',
+        'mgo-angular-wizard'
         // 'ngFileUpload' //TODO: remove this
     ]);
 })();

@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/bower_components/animatewithsass/animate.css" />
     <link rel="stylesheet" href="/bower_components/slick-carousel/slick/slick.css" />
     <link rel="stylesheet" href="/bower_components/slick-carousel/slick/slick-theme.css" />
+    <link rel="stylesheet" href="/bower_components/angular-wizard/dist/angular-wizard.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css /styles/app.css -->
@@ -120,6 +121,7 @@
     <script src="/bower_components/slick-carousel/slick/slick.min.js"></script>
     <script src="/bower_components/angular-slick/dist/slick.js"></script>
     <script src="/bower_components/ngGeolocation/ngGeolocation.js"></script>
+    <script src="/bower_components/angular-wizard/dist/angular-wizard.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     
@@ -128,14 +130,14 @@
     <script src="/client/app/app.module.js"></script>
     <script src="/client/app/core/core.module.js"></script>
     <script src="/client/app/data/data.module.js"></script>
-    <script src="/client/app/map/map.module.js"></script>
     <script src="/client/app/main/main.module.js"></script>
-    <script src="/client/app/place/place.module.js"></script>
+    <script src="/client/app/map/map.module.js"></script>
     <script src="/client/app/user/user.module.js"></script>
+    <script src="/client/app/place/place.module.js"></script>
     <script src="/client/app/admin/user/admin.user.module.js"></script>
     <script src="/client/app/blocks/exception/exception.module.js"></script>
-    <script src="/client/app/blocks/logger/logger.module.js"></script>
     <script src="/client/app/blocks/router/router.module.js"></script>
+    <script src="/client/app/blocks/logger/logger.module.js"></script>
     <script src="/client/app/core/bootstrap.dialog.js"></script>
     <script src="/client/app/core/common.js"></script>
     <script src="/client/app/core/config.breeze.js"></script>
@@ -143,11 +145,17 @@
     <script src="/client/app/core/core.constants.js"></script>
     <script src="/client/app/core/inspinia.js"></script>
     <script src="/client/app/data/datacontext.js"></script>
+    <script src="/client/app/main/main.controller.js"></script>
+    <script src="/client/app/main/main.route.js"></script>
     <script src="/client/app/map/map-marker.controller.js"></script>
     <script src="/client/app/map/map.factory.js"></script>
     <script src="/client/app/map/map.js"></script>
-    <script src="/client/app/main/main.controller.js"></script>
-    <script src="/client/app/main/main.route.js"></script>
+    <script src="/client/app/user/identity.factory.js"></script>
+    <script src="/client/app/user/login.controller.js"></script>
+    <script src="/client/app/user/profile.controller.js"></script>
+    <script src="/client/app/user/signup.controller.js"></script>
+    <script src="/client/app/user/user.factory.js"></script>
+    <script src="/client/app/user/user.route.js"></script>
     <script src="/client/app/place/category.filter.js"></script>
     <script src="/client/app/place/place.add.controller.js"></script>
     <script src="/client/app/place/place.detail.controller.js"></script>
@@ -155,18 +163,12 @@
     <script src="/client/app/place/place.list.controller.js"></script>
     <script src="/client/app/place/place.route.js"></script>
     <script src="/client/app/place/thumb.directive.js"></script>
-    <script src="/client/app/user/identity.factory.js"></script>
-    <script src="/client/app/user/login.controller.js"></script>
-    <script src="/client/app/user/profile.controller.js"></script>
-    <script src="/client/app/user/signup.controller.js"></script>
-    <script src="/client/app/user/user.factory.js"></script>
-    <script src="/client/app/user/user.route.js"></script>
     <script src="/client/app/admin/user/admin.user.controller.js"></script>
     <script src="/client/app/admin/user/admin.user.route.js"></script>
     <script src="/client/app/blocks/exception/exception.factory.js"></script>
     <script src="/client/app/blocks/exception/exception.handler.provider.js"></script>
-    <script src="/client/app/blocks/logger/logger.factory.js"></script>
     <script src="/client/app/blocks/router/router.factory.js"></script>
+    <script src="/client/app/blocks/logger/logger.factory.js"></script>
     <script src="/client/app/data/resources/resource.category.cache.js"></script>
     <script src="/client/app/data/resources/resource.category.js"></script>
     <script src="/client/app/data/resources/resource.city.js"></script>
