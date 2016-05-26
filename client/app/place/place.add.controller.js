@@ -8,18 +8,21 @@
             ivhTreeviewOptionsProvider.set({
                 defaultSelectedState: false,
                 validate: true,
-                expandToDepth: -1
+                expandToDepth: 0,
+                twistieCollapsedTpl: '<i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp;',
+                twistieExpandedTpl: '<i class="fa fa-minus-square" aria-hidden="true"></i>&nbsp;',
+                twistieLeafTpl: ''
             });
         }]);
 
-    PlaceAddController.$inject = ['$scope', '$filter', 'PlaceFactory', 'logger', '$location',
+    PlaceAddController.$inject = ['$scope', '$window', '$filter', 'PlaceFactory', 'logger', '$location',
         'IdentityFactory', 'ResourceCategoryCache', 'ivhTreeviewBfs', 'FileUploader', '$timeout', '$q',
-        'datacontext'
+        'datacontext', '$geolocation'
     ];
 
-    function PlaceAddController($scope, $filter, PlaceFactory, logger, $location,
+    function PlaceAddController($scope, $window, $filter, PlaceFactory, logger, $location,
         IdentityFactory, ResourceCategoryCache, ivhTreeviewBfs, FileUploader, $timeout, $q,
-        datacontext) {
+        datacontext, $geolocation) {
         var images = [];
         // File uploader configurations
         var uploader = $scope.uploader = new FileUploader({
@@ -75,85 +78,103 @@
         };
 
         var MAX_CATEGORY_ALLOWED = 5;
+        $scope.maxCategory = MAX_CATEGORY_ALLOWED;
         var categories = ResourceCategoryCache.query();
         $scope.categories = categories;
         console.log('categories: ' + $scope.categories);
         $scope.categoryCounter = 0;
 
-        $scope.canExit = true;
-        $scope.stepActive = false;
+        $geolocation.getCurrentPosition({
+            timeout: 60000
+        }).then(function(position) {
+            $scope.map = {
+                center: {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                },
+                zoom: 15,
+                /* TODO: Need to check if it's the best solution to solve this problem
+                   Will come back later */
+                markers: [],
+                events: {
+                    click: function(map, eventName, args) {
+                        var e = args[0];
+                        var lat = e.latLng.lat();
+                        var lon = e.latLng.lng();
 
-        $scope.exitWithAPromise = function() {
-            var d = $q.defer();
-            $timeout(function() {
-                d.resolve(true);
-            }, 1000);
-            return d.promise;
-        };
-
-        $scope.exitValidation = function() {
-            return $scope.canExit;
-        };
-
-        $scope.map = {
-            center: {
-                latitude: -6.209778538009775,
-                longitude: 106.73840641829884
-            },
-            zoom: 17,
-            /* TODO: Need to check if it's the best solution to solve this problem
-               Will come back later */
-            markers: [],
-            events: {
-                click: function(map, eventName, args) {
-                    var e = args[0];
-                    var lat = e.latLng.lat();
-                    var lon = e.latLng.lng();
-
-                    var marker = {
-                        id: 0,
-                        coords: {
-                            latitude: lat,
-                            longitude: lon
-                        },
-                        options: {
-                            draggable: true
-                        },
-                        events: {
-                            dragend: function(marker, eventName, args) {
-                                lat = marker.getPosition().lat();
-                                lon = marker.getPosition().lng();
-                                $scope.latitude = lat;
-                                $scope.longitude = lon;
+                        var marker = {
+                            id: 0,
+                            coords: {
+                                latitude: lat,
+                                longitude: lon
+                            },
+                            options: {
+                                draggable: true
+                            },
+                            events: {
+                                dragend: function(marker, eventName, args) {
+                                    lat = marker.getPosition().lat();
+                                    lon = marker.getPosition().lng();
+                                    $scope.latitude = lat;
+                                    $scope.longitude = lon;
+                                }
                             }
-                        }
-                    };
+                        };
 
-                    $scope.map.markers[0] = marker;
-                    $scope.latitude = lat;
-                    $scope.longitude = lon;
-                    $scope.$apply();
-                }
-            },
-            options: {
-                // scrollwheel: false
-            }
-        };
-
-        $scope.changeCallback = function(node, isSelected, tree) {
-            $scope.categoryCounter = 0;
-            ivhTreeviewBfs($scope.categories, function(node) {
-                if (node.selected) {
-                    if (node.children.length <= 0) {
-                        $scope.categoryCounter++;
+                        $scope.map.markers[0] = marker;
+                        $scope.latitude = lat;
+                        $scope.longitude = lon;
+                        $scope.$apply();
                     }
+                },
+                options: {
+                    // scrollwheel: false
+                }
+            };
+        });
+
+        $scope.selected = {};
+        $scope.singleModel = {};
+        $scope.checkResults = [];
+
+        $scope.$watchCollection('singleModel', function() {
+            $scope.checkResults = [];
+            angular.forEach($scope.singleModel, function(value, key) {
+                if (value) {
+                    $scope.checkResults.push(key); //TODO: Simpan ini ke database!!
                 }
             });
+        });
 
-            if (isSelected && $scope.categoryCounter > MAX_CATEGORY_ALLOWED) {
-                logger.warning('Number of allowed categories exceeded');
+        $scope.categoryValidation = function() {
+            if ($scope.checkResults.length > 0) {
+                if ($scope.checkResults.length <= MAX_CATEGORY_ALLOWED) {
+                    return true;
+                } else {
+                    logger.error('Kategori yang dipilih melebihi jumlah maksimum yang ditentukan.');
+                    return false;
+                }
+            } else {
+                logger.error('Anda belum menentukan kategori.');
+                return false;
             }
+
         };
+
+        // $scope.changeCallback = function(node, isSelected, tree) {
+        //     $scope.categoryCounter = 0;
+        //     ivhTreeviewBfs($scope.categories, function(node) {
+        //         if (node.selected) {
+        //             if (node.children.length <= 0) {
+        //                 $scope.categoryCounter++;
+        //             }
+        //         }
+        //     });
+
+        //     if (isSelected && $scope.categoryCounter > MAX_CATEGORY_ALLOWED) {
+        //         logger.warning('Number of allowed categories exceeded');
+        //     }
+        // };
 
         $scope.states = datacontext.location.query({ parent_id: '0' });
 
@@ -162,6 +183,8 @@
                 $scope.cities = datacontext.location.query({ parent_id: state._id });
             }
         };
+
+
 
         $scope.addNew = function() {
             var selectedCategories = [];
@@ -174,7 +197,7 @@
                 }
             });
 
-            if ($scope.categoryCounter <= MAX_CATEGORY_ALLOWED) {
+            if ($scope.checkResults.length <= MAX_CATEGORY_ALLOWED) {
                 var newPlaceData = {
                     title: $scope.title,
                     description: $scope.description,

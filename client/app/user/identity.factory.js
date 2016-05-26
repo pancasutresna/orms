@@ -9,6 +9,7 @@
     function IdentityFactory($window, $cookieStore, datacontext) {
 
         var currentUser;
+
         /**
          * get currentUser object from $cookieStore
          */
@@ -24,6 +25,12 @@
             },
             isAuthorized: function(role) {
                 return !!this.currentUser && this.currentUser.roles.indexOf(role) > -1;
+            },
+            setLocation: function(location) {
+                return this.currentUser.location = location;
+            },
+            getLocation: function() {
+                return this.currentUser.location;
             }
         };
     }
