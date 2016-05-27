@@ -45,7 +45,10 @@
     "ngGeolocation": "^0.0.8",
     "angular-wizard": "^0.6.1",
     "switchery": "^0.8.1",
-    "ng-switchery": "^1.0.0-alpha7"
+    "ng-switchery": "^1.0.0-alpha7",
+    "angular-clockpicker": "^1.1.1",
+    "bootstrap-sass": "^3.3.6",
+    "awesome-bootstrap-checkbox": "^0.3.7"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.9",

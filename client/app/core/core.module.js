@@ -28,7 +28,8 @@
         'uiGmapgoogle-maps',
         'ngGeolocation',
         'mgo-angular-wizard',
-        'NgSwitchery'
+        'NgSwitchery',
+        'angular-clockpicker'
         // 'ngFileUpload' //TODO: remove this
     ]);
 })();

@@ -17,12 +17,26 @@
 
     PlaceAddController.$inject = ['$scope', '$window', '$filter', 'PlaceFactory', 'logger', '$location',
         'IdentityFactory', 'ResourceCategoryCache', 'ivhTreeviewBfs', 'FileUploader', '$timeout', '$q',
-        'datacontext', '$geolocation'
+        'datacontext', '$geolocation', 'moment'
     ];
 
     function PlaceAddController($scope, $window, $filter, PlaceFactory, logger, $location,
         IdentityFactory, ResourceCategoryCache, ivhTreeviewBfs, FileUploader, $timeout, $q,
-        datacontext, $geolocation) {
+        datacontext, $geolocation, moment) {
+
+        $scope.date = moment('now');
+        $scope.options = {
+            done: 'Ok !!',
+            twelvehour: false,
+            nativeOnMobile: true,
+            autoclose: true
+        };
+        // END Clock Picker options
+
+        $scope.checkToggle = function(index) {
+
+        }
+
         var images = [];
         // File uploader configurations
         var uploader = $scope.uploader = new FileUploader({

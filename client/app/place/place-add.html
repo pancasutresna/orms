@@ -159,33 +159,120 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10 ">
+                            <!-- <div class="radio radio-inline">
+                                <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
+                                <label for="inlineRadio1"> WIB </label>
+                            </div>
+                            <div class="radio radio-inline">
+                                <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
+                                <label for="inlineRadio2"> WITA </label>
+                            </div>
+                            <div class="radio radio-inline">
+                                <input type="radio" id="inlineRadio3" value="option3" name="radioInline">
+                                <label for="inlineRadio3"> WIT </label>
+                            </div> -->
+                            <span ng-if="city" class="help-block m-b-none"><b class="text-info">{{city.name}}</b> berada pada zona Waktu Indonesia Bagian Barat (WIB).</span>
+                        </div>
+                    </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Jam Operasional</label>
+                        <label class="col-sm-2 control-label">Waktu Operasional</label>
                         <div class="col-sm-10">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-content no-padding">
                                     <ul class="list-group">
                                         <li class="list-group-item ">
-                                            <input type="checkbox" ng-model="test" class="js-switch" ui-switch /> &nbsp; Senin
+                                            <div class="col-md-3">
+                                                <input type="checkbox" ng-model="date[0].day" class="js-switch" ui-switch="{color:'#1AB394'}" /> &nbsp; Senin
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" data-ng-model='date[0].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[0].day"></input>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" data-ng-model='date[0].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[0].day"></input>
+                                            </div>
+                                            {{date[0].openingHour.format('hh:mm')}} - {{date[0].closingHour.format('hh:mm')}}
+                                            <div class="clearfix col-md-offset-5"></div>
                                         </li>
                                         <li class="list-group-item ">
-                                            <input type="checkbox" ng-model="test" class="js-switch" ui-switch /> &nbsp; Selasa
+                                            <div class="col-md-3">
+                                                <input type="checkbox" ng-model="date[1].day" class="js-switch" ui-switch="{color:'#1AB394'}" /> &nbsp; Selasa
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" data-ng-model='date[1].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[1].day"></input>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" data-ng-model='date[1].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[1].day"></input>
+                                            </div>
+                                            {{date[1].openingHour.format('hh:mm')}} - {{date[1].closingHour.format('hh:mm')}}
+                                            <div class="clearfix col-md-offset-5"></div>
                                         </li>
-                                        <li class="list-group-item">
-                                            <input type="checkbox" ng-model="test" class="js-switch" ui-switch /> &nbsp; Rabu
+                                        <li class="list-group-item ">
+                                            <div class="col-md-3">
+                                                <input type="checkbox" ng-model="date[2].day" class="js-switch" ui-switch="{color:'#1AB394'}" /> &nbsp; Rabu
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" data-ng-model='date[2].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[2].day"></input>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" data-ng-model='date[2].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[2].day"></input>
+                                            </div>
+                                            {{date[2].openingHour.format('hh:mm')}} - {{date[2].closingHour.format('hh:mm')}}
+                                            <div class="clearfix col-md-offset-5"></div>
                                         </li>
-                                        <li class="list-group-item">
-                                            <input type="checkbox" ng-model="test" class="js-switch" ui-switch /> &nbsp; Kamis
+                                        <li class="list-group-item ">
+                                            <div class="col-md-3">
+                                                <input type="checkbox" ng-model="date[3].day" class="js-switch" ui-switch="{color:'#1AB394'}" /> &nbsp; Kamis
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" data-ng-model='date[3].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[3].day"></input>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" data-ng-model='date[3].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[3].day"></input>
+                                            </div>
+                                            {{date[3].openingHour.format('hh:mm')}} - {{date[3].closingHour.format('hh:mm')}}
+                                            <div class="clearfix col-md-offset-5"></div>
                                         </li>
-                                        <li class="list-group-item">
-                                            <input type="checkbox" ng-model="test" class="js-switch" ui-switch /> &nbsp; Jumat
+                                        <li class="list-group-item ">
+                                            <div class="col-md-3">
+                                                <input type="checkbox" ng-model="date[4].day" class="js-switch" ui-switch="{color:'#1AB394'}" /> &nbsp; Jumat
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" data-ng-model='date[4].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[4].day"></input>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" data-ng-model='date[4].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[4].day"></input>
+                                            </div>
+                                            {{date[4].openingHour.format('hh:mm')}} - {{date[4].closingHour.format('hh:mm')}}
+                                            <div class="clearfix col-md-offset-5"></div>
                                         </li>
-                                        <li class="list-group-item">
-                                            <input type="checkbox" ng-model="test" class="js-switch" ui-switch /> &nbsp; Sabtu
+                                        <li class="list-group-item ">
+                                            <div class="col-md-3">
+                                                <input type="checkbox" ng-model="date[5].day" class="js-switch" ui-switch="{color:'#1AB394'}" /> &nbsp; Sabtu
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" data-ng-model='date[5].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[5].day"></input>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" data-ng-model='date[5].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[5].day"></input>
+                                            </div>
+                                            {{date[5].openingHour.format('hh:mm')}} - {{date[5].closingHour.format('hh:mm')}}
+                                            <div class="clearfix col-md-offset-5"></div>
                                         </li>
-                                        <li class="list-group-item">
-                                            <input type="checkbox" ng-model="test" class="js-switch" ui-switch /> &nbsp; Minggu
+                                        <li class="list-group-item ">
+                                            <div class="col-md-3">
+                                                <input type="checkbox" ng-model="date[6].day" class="js-switch" ui-switch="{color:'#ED5565'}" ng-click="" /> &nbsp; Minggu
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input id="check6" type="text" class="form-control" data-ng-model='date[6].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[6].day"></input>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" data-ng-model='date[6].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[6].day"></input>
+                                            </div>
+                                            {{date[6].openingHour.format('hh:mm')}} - {{date[6].closingHour.format('hh:mm')}}
+                                            <div class="clearfix col-md-offset-5"></div>
                                         </li>
                                     </ul>
                                 </div>
