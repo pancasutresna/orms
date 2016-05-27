@@ -1,12 +1,11 @@
 <div class="container-fluid map">
-<ui-gmap-google-map center='map.center' zoom='map.zoom' options="map.options" events="map.events" control="mapControl">
-                <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" idkey="m.id" options="m.options">
-                </ui-gmap-marker>
-            </ui-gmap-google-map>
     <!-- <div data-ng-include="'/app/map/map.html'"></div> -->
     <div class="carousel-inner" role="listbox">
         <div class="map">
-            
+            <ui-gmap-google-map center='map.center' zoom='map.zoom' options="map.options" events="map.events" control="mapControl">
+                <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" idkey="m.id" options="m.options">
+                </ui-gmap-marker>
+            </ui-gmap-google-map>
         </div>
     </div>
 </div>
