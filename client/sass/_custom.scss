@@ -1,8 +1,9 @@
 /* Only demo */
+
 @media (max-width: 1000px) {
-  .welcome-message {
-    display: none;
-  }
+    .welcome-message {
+        display: none;
+    }
 }
 
 .map {
@@ -13,17 +14,16 @@
 .search {
     padding: 20px;
     .input-group-addon {
-        background:none;
+        background: none;
         border: none;
     }
-
 }
 
-.navbar-form{
-    .form-group{
+.navbar-form {
+    .form-group {
         margin-left: 10px;
     }
-    button{
+    button {
         margin-left: 5px;
     }
 }
@@ -32,11 +32,11 @@ footer {
     padding: 40px;
 }
 
-.toast-top-right{
+.toast-top-right {
     top: 70px;
 }
 
-.toast-success{
+.toast-success {
     background-color: #13987e;
 }
 
@@ -49,6 +49,7 @@ footer {
     padding-top: 25px;
     margin: 10px;
 }
+
 .dragover {
     border: 5px dashed blue;
 }
@@ -68,6 +69,7 @@ canvas {
     margin: 6px 0 0 6px;
 }
 
+
 .row {
       display: -webkit-flex;
       display: -ms-flexbox;
@@ -79,31 +81,62 @@ canvas {
 }
 
 .col-md-4 {
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      width:33%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 33%;
 }
 
 .contact-box {
-      width:100%;
-      border: 0;
-      /*border: 1px solid #e7eaec;*/
-      /*margin-bottom: 0px;*/
+    width: 100%;
+    border: 0;
+    /*border: 1px solid #e7eaec;*/
+    /*margin-bottom: 0px;*/
 }
 
-ul, ol {
-  list-style-type: none;
+ul,
+ol {
+    list-style-type: none;
 }
 
-input[type="radio"], input[type="checkbox"] {
-  margin: 6px 0 0 0;
+input[type="radio"],
+input[type="checkbox"] {
+    margin: 6px 0 0 0;
 }
 
 .btn-sub-category {
-  margin-top: 5px;
+    margin-top: 5px;
 }
 
-.steps-indicator {
-  margin-top: 50px;
+button.btn-sub-category:active,
+button.btn-sub-category.active,
+button.btn-sub-category.active:hover,
+button.btn-sub-category.active:focus {
+    background-color: #f8ac59;
+    color: #ffffff;
+}
+
+button.btn-sub-category:hover,
+button.btn-sub-category:focus {
+    border: 1px solid #999999;
+    color: #000;
+}
+
+.steps-indicator {}
+
+.child-category {
+    padding-left: 15px;
+}
+
+.form-horizontal .form-group {
+    margin-right: -15px;
+    margin-left: 0px;
+}
+
+.detail-info {
+    padding-left: 15px;
+}
+
+.list-group-item > .js-switch {
+    float: right;
 }

@@ -5,12 +5,14 @@
             <wz-step wz-title="Tentukan Lokasi">
                 <h3>Tentukan lokasi</h3>
                 <p>Klik pada peta untuk menentukan titik koordinat lokasi yang ingin anda daftarkan.</p>
+                <div class="hr-line-dashed"></div>
                 <div id="map_canvas" class="form-group">
                     <ui-gmap-google-map center="map.center" zoom="map.zoom" options="map.options" events="map.events" draggable="true">
                         <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" options="m.options" events="m.events" idkey="m.id">
                         </ui-gmap-marker>
                     </ui-gmap-google-map>
                 </div>
+                <div class="hr-line-dashed"></div>
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
@@ -21,11 +23,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="hr-line-dashed"></div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary pull-right" wz-next>
                         Next <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
                     </button>
                 </div>
+                <div class="hr-line-dashed"></div>
             </wz-step>
             <wz-step wz-title="Pilih Kategori" canexit="categoryValidation">
                 <div class="row">
@@ -38,75 +42,165 @@
                         <p>Pilih kategori lokasi yang sesuai. Jumlah maksimum kategori yang dapat anda pilih adalah <b>{{maxCategory}}</b> kategori</p>
                     </div>
                     <div class="col-md-6">
-                        <div ng-if="checkResults.length > 5" class="text-danger pull-right">
-                            <strong>Kategori yang dipilih melebihi jumlah maksimum yang ditentukan: {{checkResults.length}} / {{maxCategory}}.</strong>
+                        <div ng-if="checkResults.length > 5" class="pull-right">
+                            Jumlah kategori: <span class="badge badge-danger">{{checkResults.length}} / {{maxCategory}}</span>
                         </div>
                         <div ng-if="checkResults.length <= 5" class="pull-right">
-                            <strong>Jumlah kategori yang dipilih: {{checkResults.length}} / {{maxCategory}}.</strong>
+                            Jumlah kategori: <span class="badge badge-primary">{{checkResults.length}} / {{maxCategory}}</span>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div ng-repeat="category in categories" class="col-lg-4">
-                        <div class="contact-box">
-                            <div class="col-md-2">
-                                <i class="fa {{category.icon}} fa-2x text-navy"></i>
-                            </div>
-                            <div class="col-md-10">
-                                <h3><strong><a href="#">{{ category.label }}</a></strong></h3>
-                                <div class="row">
-                                    <div ng-repeat="child in category.children">
-                                        <button type="button" class="btn btn-default btn-xs btn-sub-category" ng-model="singleModel[child._id]" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0" ng-click="subCategoryCallback(child._id)">
-                                            {{ child.label }}
-                                        </button>&nbsp;
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div ng-repeat="category in categories" class="col-lg-4">
+                                <div class="contact-box">
+                                    <div class="col-md-2">
+                                        <i class="fa {{category.icon}} fa-2x text-navy"></i>
                                     </div>
+                                    <div class="col-md-10">
+                                        <h3><strong><a href="#" class="text-left">{{ category.label }}</a></strong></h3>
+                                        <div class="row child-category">
+                                            <div ng-repeat="child in category.children">
+                                                <button type="button" class="btn btn-default btn-xs btn-sub-category" ng-model="singleModel[child._id]" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0" ng-click="subCategoryCallback(child._id)">
+                                                    {{ child.label }}
+                                                </button>&nbsp;
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
                                 </div>
                             </div>
-                            <div class="clearfix"></div>
                         </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary pull-right" wz-next>
+                                Next <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
+                            </button>
+                            <button type="submit" class="btn btn-primary pull-left" wz-previous>
+                                <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span> Previous
+                            </button>
+                        </div>
+                        <div class="hr-line-dashed"></div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary pull-right" wz-next>
-                    Next <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
-                </button>
-                <button type="submit" class="btn btn-primary pull-left" wz-previous>
-                    <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span> Previous
-                </button>
             </wz-step>
             <wz-step wz-title="Detail Informasi">
-                <p>Even more steps!!</p>
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input name="title" type="text" placeholder="Title" ng-model="title" required="required" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label for="telephone">Telephone</label>
-                    <input name="telephone" type="text" placeholder="Telephone" ng-model="telephone" required="required" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <input name="email" type="text" placeholder="E-mail" ng-model="email" required="required" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label for="website">Website</label>
-                    <input name="website" type="text" placeholder="Website" ng-model="website" required="required" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea name="description" placeholder="Description" ng-model="description" required="required" class="form-control" rows="3">
-                    </textarea>
-                </div>
-                <div class="form-group">
-                    Propinsi:
-                    <select id="state" ng-model="state" ng-options="item.name for item in states" ng-change="getCities(state)" ng-focus="states">
-                        <option value=''>Select</option>
-                    </select>
-                    <select id="city" ng-disabled="!state" ng-model="city" ng-options="item.name for item in cities" ng-focus="!state">
-                        <option value=''>Select</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-default pull-right" wz-next value="Continue" />
+                <h3>Tambahkan Detail Informasi</h3>
+                <div class="cold-md-12 detail-info">
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Nama Lokasi</label>
+                        <div class="col-sm-10">
+                            <input name="title" type="text" ng-model="title" required="required" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Telepon</label>
+                        <div class="col-sm-10">
+                            <input name="telephone" type="text" ng-model="telephone" required="required" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">E-mail</label>
+                        <div class="col-sm-10">
+                            <input name="email" type="text" ng-model="email" required="required" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Website</label>
+                        <div class="col-sm-10">
+                            <input name="website" type="text" ng-model="website" required="required" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Deskripsi</label>
+                        <div class="col-sm-10">
+                            <textarea name="description" ng-model="description" required="required" class="form-control" rows="3">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Alamat 1</label>
+                        <div class="col-sm-10">
+                            <input name="alamat1" type="text" ng-model="alamat1" required="required" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Alamat 2</label>
+                        <div class="col-sm-10">
+                            <input name="alamat2" type="text" ng-model="alamat2" required="required" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Kode Pos</label>
+                        <div class="col-sm-10">
+                            <input name="kodePos" type="text" ng-model="kodePos" required="required" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Propinsi</label>
+                        <div class="col-sm-4">
+                            <select id="state" class="form-control" ng-model="state" ng-options="item.name for item in states" ng-change="getCities(state)" ng-focus="states">
+                                <option value=''>Select</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select id="city" class="form-control" ng-disabled="!state" ng-model="city" ng-options="item.name for item in cities" ng-focus="!state">
+                                <option value=''>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Jam Operasional</label>
+                        <div class="col-sm-10">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-content no-padding">
+                                    <ul class="list-group">
+                                        <li class="list-group-item ">
+                                            <input type="checkbox" ng-model="test" class="js-switch" ui-switch /> &nbsp; Senin
+                                        </li>
+                                        <li class="list-group-item ">
+                                            <input type="checkbox" ng-model="test" class="js-switch" ui-switch /> &nbsp; Selasa
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" ng-model="test" class="js-switch" ui-switch /> &nbsp; Rabu
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" ng-model="test" class="js-switch" ui-switch /> &nbsp; Kamis
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" ng-model="test" class="js-switch" ui-switch /> &nbsp; Jumat
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" ng-model="test" class="js-switch" ui-switch /> &nbsp; Sabtu
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" ng-model="test" class="js-switch" ui-switch /> &nbsp; Minggu
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary pull-right" wz-next>
+                            Next <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
+                        </button>
+                        <button type="submit" class="btn btn-primary pull-left" wz-previous>
+                            <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span> Previous
+                        </button>
+                    </div>
                 </div>
             </wz-step>
             <wz-step wz-title="Upload Foto">

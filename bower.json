@@ -43,7 +43,9 @@
     "animatewithsass": "^3.2.2",
     "angular-slick": "^0.2.1",
     "ngGeolocation": "^0.0.8",
-    "angular-wizard": "^0.6.1"
+    "angular-wizard": "^0.6.1",
+    "switchery": "^0.8.1",
+    "ng-switchery": "^1.0.0-alpha7"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.9",

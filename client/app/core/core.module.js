@@ -27,7 +27,8 @@
         'slick',
         'uiGmapgoogle-maps',
         'ngGeolocation',
-        'mgo-angular-wizard'
+        'mgo-angular-wizard',
+        'NgSwitchery'
         // 'ngFileUpload' //TODO: remove this
     ]);
 })();
