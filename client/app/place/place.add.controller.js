@@ -33,9 +33,16 @@
         };
         // END Clock Picker options
 
-        $scope.checkToggle = function(index) {
-
-        }
+        // Input form values 
+        $scope.listing = {
+            location: {
+                type: {},
+                coordinates: []
+            },
+            operationalHour: [],
+            images: []
+        };
+        // $scope.listing.location.type = 'Point';
 
         var images = [];
         // File uploader configurations
@@ -84,6 +91,7 @@
             console.info('onCompleteItem', fileItem, response, status, headers);
             if (status === 200) {
                 images.push(response.filename);
+                $scope.listing.images.push(response.filename);
             }
             console.info('uploaded file name: ', response.filename);
         };
@@ -95,7 +103,6 @@
         $scope.maxCategory = MAX_CATEGORY_ALLOWED;
         var categories = ResourceCategoryCache.query();
         $scope.categories = categories;
-        console.log('categories: ' + $scope.categories);
         $scope.categoryCounter = 0;
 
         $geolocation.getCurrentPosition({
@@ -129,15 +136,16 @@
                                 dragend: function(marker, eventName, args) {
                                     lat = marker.getPosition().lat();
                                     lon = marker.getPosition().lng();
-                                    $scope.latitude = lat;
-                                    $scope.longitude = lon;
+                                    $scope.listing.location.coordinates[0] = lon; // Longitude
+                                    $scope.listing.location.coordinates[1] = lat; // Latitude
                                 }
                             }
                         };
 
                         $scope.map.markers[0] = marker;
-                        $scope.latitude = lat;
-                        $scope.longitude = lon;
+                        $scope.listing.location.type = 'Point';
+                        $scope.listing.location.coordinates[0] = lon; // Longitude
+                        $scope.listing.location.coordinates[1] = lat; // Latitude
                         $scope.$apply();
                     }
                 },
@@ -149,20 +157,20 @@
 
         $scope.selected = {};
         $scope.singleModel = {};
-        $scope.checkResults = [];
+        $scope.listing.categories = [];
 
         $scope.$watchCollection('singleModel', function() {
-            $scope.checkResults = [];
+            $scope.listing.categories = [];
             angular.forEach($scope.singleModel, function(value, key) {
                 if (value) {
-                    $scope.checkResults.push(key); //TODO: Simpan ini ke database!!
+                    $scope.listing.categories.push(key); //TODO: Simpan ini ke database!!
                 }
             });
         });
 
         $scope.categoryValidation = function() {
-            if ($scope.checkResults.length > 0) {
-                if ($scope.checkResults.length <= MAX_CATEGORY_ALLOWED) {
+            if ($scope.listing.categories.length > 0) {
+                if ($scope.listing.categories.length <= MAX_CATEGORY_ALLOWED) {
                     return true;
                 } else {
                     logger.error('Kategori yang dipilih melebihi jumlah maksimum yang ditentukan.');
@@ -175,43 +183,16 @@
 
         };
 
-        // $scope.changeCallback = function(node, isSelected, tree) {
-        //     $scope.categoryCounter = 0;
-        //     ivhTreeviewBfs($scope.categories, function(node) {
-        //         if (node.selected) {
-        //             if (node.children.length <= 0) {
-        //                 $scope.categoryCounter++;
-        //             }
-        //         }
-        //     });
-
-        //     if (isSelected && $scope.categoryCounter > MAX_CATEGORY_ALLOWED) {
-        //         logger.warning('Number of allowed categories exceeded');
-        //     }
-        // };
-
         $scope.states = datacontext.location.query({ parent_id: '0' });
-
         $scope.getCities = function(state) {
             if (state !== null) {
                 $scope.cities = datacontext.location.query({ parent_id: state._id });
             }
         };
 
-
-
+        // Save new listing
         $scope.addNew = function() {
-            var selectedCategories = [];
-
-            ivhTreeviewBfs($scope.categories, function(node) {
-                if (node.selected) {
-                    if (node.children.length <= 0) {
-                        selectedCategories.push(node._id);
-                    }
-                }
-            });
-
-            if ($scope.checkResults.length <= MAX_CATEGORY_ALLOWED) {
+            if ($scope.listing.categories.length <= MAX_CATEGORY_ALLOWED) {
                 var newPlaceData = {
                     title: $scope.title,
                     description: $scope.description,
@@ -221,7 +202,7 @@
                     latitude: $scope.latitude,
                     longitude: $scope.longitude,
                     tags: $scope.tags, //TODO: Insert into database
-                    categories: selectedCategories,
+                    categories: $scope.listing.categories,
                     images: images,
                     address: {
                         state: $scope.state,

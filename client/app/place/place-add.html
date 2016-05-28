@@ -1,5 +1,8 @@
 <div class="container">
     <h2>Pendaftaran Listing</h2>
+    <div>
+        {{listing}}
+    </div>
     <form name="addPlaceForm" class="form-horizontal">
         <wizard on-finish="finishedWizard()">
             <wz-step wz-title="Tentukan Lokasi">
@@ -16,10 +19,10 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
-                            <input name="latitude" type="text" placeholder="Latitude" ng-model="latitude" required="required" class="form-control" placeholder="Latitude" />
+                            <input name="latitude" type="text" placeholder="Latitude" ng-model="listing.location.coordinates[1]" required="required" class="form-control" placeholder="Latitude" />
                         </div>
                         <div class="col-md-6">
-                            <input name="longitude" type="text" placeholder="Longitude" ng-model="longitude" required="required" class="form-control" placeholder="Longitude" />
+                            <input name="longitude" type="text" placeholder="Longitude" ng-model="listing.location.coordinates[0]" required="required" class="form-control" placeholder="Longitude" />
                         </div>
                     </div>
                 </div>
@@ -42,11 +45,11 @@
                         <p>Pilih kategori lokasi yang sesuai. Jumlah maksimum kategori yang dapat anda pilih adalah <b>{{maxCategory}}</b> kategori</p>
                     </div>
                     <div class="col-md-6">
-                        <div ng-if="checkResults.length > 5" class="pull-right">
-                            Jumlah kategori: <span class="badge badge-danger">{{checkResults.length}} / {{maxCategory}}</span>
+                        <div ng-if="listing.categories.length > 5" class="pull-right">
+                            Jumlah kategori: <span class="badge badge-danger">{{listing.categories.length}} / {{maxCategory}}</span>
                         </div>
-                        <div ng-if="checkResults.length <= 5" class="pull-right">
-                            Jumlah kategori: <span class="badge badge-primary">{{checkResults.length}} / {{maxCategory}}</span>
+                        <div ng-if="listing.categories.length <= 5" class="pull-right">
+                            Jumlah kategori: <span class="badge badge-primary">{{listing.categories.length}} / {{maxCategory}}</span>
                         </div>
                     </div>
                 </div>
@@ -92,35 +95,35 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Nama Lokasi</label>
                         <div class="col-sm-10">
-                            <input name="title" type="text" ng-model="title" required="required" class="form-control" />
+                            <input name="title" type="text" ng-model="listing.title" required="required" class="form-control" />
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Telepon</label>
                         <div class="col-sm-10">
-                            <input name="telephone" type="text" ng-model="telephone" required="required" class="form-control" />
+                            <input name="telephone" type="text" ng-model="listing.telephone" required="required" class="form-control" />
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">E-mail</label>
                         <div class="col-sm-10">
-                            <input name="email" type="text" ng-model="email" required="required" class="form-control" />
+                            <input name="email" type="text" ng-model="listing.email" required="required" class="form-control" />
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Website</label>
                         <div class="col-sm-10">
-                            <input name="website" type="text" ng-model="website" required="required" class="form-control" />
+                            <input name="website" type="text" ng-model="listing.website" required="required" class="form-control" />
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Deskripsi</label>
                         <div class="col-sm-10">
-                            <textarea name="description" ng-model="description" required="required" class="form-control" rows="3">
+                            <textarea name="description" ng-model="listing.description" required="required" class="form-control" rows="3">
                             </textarea>
                         </div>
                     </div>
@@ -128,52 +131,40 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Alamat 1</label>
                         <div class="col-sm-10">
-                            <input name="alamat1" type="text" ng-model="alamat1" required="required" class="form-control" />
+                            <input name="alamat1" type="text" ng-model="listing.address.alamat1" required="required" class="form-control" />
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Alamat 2</label>
                         <div class="col-sm-10">
-                            <input name="alamat2" type="text" ng-model="alamat2" required="required" class="form-control" />
+                            <input name="alamat2" type="text" ng-model="listing.address.alamat2" required="required" class="form-control" />
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Kode Pos</label>
                         <div class="col-sm-10">
-                            <input name="kodePos" type="text" ng-model="kodePos" required="required" class="form-control" />
+                            <input name="kodePos" type="text" ng-model="listing.address.kodePos" required="required" class="form-control" />
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Propinsi</label>
                         <div class="col-sm-4">
-                            <select id="state" class="form-control" ng-model="state" ng-options="item.name for item in states" ng-change="getCities(state)" ng-focus="states">
+                            <select id="state" class="form-control" ng-model="listing.address.state._id" ng-options="item.name for item in states" ng-change="getCities(listing.address.state)" ng-focus="states">
                                 <option value=''>Select</option>
                             </select>
                         </div>
                         <div class="col-sm-4">
-                            <select id="city" class="form-control" ng-disabled="!state" ng-model="city" ng-options="item.name for item in cities" ng-focus="!state">
+                            <select id="city" class="form-control" ng-disabled="!listing.address.state" ng-model="listing.address.city._id" ng-options="item.name for item in cities" ng-focus="!listing.address.state">
                                 <option value=''>Select</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10 ">
-                            <!-- <div class="radio radio-inline">
-                                <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
-                                <label for="inlineRadio1"> WIB </label>
-                            </div>
-                            <div class="radio radio-inline">
-                                <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
-                                <label for="inlineRadio2"> WITA </label>
-                            </div>
-                            <div class="radio radio-inline">
-                                <input type="radio" id="inlineRadio3" value="option3" name="radioInline">
-                                <label for="inlineRadio3"> WIT </label>
-                            </div> -->
-                            <span ng-if="city" class="help-block m-b-none"><b class="text-info">{{city.name}}</b> berada pada zona Waktu Indonesia Bagian Barat (WIB).</span>
+                            <span ng-if="listing.address.city" class="help-block m-b-none"><b class="text-info">{{listing.address.city.name}}</b> berada pada zona Waktu Indonesia Bagian Barat (WIB).</span>
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
@@ -185,93 +176,93 @@
                                     <ul class="list-group">
                                         <li class="list-group-item ">
                                             <div class="col-md-3">
-                                                <input type="checkbox" ng-model="date[0].day" class="js-switch" ui-switch="{color:'#1AB394'}" /> &nbsp; Senin
+                                                <input type="checkbox" ng-model="listing.operationalHour[0].senin" class="js-switch" ui-switch="{color:'#1AB394'}" /> &nbsp; Senin
                                             </div>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" data-ng-model='date[0].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[0].day"></input>
+                                                <input type="text" class="form-control" data-ng-model='listing.operationalHour[0].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!listing.operationalHour[0].senin"></input>
                                             </div>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" data-ng-model='date[0].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[0].day"></input>
+                                                <input type="text" class="form-control" data-ng-model='listing.operationalHour[0].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!listing.operationalHour[0].senin"></input>
                                             </div>
-                                            {{date[0].openingHour.format('hh:mm')}} - {{date[0].closingHour.format('hh:mm')}}
+                                            {{listing.operationalHour[0].openingHour.format('hh:mm')}} - {{listing.operationalHour[0].closingHour.format('hh:mm')}}
                                             <div class="clearfix col-md-offset-5"></div>
                                         </li>
                                         <li class="list-group-item ">
                                             <div class="col-md-3">
-                                                <input type="checkbox" ng-model="date[1].day" class="js-switch" ui-switch="{color:'#1AB394'}" /> &nbsp; Selasa
+                                                <input type="checkbox" ng-model="listing.operationalHour[1].selasa" class="js-switch" ui-switch="{color:'#1AB394'}" /> &nbsp; Selasa
                                             </div>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" data-ng-model='date[1].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[1].day"></input>
+                                                <input type="text" class="form-control" data-ng-model='listing.operationalHour[1].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!listing.operationalHour[1].selasa"></input>
                                             </div>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" data-ng-model='date[1].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[1].day"></input>
+                                                <input type="text" class="form-control" data-ng-model='listing.operationalHour[1].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!listing.operationalHour[1].selasa"></input>
                                             </div>
-                                            {{date[1].openingHour.format('hh:mm')}} - {{date[1].closingHour.format('hh:mm')}}
+                                            {{listing.operationalHour[1].openingHour.format('hh:mm')}} - {{listing.operationalHour[1].closingHour.format('hh:mm')}}
                                             <div class="clearfix col-md-offset-5"></div>
                                         </li>
                                         <li class="list-group-item ">
                                             <div class="col-md-3">
-                                                <input type="checkbox" ng-model="date[2].day" class="js-switch" ui-switch="{color:'#1AB394'}" /> &nbsp; Rabu
+                                                <input type="checkbox" ng-model="listing.operationalHour[2].rabu" class="js-switch" ui-switch="{color:'#1AB394'}" /> &nbsp; Rabu
                                             </div>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" data-ng-model='date[2].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[2].day"></input>
+                                                <input type="text" class="form-control" data-ng-model='listing.operationalHour[2].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!listing.operationalHour[2].rabu"></input>
                                             </div>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" data-ng-model='date[2].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[2].day"></input>
+                                                <input type="text" class="form-control" data-ng-model='listing.operationalHour[2].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!listing.operationalHour[2].rabu"></input>
                                             </div>
-                                            {{date[2].openingHour.format('hh:mm')}} - {{date[2].closingHour.format('hh:mm')}}
+                                            {{listing.operationalHour[2].openingHour.format('hh:mm')}} - {{listing.operationalHour[2].closingHour.format('hh:mm')}}
                                             <div class="clearfix col-md-offset-5"></div>
                                         </li>
                                         <li class="list-group-item ">
                                             <div class="col-md-3">
-                                                <input type="checkbox" ng-model="date[3].day" class="js-switch" ui-switch="{color:'#1AB394'}" /> &nbsp; Kamis
+                                                <input type="checkbox" ng-model="listing.operationalHour[3].kamis" class="js-switch" ui-switch="{color:'#1AB394'}" /> &nbsp; Kamis
                                             </div>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" data-ng-model='date[3].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[3].day"></input>
+                                                <input type="text" class="form-control" data-ng-model='listing.operationalHour[3].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!listing.operationalHour[3].kamis"></input>
                                             </div>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" data-ng-model='date[3].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[3].day"></input>
+                                                <input type="text" class="form-control" data-ng-model='listing.operationalHour[3].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!listing.operationalHour[3].kamis"></input>
                                             </div>
-                                            {{date[3].openingHour.format('hh:mm')}} - {{date[3].closingHour.format('hh:mm')}}
+                                            {{listing.operationalHour[3].openingHour.format('hh:mm')}} - {{listing.operationalHour[3].closingHour.format('hh:mm')}}
                                             <div class="clearfix col-md-offset-5"></div>
                                         </li>
                                         <li class="list-group-item ">
                                             <div class="col-md-3">
-                                                <input type="checkbox" ng-model="date[4].day" class="js-switch" ui-switch="{color:'#1AB394'}" /> &nbsp; Jumat
+                                                <input type="checkbox" ng-model="listing.operationalHour[4].jumat" class="js-switch" ui-switch="{color:'#1AB394'}" /> &nbsp; Jumat
                                             </div>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" data-ng-model='date[4].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[4].day"></input>
+                                                <input type="text" class="form-control" data-ng-model='listing.operationalHour[4].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!listing.operationalHour[4].jumat"></input>
                                             </div>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" data-ng-model='date[4].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[4].day"></input>
+                                                <input type="text" class="form-control" data-ng-model='listing.operationalHour[4].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!listing.operationalHour[4].jumat"></input>
                                             </div>
-                                            {{date[4].openingHour.format('hh:mm')}} - {{date[4].closingHour.format('hh:mm')}}
+                                            {{listing.operationalHour[4].openingHour.format('hh:mm')}} - {{listing.operationalHour[4].closingHour.format('hh:mm')}}
                                             <div class="clearfix col-md-offset-5"></div>
                                         </li>
                                         <li class="list-group-item ">
                                             <div class="col-md-3">
-                                                <input type="checkbox" ng-model="date[5].day" class="js-switch" ui-switch="{color:'#1AB394'}" /> &nbsp; Sabtu
+                                                <input type="checkbox" ng-model="listing.operationalHour[5].sabtu" class="js-switch" ui-switch="{color:'#1AB394'}" /> &nbsp; Sabtu
                                             </div>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" data-ng-model='date[5].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[5].day"></input>
+                                                <input type="text" class="form-control" data-ng-model='listing.operationalHour[5].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!listing.operationalHour[5].sabtu"></input>
                                             </div>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" data-ng-model='date[5].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[5].day"></input>
+                                                <input type="text" class="form-control" data-ng-model='listing.operationalHour[5].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!listing.operationalHour[5].sabtu"></input>
                                             </div>
-                                            {{date[5].openingHour.format('hh:mm')}} - {{date[5].closingHour.format('hh:mm')}}
+                                            {{listing.operationalHour[5].openingHour.format('hh:mm')}} - {{listing.operationalHour[5].closingHour.format('hh:mm')}}
                                             <div class="clearfix col-md-offset-5"></div>
                                         </li>
                                         <li class="list-group-item ">
                                             <div class="col-md-3">
-                                                <input type="checkbox" ng-model="date[6].day" class="js-switch" ui-switch="{color:'#ED5565'}" ng-click="" /> &nbsp; Minggu
+                                                <input type="checkbox" ng-model="listing.operationalHour[6].minggu" class="js-switch" ui-switch="{color:'#ED5565'}" ng-click="" /> &nbsp; Minggu
                                             </div>
                                             <div class="col-md-2">
-                                                <input id="check6" type="text" class="form-control" data-ng-model='date[6].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[6].day"></input>
+                                                <input id="check6" type="text" class="form-control" data-ng-model='listing.operationalHour[6].openingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!listing.operationalHour[6].minggu"></input>
                                             </div>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" data-ng-model='date[6].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!date[6].day"></input>
+                                                <input type="text" class="form-control" data-ng-model='listing.operationalHour[6].closingHour' data-lng-clockpicker data-lng-clockpicker-options='options' ng-disabled="!listing.operationalHour[6].minggu"></input>
                                             </div>
-                                            {{date[6].openingHour.format('hh:mm')}} - {{date[6].closingHour.format('hh:mm')}}
+                                            {{listing.operationalHour[6].openingHour.format('hh:mm')}} - {{listing.operationalHour[6].closingHour.format('hh:mm')}}
                                             <div class="clearfix col-md-offset-5"></div>
                                         </li>
                                     </ul>
@@ -288,22 +279,20 @@
                             <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span> Previous
                         </button>
                     </div>
+                    <div class="hr-line-dashed"></div>
                 </div>
             </wz-step>
             <wz-step wz-title="Upload Foto">
-                <p>Even more steps!!</p>
-                <div class="form-group" nv-file-drop="" uploader="uploader">
-                    <div class="row">
+                <h3>Upload Foto</h3>
+                <div class="col-md-12">
+                    <div class="form-group" nv-file-drop="" uploader="uploader">
                         <div ng-show="uploader.isHTML5">
                             <div class="well my-drop-zone" nv-file-over="" uploader="uploader">
-                                Drop images here
+                                <p class="text-center"> &laquo; drop foto disini &raquo; </p>
                             </div>
                         </div>
-                        <br/>
-                    </div>
-                    <div class="row" ng-if="uploader.queue.length > 0">
-                        <!-- <p>Queue length: {{ uploader.queue.length }}</p> -->
-                        <div class="row">
+                        <div class="row" ng-if="uploader.queue.length > 0">
+                            <!-- <p>Queue length: {{ uploader.queue.length }}</p> -->
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -338,40 +327,40 @@
                                             <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
                                         </td>
                                         <td nowrap>
-                                            <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                            <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="item.remove()">
                                                 <span class="glyphicon glyphicon-trash"></span> Remove
                                             </button>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
-                                <span class="glyphicon glyphicon-trash"></span> Remove all
-                            </button>
-                        </div>
-                        <div class="row">
-                            <div>
-                                Queue progress:
-                                <div class="progress" style="">
-                                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                            <div class="clearfix"></div>
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-danger pull-right" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+                                    <span class="glyphicon glyphicon-trash"></span> Remove all
+                                </button>
+                                <div class="clearfix"></div>
+                                <div class="hr-line-dashed"></div>
+                                <div>
+                                    Queue progress:
+                                    <div class="progress" style="">
+                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-10 col-md-offset-2">
-                        <div class="pull-right">
-                            <button ng-click="addNew()" ng-disable="addPlaceForm.invalid" class="btn btn-primary">
-                                Submit
-                            </button>
-                            <a href="/" class="btn btn-default">Cancel</a>
-                        </div>
+                    <div class="clearfix"></div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary pull-left" wz-previous>
+                            <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span> Previous
+                        </button>
+                        <button type="submit" class="btn btn-primary pull-right" wz-next ng-click="addNew()" ng-disable="addPlaceForm.invalid"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Simpan</button>
                     </div>
+                    <div class="hr-line-dashed"></div>
                 </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-default pull-right" wz-next value="Finish" />
-                </div>
+                <div class="clearfix"></div>
             </wz-step>
         </wizard>
     </form>
