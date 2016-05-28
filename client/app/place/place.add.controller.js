@@ -24,7 +24,9 @@
         IdentityFactory, ResourceCategoryCache, ivhTreeviewBfs, FileUploader, $timeout, $q,
         datacontext, $geolocation, moment) {
 
-        $scope.date = moment('now');
+        $scope.saveButtonText = 'Simpan';
+
+        $scope.date = moment().format();
         $scope.options = {
             done: 'Ok !!',
             twelvehour: false,
@@ -44,11 +46,11 @@
         };
         // $scope.listing.location.type = 'Point';
 
-        var images = [];
+        $scope.images = [];
         // File uploader configurations
         var uploader = $scope.uploader = new FileUploader({
             url: '/api/place/uploads',
-            autoUpload: true,
+            autoUpload: false,
             queueLimit: 5
         });
 
@@ -90,13 +92,19 @@
         uploader.onCompleteItem = function(fileItem, response, status, headers) {
             console.info('onCompleteItem', fileItem, response, status, headers);
             if (status === 200) {
-                images.push(response.filename);
                 $scope.listing.images.push(response.filename);
             }
             console.info('uploaded file name: ', response.filename);
         };
         uploader.onCompleteAll = function() {
             console.info('onCompleteAll');
+
+            // Saing new listing
+            PlaceFactory.addNewPlace($scope.listing).then(function(place) {
+                $location.path('/places/' + place._id);
+            }, function(reason) {
+                logger.error(reason);
+            });
         };
 
         var MAX_CATEGORY_ALLOWED = 5;
@@ -168,6 +176,16 @@
             });
         });
 
+        // $scope.$watchCollection('uploader.queue', function() {
+        //     $scope.listing.images = [];
+        //     angular.forEach($scope.uploader.queue, function(value, key) {
+        //         console.log('value : ' + value.file.name + ' -- key : ' + key);
+        //         // if (value) {
+        //         //     $scope.listing.images.push(value);
+        //         // }
+        //     });
+        // });
+
         $scope.categoryValidation = function() {
             if ($scope.listing.categories.length > 0) {
                 if ($scope.listing.categories.length <= MAX_CATEGORY_ALLOWED) {
@@ -184,6 +202,7 @@
         };
 
         $scope.states = datacontext.location.query({ parent_id: '0' });
+        
         $scope.getCities = function(state) {
             if (state !== null) {
                 $scope.cities = datacontext.location.query({ parent_id: state._id });
@@ -192,29 +211,10 @@
 
         // Save new listing
         $scope.addNew = function() {
-            if ($scope.listing.categories.length <= MAX_CATEGORY_ALLOWED) {
-                var newPlaceData = {
-                    title: $scope.title,
-                    description: $scope.description,
-                    telephone: $scope.telephone,
-                    email: $scope.email,
-                    website: $scope.website,
-                    latitude: $scope.latitude,
-                    longitude: $scope.longitude,
-                    tags: $scope.tags, //TODO: Insert into database
-                    categories: $scope.listing.categories,
-                    images: images,
-                    address: {
-                        state: $scope.state,
-                        city: $scope.city
-                    }
-                };
+            $scope.saveButtonText = 'Sedang menyimpan..';
 
-                PlaceFactory.addNewPlace(newPlaceData).then(function(place) {
-                    $location.path('/places/' + place._id);
-                }, function(reason) {
-                    logger.error(reason);
-                });
+            if ($scope.listing.categories.length <= MAX_CATEGORY_ALLOWED) {
+                uploader.uploadAll();
             } else {
                 logger.warning('Exceed maximum category!');
             }

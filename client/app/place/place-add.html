@@ -3,6 +3,9 @@
     <div>
         {{listing}}
     </div>
+    <div>
+        
+    </div>
     <form name="addPlaceForm" class="form-horizontal">
         <wizard on-finish="finishedWizard()">
             <wz-step wz-title="Tentukan Lokasi">
@@ -152,12 +155,12 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Propinsi</label>
                         <div class="col-sm-4">
-                            <select id="state" class="form-control" ng-model="listing.address.state._id" ng-options="item.name for item in states" ng-change="getCities(listing.address.state)" ng-focus="states">
+                            <select id="state" class="form-control" ng-model="listing.address.state._id" ng-options="item._id as item.name for item in states" ng-change="getCities(listing.address.state)" ng-focus="states">
                                 <option value=''>Select</option>
                             </select>
                         </div>
                         <div class="col-sm-4">
-                            <select id="city" class="form-control" ng-disabled="!listing.address.state" ng-model="listing.address.city._id" ng-options="item.name for item in cities" ng-focus="!listing.address.state">
+                            <select id="city" class="form-control" ng-disabled="!listing.address.state" ng-model="listing.address.city._id" ng-options="item._id as item.name for item in cities" ng-focus="!listing.address.state">
                                 <option value=''>Select</option>
                             </select>
                         </div>
@@ -356,7 +359,7 @@
                         <button type="submit" class="btn btn-primary pull-left" wz-previous>
                             <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span> Previous
                         </button>
-                        <button type="submit" class="btn btn-primary pull-right" wz-next ng-click="addNew()" ng-disable="addPlaceForm.invalid"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Simpan</button>
+                        <button type="submit" class="btn btn-primary pull-right" wz-next ng-click="addNew()" ng-disable="addPlaceForm.invalid"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> {{saveButtonText}} </button>
                     </div>
                     <div class="hr-line-dashed"></div>
                 </div>

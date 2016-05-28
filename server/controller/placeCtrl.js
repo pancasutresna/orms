@@ -23,6 +23,7 @@ exports.getPlaceById = function(req, res) {
 
 exports.addNewPlace = function(req, res, next) {
     var placeData = req.body;
+    console.log('Lising data : ' + JSON.stringify(placeData));
 
     if (req.user === undefined) {
         res.status(403);
