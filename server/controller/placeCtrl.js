@@ -1,12 +1,15 @@
 var Place = require('mongoose').model('Place');
 var fs = require('fs');
-var gcloud = require('gcloud'); // Google Cloud SDK for NodeJS
+// Google Cloud SDK for NodeJS
+var gcloud = require('gcloud');
 
+/*
+ * Google cloud storage configuration
+ */
 var gcs = gcloud.storage({
     projectId: 'utility-glider-130309',
     keyFilename: './server/config/disini-6b3b2077c500.json'
 });
-
 var bucket = gcs.bucket('disini-upload');
 
 exports.getPlaces = function(req, res) {
@@ -23,24 +26,22 @@ exports.getPlaceById = function(req, res) {
 
 exports.addNewPlace = function(req, res, next) {
     var placeData = req.body;
-    console.log('Lising data : ' + JSON.stringify(placeData));
 
     if (req.user === undefined) {
         res.status(403);
         return res.send({reason: '403 Forbidden'});
     }
 
-    placeData.ownerId = req.user._id; // get ownerId from session
+    placeData.ownerId = req.user._id;
     placeData.featured = false;
-    placeData.published = new Date(); //TODO: Change this later
-    placeData.tags = ['tag1'];
+    placeData.published = new Date();
+    placeData.tags = ['tag1']; // TODO: change this later
 
     Place.create(placeData, function(err, place) {
         if (err) {
             res.status(400);
             return res.send({reason:err.toString()});
         }
-
         res.send(place);
     });
 };

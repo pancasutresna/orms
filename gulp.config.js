@@ -9,15 +9,15 @@ module.exports = function() {
     var temp = './tmp/';
     var root = './';
     var wiredep = require('wiredep');
-    var bowerFiles = wiredep({devDependencies: true})['js'];
+    var bowerFiles = wiredep({ devDependencies: true })['js'];
     var specRunnerFile = 'specs.html';
 
-    var config  = {
+    var config = {
         root: root,
         css: [
             client + 'css/style.css',
             client + 'css/animate.css'
-            ],
+        ],
         /*
          * File paths
          */
@@ -41,8 +41,10 @@ module.exports = function() {
         server: server,
         temp: temp,
         index: client + 'index.html',
-        fonts: ['./bower_components/font-awesome/fonts/**/*.*', 
-                './bower_components/bootstrap/fonts/**/*.*'],
+        fonts: ['./bower_components/font-awesome/fonts/**/*.*',
+            './bower_components/bootstrap/fonts/**/*.*'
+        ],
+        uploads: './uploads/**/*.*',
         html: clientApp + '**/*.html',
         htmltemplates: clientApp + '**/*.html',
         images: client + 'images/**/*.*',
@@ -141,9 +143,9 @@ module.exports = function() {
                 dir: report + 'coverage',
                 reporters: [
                     // reporters not supporting the `file` property
-                    {type: 'html', subdir: 'report-html'},
-                    {type: 'lcov', subdir: 'report-lcov'},
-                    {type: 'text-summary'} //, subdir: '.', file: 'text-summary.txt'}
+                    { type: 'html', subdir: 'report-html' },
+                    { type: 'lcov', subdir: 'report-lcov' },
+                    { type: 'text-summary' } //, subdir: '.', file: 'text-summary.txt'}
                 ]
             },
             preprocessors: {}

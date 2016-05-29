@@ -59,7 +59,6 @@
                     }
                 };
             });
-
         });
 
         vm.places = ResourcePlaceCache.query();

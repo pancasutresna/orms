@@ -12,6 +12,7 @@
     function PlaceAddController($scope, $window, $filter, PlaceFactory, logger, $location,
         FileUploader, $timeout, datacontext, $geolocation, moment) {
 
+        // TODO: Implement controller as method
         var MAX_CATEGORY_ALLOWED = 5;
         var MAX_CATEGORY_ALLOWED_ERROR = 'Kategori yang dipilih melebihi jumlah maksimum yang ditentukan.';
         var EMPTY_CATEGORY_ERROR = 'Anda belum menentukan kategori.';

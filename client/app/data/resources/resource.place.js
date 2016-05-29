@@ -6,6 +6,7 @@
         .factory('resource.place', ResourcePlace);
 
     ResourcePlace.$inject = [];
+
     function ResourcePlace() {
 
         return {
@@ -14,7 +15,7 @@
 
         function createResource($resource) {
             var resource = $resource('/api/places/:_id', {
-                _id: '@id'
+                _id: '@id',
             }, {
                 update: {
                     method: 'PUT',

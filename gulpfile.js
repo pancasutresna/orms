@@ -22,7 +22,7 @@ gulp.task('autotest', ['inspect', 'templatecache'], function(done) {
  * This task will build the codes and setup all necessary files needed to run 
  * the application on the staging and production environment
  * =========================================================================== */
-gulp.task('build', ['optimize', 'images', 'fonts'], function() {
+gulp.task('build', ['optimize', 'images', 'fonts', 'uploads'], function() {
     log($.util.colors.yellow('### BUILDING EVERYTHING ###'));
 
     var msg = {
@@ -149,6 +149,20 @@ gulp.task('clean-fonts', function() {
 });
 
 /* ===========================================================================
+ * Clean fonts inside build/fonts folder
+ * =========================================================================== */
+gulp.task('clean-uploads', function() {
+    log($.util.colors.yellow('### TASK CLEAN-UPLOADS ###'));
+    log($.util.colors.yellow('Cleaning uploads....'));
+
+    // define font files to clean
+    var files = config.build + 'uploads/**/*.*';
+
+    // call to clean function
+    return clean(files);
+});
+
+/* ===========================================================================
  * Clean images inside build/images folder
  * =========================================================================== */
 gulp.task('clean-images', function() {
@@ -193,6 +207,19 @@ gulp.task('fonts', ['clean-fonts'], function() {
 
     return gulp.src(config.fonts)
         .pipe(gulp.dest(config.build + 'fonts'));
+});
+
+/* ===========================================================================
+ * This task will run 'clean-uploads' to remove previously coppied uploads inside 
+ * the build folder then copy a fresh new uploads from bower_components into 
+ * build folder
+ * ===========================================================================*/
+gulp.task('uploads', ['clean-uploads'], function() {
+    log($.util.colors.yellow('### TASK UPLOADS ###'));
+    log($.util.colors.yellow('Copy a fresh new uploads into build folders'));
+
+    return gulp.src(config.uploads)
+        .pipe(gulp.dest(config.build + 'uploads'));
 });
 
 /* ===========================================================================

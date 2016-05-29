@@ -1,16 +1,107 @@
 <div class="container">
     <h1>{{ vm.place.title }}</h1>
     <div class="row">
-        <div class="col-md-6">
-            <h3 ng-show="vm.place.featured">Featured</h3>
-            <h3>Published on {{ vm.place.published | date }}</h3>
+        <div class="col-md-9">
+            <div>
+                <span class="label label-primary label-category" ng-repeat="category in vm.place.categories">
+                    {{category}}
+                </span>
+            </div>
         </div>
-        <div class="col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">Tags</div>
-                <div class="panel-body">
-                    <div ng-repeat="tag in vm.place.tags">{{tag}}</div>
+        <div class="col-md-3">
+            <span ng-show="!vm.place.featured" class="badge badge-warning pull-right">Featured</span>
+            <span class="small pull-right label-published">Dipublish pada tanggal {{ vm.place.published | date }}</span>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="row">
+        <div class="col-md-3">
+            <slick infinite="true" autoplay="true" center-mode="false" autoplaySpeed="2000" speed="500" dots="true" ng-if="vm.ready" fade="true" prev-arrow=".none" next-arrow=".none">
+                <div ng-repeat="image in vm.place.images">
+                    <img src="/uploads/{{image}}">
                 </div>
+            </slick>
+        </div>
+        <div class="col-md-9">
+            <h3>Deskripsi</h3>
+            <div>{{vm.place.description}}</div>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Waktu Operasional</h5>
+                    <div ibox-tools></div>
+                </div>
+                <div class="ibox-content no-padding">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span ng-if="vm.place.operationalHour.senin && vm.place.operationalHour.senin.open" class="pull-right">{{vm.place.operationalHour.senin.openingHour | date:'H:mm'}} - {{vm.place.operationalHour.senin.closingHour | date:'H:mm'}}</span>
+                            <span ng-if="!vm.place.operationalHour.senin || !vm.place.operationalHour.senin.open" class="pull-right">-</span> Senin
+                        </li>
+                        <li class="list-group-item ">
+                            <span ng-if="vm.place.operationalHour.selasa && vm.place.operationalHour.selasa.open" class="pull-right">{{vm.place.operationalHour.selasa.openingHour | date:'H:mm'}} - {{vm.place.operationalHour.selasa.closingHour | date:'H:mm'}}</span>
+                            <span ng-if="!vm.place.operationalHour.selasa || !vm.place.operationalHour.selasa.open" class="pull-right">-</span> Selasa
+                        </li>
+                        <li class="list-group-item">
+                            <span ng-if="vm.place.operationalHour.rabu && vm.place.operationalHour.rabu.open" class="pull-right">{{vm.place.operationalHour.rabu.openingHour | date:'H:mm'}} - {{vm.place.operationalHour.rabu.closingHour | date:'H:mm'}}</span>
+                            <span ng-if="!vm.place.operationalHour.rabu || !vm.place.operationalHour.rabu.open" class="pull-right">-</span> Rabu
+                        </li>
+                        <li class="list-group-item">
+                            <span ng-if="vm.place.operationalHour.kamis && vm.place.operationalHour.kamis.open" class="pull-right">{{vm.place.operationalHour.kamis.openingHour | date:'H:mm'}} - {{vm.place.operationalHour.kamis.closingHour | date:'H:mm'}}</span>
+                            <span ng-if="!vm.place.operationalHour.kamis || !vm.place.operationalHour.kamis.open" class="pull-right">-</span> Kamis
+                        </li>
+                        <li class="list-group-item">
+                            <span ng-if="vm.place.operationalHour.jumat && vm.place.operationalHour.jumat.open" class="pull-right">{{vm.place.operationalHour.jumat.openingHour | date:'H:mm'}} - {{vm.place.operationalHour.jumat.closingHour | date:'H:mm'}}</span>
+                            <span ng-if="!vm.place.operationalHour.jumat || !vm.place.operationalHour.jumat.open" class="pull-right">-</span> Jumat
+                        </li>
+                        <li class="list-group-item">
+                            <span ng-if="vm.place.operationalHour.sabtu && vm.place.operationalHour.sabtu.open" class="pull-right">{{vm.place.operationalHour.sabtu.openingHour | date:'H:mm'}} - {{vm.place.operationalHour.sabtu.closingHour | date:'H:mm'}}</span>
+                            <span ng-if="!vm.place.operationalHour.sabtu || !vm.place.operationalHour.sabtu.open" class="pull-right">-</span> Sabtu
+                        </li>
+                        <li class="list-group-item">
+                            <span ng-if="vm.place.operationalHour.minggu && vm.place.operationalHour.minggu.open" class="pull-right">{{vm.place.operationalHour.minggu.openingHour | date:'H:mm'}} - {{vm.place.operationalHour.minggu.closingHour | date:'H:mm'}}</span>
+                            <span ng-if="!vm.place.operationalHour.minggu || !vm.place.operationalHour.minggu.open" class="pull-right">-</span> Minggu
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Alamat</h5>
+                    <div ibox-tools></div>
+                </div>
+                <div class="ibox-content">
+                    <address>
+                        {{vm.place.address.alamat1}}
+                        <br> {{vm.place.address.alamat2}}, {{vm.place.address.kodePos}}
+                        <br> {{vm.place.address.city}}, {{vm.place.address.state}}
+                        <br>
+                        <abbr title="Phone">P:</abbr> {{vm.place.telephone}}
+                    </address>
+                    <address>
+                        <strong>Full Name</strong>
+                        <br>
+                        <abbr title="E-mail">E:</abbr> <a href="mailto:#">{{vm.place.email}}</a>
+                        <br>
+                        <abbr title="Website">W:</abbr> <a href="{{vm.place.website}}">{{vm.place.website}}</a>
+                    </address>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="map">
+                <ui-gmap-google-map center='vm.place.location.coordinates' zoom='vm.map.zoom' options="vm.map.options" events="map.events" control="mapControl">
+                    <ui-gmap-marker ng-repeat="m in vm.map.markers" coords="vm.place.location.coordinates" idkey="m.id" options="m.options">
+                    </ui-gmap-marker>
+                </ui-gmap-google-map>
             </div>
         </div>
     </div>
