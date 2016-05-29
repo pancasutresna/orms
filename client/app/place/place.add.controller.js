@@ -3,56 +3,49 @@
 
     angular
         .module('app.place')
-        .controller('PlaceAddController', PlaceAddController)
-        .config(['ivhTreeviewOptionsProvider', function(ivhTreeviewOptionsProvider) {
-            ivhTreeviewOptionsProvider.set({
-                defaultSelectedState: false,
-                validate: true,
-                expandToDepth: 0,
-                twistieCollapsedTpl: '<i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp;',
-                twistieExpandedTpl: '<i class="fa fa-minus-square" aria-hidden="true"></i>&nbsp;',
-                twistieLeafTpl: ''
-            });
-        }]);
+        .controller('PlaceAddController', PlaceAddController);
 
     PlaceAddController.$inject = ['$scope', '$window', '$filter', 'PlaceFactory', 'logger', '$location',
-        'IdentityFactory', 'ResourceCategoryCache', 'ivhTreeviewBfs', 'FileUploader', '$timeout', '$q',
-        'datacontext', '$geolocation', 'moment'
+        'FileUploader', '$timeout', 'datacontext', '$geolocation', 'moment'
     ];
 
     function PlaceAddController($scope, $window, $filter, PlaceFactory, logger, $location,
-        IdentityFactory, ResourceCategoryCache, ivhTreeviewBfs, FileUploader, $timeout, $q,
-        datacontext, $geolocation, moment) {
+        FileUploader, $timeout, datacontext, $geolocation, moment) {
 
-        $scope.saveButtonText = 'Simpan';
+        var MAX_CATEGORY_ALLOWED = 5;
+        var MAX_CATEGORY_ALLOWED_ERROR = 'Kategori yang dipilih melebihi jumlah maksimum yang ditentukan.';
+        var EMPTY_CATEGORY_ERROR = 'Anda belum menentukan kategori.';
+        var SAVE_BUTTON_TEXT = 'Simpan';
+        var SAVING_BUTTON_TEXT = 'Menyimpan..';
+        var categories = datacontext.category.query();
 
-        $scope.date = moment().format();
-        $scope.options = {
-            done: 'Ok !!',
-            twelvehour: false,
-            nativeOnMobile: true,
-            autoclose: true
-        };
-        // END Clock Picker options
-
-        // Input form values 
+        // Listing object graph
         $scope.listing = {
             location: {
                 type: {},
                 coordinates: []
             },
             operationalHour: {},
-            images: []
+            images: [],
+            categories: []
         };
-
-        $scope.images = [];
+        $scope.saveButtonText = SAVE_BUTTON_TEXT; // save button text
+        $scope.maxCategory = MAX_CATEGORY_ALLOWED;
+        $scope.categories = categories;
+        $scope.subCategory = {}; // single category
+        // Clock picker options
+        $scope.date = moment().format();
+        $scope.options = {
+            twelvehour: false,
+            nativeOnMobile: true,
+            autoclose: true
+        };
         // File uploader configurations
         var uploader = $scope.uploader = new FileUploader({
             url: '/api/place/uploads',
             autoUpload: false,
             queueLimit: 5
         });
-
         uploader.filters.push({
             name: 'imageFilter',
             fn: function(item /*{File|FileLikeObject}*/ , options) {
@@ -61,56 +54,11 @@
             }
         });
 
-        uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/ , filter, options) {
-            console.info('onWhenAddingFileFailed', item, filter, options);
-        };
-        uploader.onAfterAddingFile = function(fileItem) {
-            console.info('onAfterAddingFile', fileItem);
-        };
-        uploader.onAfterAddingAll = function(addedFileItems) {
-            console.info('onAfterAddingAll', addedFileItems);
-        };
-        uploader.onBeforeUploadItem = function(item) {
-            console.info('onBeforeUploadItem', item);
-        };
-        uploader.onProgressItem = function(fileItem, progress) {
-            console.info('onProgressItem', fileItem, progress);
-        };
-        uploader.onProgressAll = function(progress) {
-            console.info('onProgressAll', progress);
-        };
-        uploader.onSuccessItem = function(fileItem, response, status, headers) {
-            console.info('onSuccessItem', fileItem, response, status, headers);
-        };
-        uploader.onErrorItem = function(fileItem, response, status, headers) {
-            console.info('onErrorItem', fileItem, response, status, headers);
-        };
-        uploader.onCancelItem = function(fileItem, response, status, headers) {
-            console.info('onCancelItem', fileItem, response, status, headers);
-        };
         uploader.onCompleteItem = function(fileItem, response, status, headers) {
-            console.info('onCompleteItem', fileItem, response, status, headers);
             if (status === 200) {
                 $scope.listing.images.push(response.filename);
             }
-            console.info('uploaded file name: ', response.filename);
         };
-        uploader.onCompleteAll = function() {
-            console.info('onCompleteAll');
-
-            // Saing new listing
-            PlaceFactory.addNewPlace($scope.listing).then(function(place) {
-                $location.path('/places/' + place._id);
-            }, function(reason) {
-                logger.error(reason);
-            });
-        };
-
-        var MAX_CATEGORY_ALLOWED = 5;
-        $scope.maxCategory = MAX_CATEGORY_ALLOWED;
-        var categories = ResourceCategoryCache.query();
-        $scope.categories = categories;
-        $scope.categoryCounter = 0;
 
         $geolocation.getCurrentPosition({
             timeout: 60000
@@ -121,15 +69,12 @@
                     longitude: position.coords.longitude
                 },
                 zoom: 15,
-                /* TODO: Need to check if it's the best solution to solve this problem
-                   Will come back later */
                 markers: [],
                 events: {
                     click: function(map, eventName, args) {
                         var e = args[0];
                         var lat = e.latLng.lat();
                         var lon = e.latLng.lng();
-
                         var marker = {
                             id: 0,
                             coords: {
@@ -148,7 +93,6 @@
                                 }
                             }
                         };
-
                         $scope.map.markers[0] = marker;
                         $scope.listing.location.type = 'Point';
                         $scope.listing.location.coordinates[0] = lon; // Longitude
@@ -156,52 +100,33 @@
                         $scope.$apply();
                     }
                 },
-                options: {
-                    // scrollwheel: false
-                }
+                options: {}
             };
         });
 
-        $scope.selected = {};
-        $scope.singleModel = {};
-        $scope.listing.categories = [];
-
-        $scope.$watchCollection('singleModel', function() {
+        $scope.$watchCollection('subCategory', function() {
             $scope.listing.categories = [];
-            angular.forEach($scope.singleModel, function(value, key) {
+            angular.forEach($scope.subCategory, function(value, key) {
                 if (value) {
-                    $scope.listing.categories.push(key); //TODO: Simpan ini ke database!!
+                    $scope.listing.categories.push(key);
                 }
             });
         });
-
-        // $scope.$watchCollection('uploader.queue', function() {
-        //     $scope.listing.images = [];
-        //     angular.forEach($scope.uploader.queue, function(value, key) {
-        //         console.log('value : ' + value.file.name + ' -- key : ' + key);
-        //         // if (value) {
-        //         //     $scope.listing.images.push(value);
-        //         // }
-        //     });
-        // });
-
         $scope.categoryValidation = function() {
             if ($scope.listing.categories.length > 0) {
                 if ($scope.listing.categories.length <= MAX_CATEGORY_ALLOWED) {
                     return true;
                 } else {
-                    logger.error('Kategori yang dipilih melebihi jumlah maksimum yang ditentukan.');
+                    logger.error(MAX_CATEGORY_ALLOWED_ERROR);
                     return false;
                 }
             } else {
-                logger.error('Anda belum menentukan kategori.');
+                logger.error(EMPTY_CATEGORY_ERROR);
                 return false;
             }
-
         };
 
         $scope.states = datacontext.location.query({ parent_id: '0' });
-        
         $scope.getCities = function(state) {
             if (state !== null) {
                 $scope.cities = datacontext.location.query({ parent_id: state });
@@ -210,18 +135,19 @@
 
         // Save new listing
         $scope.addNew = function() {
-            $scope.saveButtonText = 'Sedang menyimpan..';
-
+            $scope.saveButtonText = SAVING_BUTTON_TEXT;
             if ($scope.listing.categories.length <= MAX_CATEGORY_ALLOWED) {
-                uploader.uploadAll();
+                uploader.uploadAll(); // upload images
+
+                // Saving new listing
+                PlaceFactory.addNewPlace($scope.listing).then(function(place) {
+                    $location.path('/places/' + place._id);
+                }, function(reason) {
+                    logger.error(reason);
+                });
             } else {
-                logger.warning('Exceed maximum category!');
+                logger.error(MAX_CATEGORY_ALLOWED_ERROR);
             }
         };
-
-        // if (!IdentityFactory.isAuthenticated()) {
-        //     $location.path('/places');
-        //     return;
-        // }
     }
 })();

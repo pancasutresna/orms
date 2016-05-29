@@ -16,6 +16,11 @@
             var resource = $resource('/api/categories/:_id', {
                 _id: '@id'
             }, {
+                query: {
+                    method: 'GET',
+                    cache : true,
+                    isArray: true
+                },
                 update: {
                     method: 'PUT',
                     isArray: false
