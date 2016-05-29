@@ -41,10 +41,9 @@
                 type: {},
                 coordinates: []
             },
-            operationalHour: [],
+            operationalHour: {},
             images: []
         };
-        // $scope.listing.location.type = 'Point';
 
         $scope.images = [];
         // File uploader configurations
@@ -205,7 +204,7 @@
         
         $scope.getCities = function(state) {
             if (state !== null) {
-                $scope.cities = datacontext.location.query({ parent_id: state._id });
+                $scope.cities = datacontext.location.query({ parent_id: state });
             }
         };
 
