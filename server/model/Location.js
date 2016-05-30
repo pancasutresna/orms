@@ -4025,6 +4025,327 @@ function createDefaultLocations() {
                         timezone: ''
                     });
                 });
+
+                // Provinsi Bali
+                Location.create({
+                    parent_id: country._id,
+                    name: 'Provinsi Bali',
+                    type: 1,
+                    location: {
+                        type: 'Point',
+                        coordinates: [
+                            115.188916, -8.4095178
+                        ]
+                    },
+                    status: 1,
+                    timezone: ''
+                }, function(err, state) {
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kabupaten Jembrana',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                114.6418, -8.361852
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kabupaten Badung',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                115.1770586, -8.5819296
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kabupaten Gianyar',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                115.3255, -8.544185
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kabupaten Klungkung',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                115.4045111, -8.5389222
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kabupaten Bangli',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                115.354897, -8.454303
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kabupaten Karang Asem',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                108.0503042, -6.3996057
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kabupaten Buleleng',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                115.126999, -8.113831
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kota Denpasar',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                115.222099, -8.65629
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kabupaten Tabanan',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                115.119797, -8.544516
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                });
+
+                // Provinsi Nusa Tenggara Barat
+                Location.create({
+                    parent_id: country._id,
+                    name: 'Provinsi Nusa Tenggara Barat',
+                    type: 1,
+                    location: {
+                        type: 'Point',
+                        coordinates: [
+                            117.3616476, -8.6529334
+                        ]
+                    },
+                    status: 1,
+                    timezone: ''
+                }, function(err, state) {
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kabupaten Lombok Barat',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                116.1123078, -8.6464599
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kabupaten Lombok Tengah',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                116.2777073, -8.694623
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kabupaten Lombok Timur',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                116.5609857, -8.5134471
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kabupaten Sumbawa',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                117.3616476, -8.6529334
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kabupaten Dompu',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                118.4747173, -8.4966318
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kabupaten Bima',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                118.727402, -8.460566
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kota Mataram',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                116.1166667, -8.5833333
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kabupaten Sumbawa Barat',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                116.8910342, -8.9292907
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kota Bima',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                118.727402, -8.460566
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kabupaten Lombok Utara',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                116.2777073, -8.3739076
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                });
+
+                // Provinsi Nusa Tenggara Timur
+                Location.create({
+                    parent_id: country._id,
+                    name: 'Provinsi Nusa Tenggara Timur',
+                    type: 1,
+                    location: {
+                        type: 'Point',
+                        coordinates: [
+                            121.0793705, -8.6573819
+                        ]
+                    },
+                    status: 1,
+                    timezone: ''
+                }, function(err, state) {
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kabupaten Sumba Barat',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                119.3947135, -9.6548326
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                    Location.create({
+                        parent_id: state._id,
+                        name: 'Kabupaten Sumba Timur',
+                        type: 2,
+                        location: {
+                            type: 'Point',
+                            coordinates: [
+                                120.3435506, -9.9802103
+                            ]
+                        },
+                        status: 1,
+                        timezone: ''
+                    });
+                });
             });
         }
     });
