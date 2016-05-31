@@ -1,17 +1,19 @@
 var mongoose = require('mongoose');
 
 var locationSchema = mongoose.Schema({
-    _id: {
-        type: String
-    },
+    // _id: mongoose.Schema.Types.ObjectId,
+    parent_id: mongoose.Schema.Types.ObjectId,
     name: {
         type: String,
         required: '{PATH} is required'
     },
+    type: Number,
     location: {
         type: { type: String },
         coordinates: [Number]
-    }
+    },
+    status: Number,
+    timezone: String
 });
 
 var Location = mongoose.model('Location', locationSchema);

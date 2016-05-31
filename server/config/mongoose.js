@@ -16,5 +16,6 @@ module.exports = function(config) {
     userModel.createDefaultUsers();
     categoryModel.createDefaultCategories();
     placeModel.createDefaultPlaces();
+    locationModel.createDefaultLocations();
 
 };

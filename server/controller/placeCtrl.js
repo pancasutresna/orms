@@ -13,13 +13,26 @@ var gcs = gcloud.storage({
 var bucket = gcs.bucket('disini-upload');
 
 exports.getPlaces = function(req, res) {
-    Place.find({}).exec(function(err, collection) {
+    Place
+    .find({})
+    .populate('address.city', 'name')
+    .populate('address.state', 'name')
+    .populate('owner', 'firstName lastName')
+    .populate('categories', 'label')
+    .exec(function(err, collection) {
+        console.log('error : ' + err);
+
+        console.log('places: ' + collection);
+
         res.send(collection);
     });
 };
 
 exports.getPlaceById = function(req, res) {
-    Place.findOne({_id:req.params.id}).exec(function(err, place) {
+    Place
+    .findOne({_id:req.params.id})
+    .exec(function(err, place) {
+        console.log('places: ' + place);
         res.send(place);
     });
 };
@@ -32,7 +45,7 @@ exports.addNewPlace = function(req, res, next) {
         return res.send({reason: '403 Forbidden'});
     }
 
-    placeData.ownerId = req.user._id;
+    placeData.owner = req.user._id;
     placeData.featured = false;
     placeData.published = new Date();
     placeData.tags = ['tag1']; // TODO: change this later

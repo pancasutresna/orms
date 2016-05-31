@@ -3,7 +3,8 @@ require('mongoose-type-email');
 
 var placeSchema = mongoose.Schema({
     owner: {
-        type: mongoose.Schema.Types.ObjectId
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User'
     },
     title: {
         type: String,
@@ -27,8 +28,8 @@ var placeSchema = mongoose.Schema({
         alamat1: { type: String },
         alamat2: { type: String },
         kodePos: { type: String },
-        state: { type: String },
-        city: { type: String }
+        state: { type: mongoose.Schema.Types.ObjectId, ref: 'Location' },
+        city: { type: mongoose.Schema.Types.ObjectId, ref: 'Location' }
     },
     location: {
         type: { type: String },
@@ -72,7 +73,7 @@ var placeSchema = mongoose.Schema({
         }
     },
     images: [String],
-    categories: [mongoose.Schema.Types.ObjectId],
+    categories: [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
     featured: { type: Boolean },
     published: { type: Date },
     tags: [String],

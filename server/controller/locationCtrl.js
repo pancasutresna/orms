@@ -4,6 +4,7 @@ var Location = require('mongoose').model('Location');
 exports.getLocationsByParentId = function(req, res) {
     var parentId = req.params.parent_id;
     Location.find({ parent_id: parentId }).exec(function(err, collection) {
+        console.log('locations: ' + collection);
         res.send(collection);
     });
 };

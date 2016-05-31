@@ -1,16 +1,16 @@
 <div class="container">
-    <h1>{{ vm.place.title }}</h1>
+    <h1><span class="fa fa-laptop fa-lg"></span> {{ vm.place.title }}</h1>
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-7">
             <div>
                 <span class="label label-primary label-category" ng-repeat="category in vm.place.categories">
-                    {{category}}
+                    {{category.label}}
                 </span>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-5">
             <span ng-show="!vm.place.featured" class="badge badge-warning pull-right">Featured</span>
-            <span class="small pull-right label-published">Dipublish pada tanggal {{ vm.place.published | date }}</span>
+            <span class="small pull-right label-published">publish {{ vm.place.published | date }} oleh <a href="#">{{ vm.place.owner.firstName}} {{ vm.place.owner.lastName}}</a></span>
         </div>
     </div>
     <div class="hr-line-dashed"></div>
@@ -32,7 +32,7 @@
         <div class="col-md-3">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Waktu Operasional</h5>
+                    <h5>Waktu Operasional </h5><span class="fa fa-clock-o fa-lg pull-right"></span>
                     <div ibox-tools></div>
                 </div>
                 <div class="ibox-content no-padding">
@@ -79,17 +79,23 @@
                     <address>
                         {{vm.place.address.alamat1}}
                         <br> {{vm.place.address.alamat2}}, {{vm.place.address.kodePos}}
-                        <br> {{vm.place.address.city}}, {{vm.place.address.state}}
+                        <br> {{vm.place.address.city.name}}, {{vm.place.address.state.name}}
                         <br>
-                        <abbr title="Phone">P:</abbr> {{vm.place.telephone}}
                     </address>
                     <address>
-                        <strong>Full Name</strong>
+                        <b>Phone:</b> {{vm.place.telephone}}
                         <br>
-                        <abbr title="E-mail">E:</abbr> <a href="mailto:#">{{vm.place.email}}</a>
+                        <b>E-mail:</b> <a href="mailto:#">{{vm.place.email}}</a>
                         <br>
-                        <abbr title="Website">W:</abbr> <a href="{{vm.place.website}}">{{vm.place.website}}</a>
+                        <b>Website:</b> <a href="{{vm.place.website}}">{{vm.place.website}}</a>
                     </address>
+                    <address>
+                        <strong>GPS:</strong> {{vm.place.location.coordinates[1]}}, {{vm.place.location.coordinates[0]}}
+                    </address>
+                    <button type="button" class="btn btn-w-m btn-warning">
+                        <span class="fa fa-phone"></span> Contact Owner
+                    </button>
+                    <button type="button" class="btn btn-w-m btn-info"><span class="fa fa-road"></span> Get Direction</button>
                 </div>
             </div>
         </div>

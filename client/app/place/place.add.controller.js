@@ -28,7 +28,11 @@
             },
             operationalHour: {},
             images: [],
-            categories: []
+            categories: [],
+            address: {
+                state: {},
+                city: {}
+            }
         };
         $scope.saveButtonText = SAVE_BUTTON_TEXT; // save button text
         $scope.maxCategory = MAX_CATEGORY_ALLOWED;
@@ -127,10 +131,10 @@
             }
         };
 
-        $scope.states = datacontext.location.query({ parent_id: '0' });
+        $scope.states = datacontext.location.query({ parent_id: '000000000000000000000001' }); // indonesia
         $scope.getCities = function(state) {
             if (state !== null) {
-                $scope.cities = datacontext.location.query({ parent_id: state });
+                $scope.cities = datacontext.location.query({ parent_id: state._id });
             }
         };
 
