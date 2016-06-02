@@ -61,7 +61,7 @@
             });
         });
 
-        vm.places = ResourcePlaceCache.query();
+        vm.places = datacontext.place.query({page: 1, limit: 10});
         vm.categories = ResourceCategoryCache.query();
         $timeout(function() {
             vm.ready = true;

@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 require('mongoose-type-email');
 
 var placeSchema = mongoose.Schema({
@@ -79,6 +80,7 @@ var placeSchema = mongoose.Schema({
     tags: [String],
 });
 
+placeSchema.plugin(mongoosePaginate);
 var Place = mongoose.model('Place', placeSchema);
 
 function createDefaultPlaces() {

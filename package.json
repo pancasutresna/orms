@@ -29,6 +29,7 @@
     "mongodb": "^2.1.4",
     "mongoose": "^4.3.6",
     "mongoose-materialized-path": "^1.3.5",
+    "mongoose-paginate": "^5.0.0",
     "mongoose-path-tree": "^1.3.5",
     "mongoose-type-email": "^1.0.2",
     "morgan": "^1.6.1",

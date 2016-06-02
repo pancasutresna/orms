@@ -13,29 +13,60 @@ var gcs = gcloud.storage({
 var bucket = gcs.bucket('disini-upload');
 
 exports.getPlaces = function(req, res) {
-    Place
-    .find({})
-    .populate('address.city', 'name')
-    .populate('address.state', 'name')
-    .populate('owner', 'firstName lastName')
-    .populate('categories', 'label')
-    .exec(function(err, collection) {
-        console.log('error : ' + err);
 
-        console.log('places: ' + collection);
+    var page = Number(req.params.page);
+    var pageLimit = Number(req.params.limit);
 
-        res.send(collection);
+    var query = {};
+    var options = {
+        populate: 'address.city address.state owner categories',
+        page: page,
+        limit: pageLimit
+    };
+
+    Place.paginate(query, options).then(function(result) {
+        res.send(result);
     });
+
+    // Place
+    // .find({})
+    // .populate('address.city', 'name')
+    // .populate('address.state', 'name')
+    // .populate('owner', 'firstName lastName')
+    // .populate('categories', 'label')
+    // .exec(function(err, collection) {
+    //     console.log('error : ' + err);
+
+    //     console.log('places: ' + collection);
+
+    //     res.send(collection);
+    // });
 };
 
 exports.getPlaceById = function(req, res) {
     Place
     .findOne({_id:req.params.id})
+    .populate('address.city', 'name')
+    .populate('address.state', 'name')
+    .populate('owner', 'firstName lastName')
+    .populate('categories', 'label')
     .exec(function(err, place) {
-        console.log('places: ' + place);
         res.send(place);
     });
 };
+
+exports.getPlaceByCategory = function(req, res) {
+    Place
+    .find({categories: {$elemMatch:{$eq: req.params.id}}})
+    .populate('address.city')
+    .populate('address.state')
+    .populate('owner')
+    .populate('categories')
+    .exec(function(err, collection) {
+        res.send(collection);
+    });
+};
+
 
 exports.addNewPlace = function(req, res, next) {
     var placeData = req.body;

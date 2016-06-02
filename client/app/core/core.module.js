@@ -29,7 +29,8 @@
         'ngGeolocation',
         'mgo-angular-wizard',
         'NgSwitchery',
-        'angular-clockpicker'
+        'angular-clockpicker',
+        'bw.paging'
         // 'ngFileUpload' //TODO: remove this
     ]);
 })();

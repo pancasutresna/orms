@@ -5,10 +5,11 @@
     .module('app.place')
     .controller('PlaceListController', PlaceListController);
 
-    PlaceListController.$inject =  ['ResourcePlaceCache'];
-    function PlaceListController(ResourcePlaceCache) {
+    PlaceListController.$inject =  ['$scope', 'datacontext'];
+    function PlaceListController($scope, datacontext) {
         var vm = this;
-        vm.places = ResourcePlaceCache.query();
+        vm.currentPage;
+        vm.places = datacontext.place.query({page: 1, limit: 5});
 
         vm.sortOptions = [
             {value: 'title', text: 'Sort by Title'},
@@ -16,6 +17,10 @@
         ];
 
         vm.sortOrder = vm.sortOptions[0].value;
+
+        vm.gotoPage = function(page, pageSize, total){
+            vm.places = datacontext.place.query({page: page, limit: pageSize});
+        }
     }
 
 })();

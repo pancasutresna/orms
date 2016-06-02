@@ -10,9 +10,9 @@
         var placeList;
 
         return {
-            query: function() {
+            query: function(offset, limit) {
                 if (!placeList) {
-                    placeList = datacontext.place.query();
+                    placeList = datacontext.place.query(offset, limit);
                 }
 
                 return placeList;

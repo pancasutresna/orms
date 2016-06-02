@@ -1,5 +1,5 @@
 <div class="container">
-    <h1><span class="fa fa-laptop fa-lg"></span> {{ vm.place.title }}</h1>
+    <h1><span class="fa fa-map-marker fa-lg"></span> {{ vm.place.title }}</h1>
     <div class="row">
         <div class="col-md-7">
             <div>
@@ -18,7 +18,7 @@
         <div class="col-md-3">
             <slick infinite="true" autoplay="true" center-mode="false" autoplaySpeed="2000" speed="500" dots="true" ng-if="vm.ready" fade="true" prev-arrow=".none" next-arrow=".none">
                 <div ng-repeat="image in vm.place.images">
-                    <img src="/uploads/{{image}}">
+                    <img src="/uploads/{{image}}" width="200" height="240">
                 </div>
             </slick>
         </div>

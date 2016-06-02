@@ -48,7 +48,8 @@
     "ng-switchery": "^1.0.0-alpha7",
     "angular-clockpicker": "^1.1.1",
     "bootstrap-sass": "^3.3.6",
-    "awesome-bootstrap-checkbox": "^0.3.7"
+    "awesome-bootstrap-checkbox": "^0.3.7",
+    "angular-paging": "^2.2.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.9",

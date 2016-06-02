@@ -39,8 +39,10 @@ module.exports = function(app, config) {
     app.post('/api/users', userCtrl.createUser);
     app.put('/api/users', userCtrl.updateUser);
 
-    app.get('/api/places', placeCtrl.getPlaces);
-    app.get('/api/places/:id', placeCtrl.getPlaceById);
+    // app.get('/api/places', placeCtrl.getPlaces);
+    app.get('/api/places/detail/:id', placeCtrl.getPlaceById);
+    app.get('/api/places/category/:id', placeCtrl.getPlaceByCategory);
+    app.get('/api/places/:page/:limit', placeCtrl.getPlaces);
     app.post('/api/places', placeCtrl.addNewPlace);
     // app.put('/api/places', placeCtrl.updatePlace); TODO: Update places
 

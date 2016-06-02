@@ -5,19 +5,19 @@
         .module('app.place')
         .controller('PlaceDetailController', PlaceDetailController);
 
-    PlaceDetailController.$inject = ['ResourcePlaceCache', '$routeParams', '$timeout', 'uiGmapGoogleMapApi', 'uiGmapIsReady', '$window'];
+    PlaceDetailController.$inject = ['datacontext', '$routeParams', '$timeout', 'uiGmapGoogleMapApi', 'uiGmapIsReady', '$window'];
 
-    function PlaceDetailController(ResourcePlaceCache, $routeParams, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, $window) {
+    function PlaceDetailController(datacontext, $routeParams, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, $window) {
         var vm = this;
         vm.ready = false;
-        vm.place = {};
-        ResourcePlaceCache.query().$promise.then(function(collection) {
-            collection.forEach(function(place) {
-                if (place._id === $routeParams.id) {
-                    vm.place = place;
-                }
-            });
-        });
+        vm.place = datacontext.place.findOne({ id: $routeParams.id });
+        // ResourcePlaceCache.query().$promise.then(function(collection) {
+        //     collection.forEach(function(place) {
+        //         if (place._id === $routeParams.id) {
+
+        //         }
+        //     });
+        // });
 
         var location = {};
         location = vm.place.location;
