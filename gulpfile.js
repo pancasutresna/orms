@@ -22,7 +22,7 @@ gulp.task('autotest', ['inspect', 'templatecache'], function(done) {
  * This task will build the codes and setup all necessary files needed to run 
  * the application on the staging and production environment
  * =========================================================================== */
-gulp.task('build', ['optimize', 'images', 'fonts', 'uploads'], function() {
+gulp.task('build', ['optimize', 'images', 'fonts'], function() {
     log($.util.colors.yellow('### BUILDING EVERYTHING ###'));
 
     var msg = {
@@ -361,7 +361,7 @@ gulp.task('serve-specs', ['build-specs'], function(done) {
 /* ===========================================================================
  * This task will start server and serve development code
  * =========================================================================== */
-gulp.task('serve-stage', ['optimize'], function() {
+gulp.task('serve-stage', ['optimize', 'uploads'], function() {
     log($.util.colors.yellow('### SERV STAGING BUILD ###'));
     log($.util.colors.yellow('Serving staging code....'));
 
